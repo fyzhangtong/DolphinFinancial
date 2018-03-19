@@ -13,6 +13,12 @@
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
 		7B2007F8205A7BEC00C3B723 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F6205A7BEC00C3B723 /* LaunchScreen.storyboard */; };
 		7B2007FB205A7BEC00C3B723 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007FA205A7BEC00C3B723 /* main.m */; };
+		7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431955205F50F300040FBA /* FinancialViewCell.m */; };
+		7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */; };
+		7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */; };
+		7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195F205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m */; };
+		7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */; };
+		7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */; };
 		7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C2205B64A00020FFE6 /* BaseViewController.m */; };
 		7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C5205B70300020FFE6 /* BaseTabBarController.m */; };
 		7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C8205B70BA0020FFE6 /* BaseNavigationController.m */; };
@@ -38,6 +44,18 @@
 		7B2007F7205A7BEC00C3B723 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B2007F9205A7BEC00C3B723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B2007FA205A7BEC00C3B723 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B431954205F50F300040FBA /* FinancialViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewCell.h; sourceTree = "<group>"; };
+		7B431955205F50F300040FBA /* FinancialViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewCell.m; sourceTree = "<group>"; };
+		7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsMoneyCollectionViewCell.h; sourceTree = "<group>"; };
+		7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsMoneyCollectionViewCell.m; sourceTree = "<group>"; };
+		7B43195B205F694700040FBA /* AssetsTotalCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsTotalCollectionViewCell.h; sourceTree = "<group>"; };
+		7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsTotalCollectionViewCell.m; sourceTree = "<group>"; };
+		7B43195E205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsTotalProfitCollectionViewCell.h; sourceTree = "<group>"; };
+		7B43195F205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsTotalProfitCollectionViewCell.m; sourceTree = "<group>"; };
+		7B431961205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsProfitRecordsCollectionViewCell.h; sourceTree = "<group>"; };
+		7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsProfitRecordsCollectionViewCell.m; sourceTree = "<group>"; };
+		7B431964205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsYieldCurveCollectionViewCell.h; sourceTree = "<group>"; };
+		7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsYieldCurveCollectionViewCell.m; sourceTree = "<group>"; };
 		7B48A4C1205B64A00020FFE6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		7B48A4C2205B64A00020FFE6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		7B48A4C4205B70300020FFE6 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
@@ -129,6 +147,32 @@
 			path = DolphinFinancial;
 			sourceTree = "<group>";
 		};
+		7B431953205F500C00040FBA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B431954205F50F300040FBA /* FinancialViewCell.h */,
+				7B431955205F50F300040FBA /* FinancialViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B431957205F683600040FBA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B43195B205F694700040FBA /* AssetsTotalCollectionViewCell.h */,
+				7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */,
+				7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */,
+				7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */,
+				7B43195E205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.h */,
+				7B43195F205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m */,
+				7B431961205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.h */,
+				7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */,
+				7B431964205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.h */,
+				7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7B48A4C0205B64490020FFE6 /* BaseService */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +222,7 @@
 		7B48A4D1205B71510020FFE6 /* Financial */ = {
 			isa = PBXGroup;
 			children = (
+				7B431953205F500C00040FBA /* View */,
 				7B48A4D2205B716F0020FFE6 /* Controller */,
 			);
 			path = Financial;
@@ -195,6 +240,7 @@
 		7B48A4D6205B718E0020FFE6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7B431957205F683600040FBA /* View */,
 				7B48A4D7205B71BD0020FFE6 /* Controller */,
 			);
 			path = Assets;
@@ -365,12 +411,18 @@
 			files = (
 				7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */,
 				7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */,
+				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
+				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B2007F0205A7BEC00C3B723 /* ViewController.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
+				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
+				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
+				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
+				7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
 				7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */,
@@ -516,7 +568,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DolphinFinancial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -533,7 +585,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DolphinFinancial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
