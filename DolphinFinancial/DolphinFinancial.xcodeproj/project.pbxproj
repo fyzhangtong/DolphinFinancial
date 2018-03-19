@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007EC205A7BEC00C3B723 /* AppDelegate.m */; };
-		7B2007F0205A7BEC00C3B723 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007EF205A7BEC00C3B723 /* ViewController.m */; };
 		7B2007F3205A7BEC00C3B723 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F1205A7BEC00C3B723 /* Main.storyboard */; };
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
 		7B2007F8205A7BEC00C3B723 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F6205A7BEC00C3B723 /* LaunchScreen.storyboard */; };
@@ -27,18 +26,16 @@
 		7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4DF205B723E0020FFE6 /* FinacialViewController.m */; };
 		7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E4205B73060020FFE6 /* MyViewController.m */; };
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
-		F3EC908D1C1A5C55AF4E26DD /* libPods-DolphinFinancial.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5FF58CECA4AEE9273AAC8 /* libPods-DolphinFinancial.a */; };
+		7EBDBBCF2E424B0F273B1ED4 /* Pods_DolphinFinancial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		06E5FF58CECA4AEE9273AAC8 /* libPods-DolphinFinancial.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DolphinFinancial.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EA40CF10350D22C1821E2B2 /* Pods-DolphinFinancial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.debug.xcconfig"; sourceTree = "<group>"; };
+		4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DolphinFinancial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.release.xcconfig"; sourceTree = "<group>"; };
 		7B2007E8205A7BEC00C3B723 /* DolphinFinancial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DolphinFinancial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2007EB205A7BEC00C3B723 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7B2007EC205A7BEC00C3B723 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7B2007EE205A7BEC00C3B723 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7B2007EF205A7BEC00C3B723 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7B2007F2205A7BEC00C3B723 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B2007F4205A7BEC00C3B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B2007F7205A7BEC00C3B723 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3EC908D1C1A5C55AF4E26DD /* libPods-DolphinFinancial.a in Frameworks */,
+				7EBDBBCF2E424B0F273B1ED4 /* Pods_DolphinFinancial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +88,7 @@
 		31CAB17D7C5873020809C040 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				06E5FF58CECA4AEE9273AAC8 /* libPods-DolphinFinancial.a */,
+				4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,8 +131,6 @@
 				7B48A4C0205B64490020FFE6 /* BaseService */,
 				7B2007EB205A7BEC00C3B723 /* AppDelegate.h */,
 				7B2007EC205A7BEC00C3B723 /* AppDelegate.m */,
-				7B2007EE205A7BEC00C3B723 /* ViewController.h */,
-				7B2007EF205A7BEC00C3B723 /* ViewController.m */,
 				7B2007F1205A7BEC00C3B723 /* Main.storyboard */,
 				7B2007F4205A7BEC00C3B723 /* Assets.xcassets */,
 				7B2007F6205A7BEC00C3B723 /* LaunchScreen.storyboard */,
@@ -375,9 +370,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -414,7 +424,6 @@
 				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
-				7B2007F0205A7BEC00C3B723 /* ViewController.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
