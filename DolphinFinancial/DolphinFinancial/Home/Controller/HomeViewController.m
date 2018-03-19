@@ -125,12 +125,22 @@
     [self.recommendingBackView addSubview:self.recommendingLabel1];
     [self.recommendingLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.recommendingBackView.mas_top).mas_equalTo(7);
-        make.left.mas_equalTo(self.recommendingBackView.mas_left).mas_equalTo(12);
+        make.left.mas_equalTo(self.recommendingBackView.mas_left).mas_equalTo(16);
     }];
     [self.recommendingBackView addSubview:self.recommendingLabel2];
     [self.recommendingLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.recommendingLabel1.mas_bottom).mas_equalTo(7);
-        make.left.mas_equalTo(self.recommendingBackView.mas_left).mas_equalTo(12);
+        make.left.mas_equalTo(self.recommendingLabel1.mas_left);
+    }];
+    [self.recommendingBackView addSubview:self.recommendingLabel3];
+    [self.recommendingLabel3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.recommendingLabel1.mas_centerY);
+        make.right.mas_equalTo(self.recommendingBackView.mas_right).mas_offset(-18);
+    }];
+    [self.recommendingBackView addSubview:self.recommendingLabel4];
+    [self.recommendingLabel4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.recommendingLabel2.mas_centerY);
+        make.right.mas_equalTo(self.recommendingLabel3.mas_right);
     }];
 }
 
@@ -293,7 +303,30 @@
         _recommendingLabel2.textColor = DFColorWithHexString(@"#1779D4");
         _recommendingLabel2.text = @"5.8%";
     }
-    return _recommendingLabel2
+    return _recommendingLabel2;
+}
+
+- (UILabel *)recommendingLabel3
+{
+    if (!_recommendingLabel3) {
+        _recommendingLabel3 = [UILabel new];
+        _recommendingLabel3.textAlignment = NSTextAlignmentLeft;
+        _recommendingLabel3.font = [UIFont systemFontOfSize:12];
+        _recommendingLabel3.textColor = DFColorWithHexString(@"#969696");
+        _recommendingLabel3.text = @"到期自动转出";
+    }
+    return _recommendingLabel3;
+}
+- (UILabel *)recommendingLabel4
+{
+    if (!_recommendingLabel4) {
+        _recommendingLabel4 = [UILabel new];
+        _recommendingLabel4.textAlignment = NSTextAlignmentLeft;
+        _recommendingLabel4.font = [UIFont systemFontOfSize:12];
+        _recommendingLabel4.textColor = DFColorWithHexString(@"#969696");
+        _recommendingLabel4.text = @"今日还剩100份";
+    }
+    return _recommendingLabel4;
 }
 
 @end
