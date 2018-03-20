@@ -12,6 +12,9 @@
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
 		7B2007F8205A7BEC00C3B723 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F6205A7BEC00C3B723 /* LaunchScreen.storyboard */; };
 		7B2007FB205A7BEC00C3B723 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007FA205A7BEC00C3B723 /* main.m */; };
+		7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */; };
+		7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */; };
+		7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */; };
 		7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431955205F50F300040FBA /* FinancialViewCell.m */; };
 		7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */; };
 		7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */; };
@@ -41,6 +44,12 @@
 		7B2007F7205A7BEC00C3B723 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B2007F9205A7BEC00C3B723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B2007FA205A7BEC00C3B723 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B40E85C20609E5E005562D5 /* MyInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInfoTableViewCell.h; sourceTree = "<group>"; };
+		7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInfoTableViewCell.m; sourceTree = "<group>"; };
+		7B40E85F2060A4D1005562D5 /* MyTitleAndExplainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTitleAndExplainCell.h; sourceTree = "<group>"; };
+		7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTitleAndExplainCell.m; sourceTree = "<group>"; };
+		7B40E8622060A4FF005562D5 /* MyLogoutTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLogoutTableViewCell.h; sourceTree = "<group>"; };
+		7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLogoutTableViewCell.m; sourceTree = "<group>"; };
 		7B431954205F50F300040FBA /* FinancialViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewCell.h; sourceTree = "<group>"; };
 		7B431955205F50F300040FBA /* FinancialViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewCell.m; sourceTree = "<group>"; };
 		7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsMoneyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -123,6 +132,7 @@
 		7B2007EA205A7BEC00C3B723 /* DolphinFinancial */ = {
 			isa = PBXGroup;
 			children = (
+				7B40E85720609A53005562D5 /* NetWorking */,
 				7B48A4E6205BA18C0020FFE6 /* Tool */,
 				7B48A4E1205B72B20020FFE6 /* My */,
 				7B48A4D6205B718E0020FFE6 /* Assets */,
@@ -140,6 +150,26 @@
 				7BFFF72C205A84AD001E7E59 /* CommonConfig.h */,
 			);
 			path = DolphinFinancial;
+			sourceTree = "<group>";
+		};
+		7B40E85720609A53005562D5 /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
+		7B40E85B20609DC2005562D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B40E85C20609E5E005562D5 /* MyInfoTableViewCell.h */,
+				7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */,
+				7B40E85F2060A4D1005562D5 /* MyTitleAndExplainCell.h */,
+				7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */,
+				7B40E8622060A4FF005562D5 /* MyLogoutTableViewCell.h */,
+				7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7B431953205F500C00040FBA /* View */ = {
@@ -253,6 +283,7 @@
 		7B48A4E1205B72B20020FFE6 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				7B40E85B20609DC2005562D5 /* View */,
 				7B48A4E2205B72BC0020FFE6 /* Controller */,
 			);
 			path = My;
@@ -422,12 +453,15 @@
 				7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */,
 				7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */,
 				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
+				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
+				7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */,
+				7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */,
 				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,

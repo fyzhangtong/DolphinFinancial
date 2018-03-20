@@ -43,7 +43,7 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
         [_tableView setBackgroundColor:DFColorWithHexString(@"#F8F8F8")];
-//        [_tableView setSeparatorColor:DFColor(245, 245, 245)];
+        [_tableView setSeparatorColor:DFColorWithHexString(@"#F8F8F8")];
         if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
             [_tableView setSeparatorInset:UIEdgeInsetsZero];
         }
