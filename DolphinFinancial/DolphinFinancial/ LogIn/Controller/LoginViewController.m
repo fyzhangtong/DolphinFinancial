@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "BaseNavigationController.h"
 #import "UIImage+ImageWithColor.h"
+#import "SetPasswordController.h"
 
 typedef enum LoginModel
 {
@@ -51,7 +52,6 @@ typedef enum LoginModel
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setCenterTitle:@"密码登录"];
     [self addLeftBackButton];
     [self makeView];
     self.loginModel = LoginModelPassword;
@@ -259,6 +259,7 @@ typedef enum LoginModel
         [_findPasswordButton setTitleColor:DFColorWithHexString(@"#101010 100%") forState:UIControlStateNormal];
         _findPasswordButton.alpha = 0.3;
         _findPasswordButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        [_findPasswordButton addTarget:self action:@selector(findPasswordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _findPasswordButton;
 }
@@ -286,14 +287,17 @@ typedef enum LoginModel
     if ([string isEqualToString:@""]) {
         return YES;
     }
-    if (_phoneNumberTextField.text.length == 11) {
-        return NO;
-    }
     if ([string isEqualToString:@"\n"]) {
-        if (_passwordOrVerificationCodeTextField == textField) {
-            [_passwordOrVerificationCodeTextField resignFirstResponder];
+        [_passwordOrVerificationCodeTextField resignFirstResponder];
+        return YES;
+    }
+    
+    if (_phoneNumberTextField == textField) {
+        if (_phoneNumberTextField.text.length == 11) {
+            return NO;
         }
     }
+    
     return YES;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -371,6 +375,10 @@ typedef enum LoginModel
     [self startTimer];
 }
 
+-(void)findPasswordButtonClick:(UIButton *)sender
+{
+    [SetPasswordController pushToController:self setPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:nil];
+}
 
 - (void)leftButtonClick:(UIButton *)sender
 {

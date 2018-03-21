@@ -11,6 +11,7 @@
 #import "MyTitleAndExplainCell.h"
 #import "MyLogoutTableViewCell.h"
 #import "LoginViewController.h"
+#import "SetPayPasswordController.h"
 
 #define MyInfoCell @"MyInfoCell"
 #define MyInfoDetailsCell @"MyInfoDetailsCell"
