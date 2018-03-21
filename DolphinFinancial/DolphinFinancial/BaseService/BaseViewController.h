@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD+DFStyle.h"
+
 @interface BaseViewController : UIViewController
 
 @property (nonatomic, strong) UIButton *leftBarButton;      //Button 左侧

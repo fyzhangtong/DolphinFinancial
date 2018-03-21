@@ -39,7 +39,6 @@
     // Do any additional setup after loading the view.
     
     [self setCenterImage:[UIImage imageNamed:@"dolphin"] title:@"海豚理财" titleColor:[UIColor whiteColor]];
-    self.view.backgroundColor = DFColorWithHexString(@"#F8F8F8");
     [self makeView];
 }
 

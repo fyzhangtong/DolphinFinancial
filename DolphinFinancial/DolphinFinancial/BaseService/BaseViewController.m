@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+
+
 
 @interface BaseViewController ()
 
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = DFColorWithHexString(@"#F8F8F8");
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -216,12 +217,7 @@
  */
 - (void)addLeftBackButton
 {
-    if ([self.navigationView.backgroundColor isEqual:[UIColor whiteColor]]) {
-        [self setLeftButtonImage:[UIImage imageNamed:@"back_black"]];
-    }else{
-        [self setLeftButtonImage:[UIImage imageNamed:@"back_wite"]];
-    }
-
+    [self setLeftButtonImage:[UIImage imageNamed:@"navigation_back"]];
 }
 
 - (void)setLeftButtonImage:(UIImage *)image

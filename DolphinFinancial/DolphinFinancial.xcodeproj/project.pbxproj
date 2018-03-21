@@ -15,6 +15,10 @@
 		7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */; };
 		7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */; };
 		7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */; };
+		7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8682060F99C005562D5 /* LoginViewController.m */; };
+		7B40E86C2060F9EA005562D5 /* FindLoginPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E86B2060F9EA005562D5 /* FindLoginPasswordController.m */; };
+		7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E86E2060FA7C005562D5 /* SignUpViewController.m */; };
+		7B40E8722060FAD9005562D5 /* SetPayPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8712060FAD9005562D5 /* SetPayPasswordController.m */; };
 		7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431955205F50F300040FBA /* FinancialViewCell.m */; };
 		7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */; };
 		7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */; };
@@ -29,6 +33,7 @@
 		7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4DF205B723E0020FFE6 /* FinacialViewController.m */; };
 		7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E4205B73060020FFE6 /* MyViewController.m */; };
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
+		7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */; };
 		7EBDBBCF2E424B0F273B1ED4 /* Pods_DolphinFinancial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,14 @@
 		7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTitleAndExplainCell.m; sourceTree = "<group>"; };
 		7B40E8622060A4FF005562D5 /* MyLogoutTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLogoutTableViewCell.h; sourceTree = "<group>"; };
 		7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLogoutTableViewCell.m; sourceTree = "<group>"; };
+		7B40E8672060F99C005562D5 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		7B40E8682060F99C005562D5 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		7B40E86A2060F9EA005562D5 /* FindLoginPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindLoginPasswordController.h; sourceTree = "<group>"; };
+		7B40E86B2060F9EA005562D5 /* FindLoginPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindLoginPasswordController.m; sourceTree = "<group>"; };
+		7B40E86D2060FA7C005562D5 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		7B40E86E2060FA7C005562D5 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		7B40E8702060FAD9005562D5 /* SetPayPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPayPasswordController.h; sourceTree = "<group>"; };
+		7B40E8712060FAD9005562D5 /* SetPayPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPayPasswordController.m; sourceTree = "<group>"; };
 		7B431954205F50F300040FBA /* FinancialViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewCell.h; sourceTree = "<group>"; };
 		7B431955205F50F300040FBA /* FinancialViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewCell.m; sourceTree = "<group>"; };
 		7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsMoneyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -78,6 +91,8 @@
 		7B48A4E4205B73060020FFE6 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		7B48A4E7205BA1A50020FFE6 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
 		7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
+		7BFB419820620CB000FEED9E /* MBProgressHUD+DFStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DFStyle.h"; sourceTree = "<group>"; };
+		7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DFStyle.m"; sourceTree = "<group>"; };
 		7BFFF72B205A82C1001E7E59 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7BFFF72C205A84AD001E7E59 /* CommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +147,7 @@
 		7B2007EA205A7BEC00C3B723 /* DolphinFinancial */ = {
 			isa = PBXGroup;
 			children = (
+				7B40E8652060F7DC005562D5 /*  LogIn */,
 				7B40E85720609A53005562D5 /* NetWorking */,
 				7B48A4E6205BA18C0020FFE6 /* Tool */,
 				7B48A4E1205B72B20020FFE6 /* My */,
@@ -170,6 +186,29 @@
 				7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7B40E8652060F7DC005562D5 /*  LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				7B40E8662060F81A005562D5 /* Controller */,
+			);
+			path = " LogIn";
+			sourceTree = "<group>";
+		};
+		7B40E8662060F81A005562D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B40E8672060F99C005562D5 /* LoginViewController.h */,
+				7B40E8682060F99C005562D5 /* LoginViewController.m */,
+				7B40E86A2060F9EA005562D5 /* FindLoginPasswordController.h */,
+				7B40E86B2060F9EA005562D5 /* FindLoginPasswordController.m */,
+				7B40E86D2060FA7C005562D5 /* SignUpViewController.h */,
+				7B40E86E2060FA7C005562D5 /* SignUpViewController.m */,
+				7B40E8702060FAD9005562D5 /* SetPayPasswordController.h */,
+				7B40E8712060FAD9005562D5 /* SetPayPasswordController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		7B431953205F500C00040FBA /* View */ = {
@@ -303,6 +342,8 @@
 			children = (
 				7B48A4E7205BA1A50020FFE6 /* UIImage+ImageWithColor.h */,
 				7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */,
+				7BFB419820620CB000FEED9E /* MBProgressHUD+DFStyle.h */,
+				7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -450,13 +491,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B40E8722060FAD9005562D5 /* SetPayPasswordController.m in Sources */,
 				7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */,
 				7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */,
 				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
 				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
+				7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
+				7B40E86C2060F9EA005562D5 /* FindLoginPasswordController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
@@ -468,6 +512,8 @@
 				7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
+				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
+				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
 				7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

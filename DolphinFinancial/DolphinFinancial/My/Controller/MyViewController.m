@@ -10,6 +10,7 @@
 #import "MyInfoTableViewCell.h"
 #import "MyTitleAndExplainCell.h"
 #import "MyLogoutTableViewCell.h"
+#import "LoginViewController.h"
 
 #define MyInfoCell @"MyInfoCell"
 #define MyInfoDetailsCell @"MyInfoDetailsCell"
@@ -133,7 +134,6 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [UIView new];
-    view.backgroundColor = DFColorWithHexString(@"#F8F8F8");
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -182,7 +182,7 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *confim = [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
+        [LoginViewController loginToController:self Complete:nil];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:confim];
