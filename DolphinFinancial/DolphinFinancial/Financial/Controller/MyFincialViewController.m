@@ -1,53 +1,53 @@
 //
-//  FinacialViewController.m
+//  MyFincialViewController.m
 //  DolphinFinancial
 //
-//  Created by FDXDZ on 2018/3/16.
+//  Created by FDXDZ on 2018/3/21.
 //  Copyright © 2018年 zhantong. All rights reserved.
 //
 
-#import "FinacialViewController.h"
-#import "FinancialViewCell.h"
 #import "MyFincialViewController.h"
+#import "MyFinacialTableViewCell.h"
 
-@interface FinacialViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MyFincialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-{
-    NSMutableArray *_dataSource;
-    
-}
+@property (nonatomic, copy) void(^complete)(BOOL success);
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation FinacialViewController
+@implementation MyFincialViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    return self;
++ (void)pushToController:(UIViewController *)controller Complete:(void(^)(BOOL success))complete
+{
+    MyFincialViewController *landVC = [[MyFincialViewController alloc] init];
+    landVC.complete = complete;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [controller.navigationController pushViewController:landVC animated:YES];
+    });
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setCenterTitle:@"理财"];
-    [self setRightButtonImage:[UIImage imageNamed:@"message"]];
+    [self makeView];
+}
+- (void)makeView
+{
+    [self setCenterTitle:@"我的理财产品"];
+    [self addLeftBackButton];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ownNavigationBar.mas_bottom);
         make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-49);
         make.left.right.mas_equalTo(self.view);
     }];
-    
 }
 - (UITableView *)tableView
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        [_tableView registerClass:[FinancialViewCell class] forCellReuseIdentifier:[FinancialViewCell reuseIdentifier]];
+        [_tableView registerClass:[MyFinacialTableViewCell class] forCellReuseIdentifier:[MyFinacialTableViewCell reuseIdentifier]];
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
@@ -66,7 +66,7 @@
 #pragma mark - tableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FinancialViewCell cellHeight];
+    return [MyFinacialTableViewCell cellHeight];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -74,8 +74,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FinancialViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FinancialViewCell reuseIdentifier]];
-
+    MyFinacialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyFinacialTableViewCell reuseIdentifier]];
+    
     return cell;
 }
 #pragma mark - tableViewDelegate
@@ -92,9 +92,5 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)rightButtonClick:(UIButton *)sender
 
-{
-    [MyFincialViewController pushToController:self Complete:nil];
-}
 @end

@@ -48,7 +48,7 @@
 }
 
 + (void)registerCellTableView:(UITableView *)tableView{
-    [tableView registerClass:[self class] forCellReuseIdentifier:[FinancialViewCell reuseIdentifier]];
+    [tableView registerClass:[self class] forCellReuseIdentifier:[self reuseIdentifier]];
 }
 - (void)makeView
 {
