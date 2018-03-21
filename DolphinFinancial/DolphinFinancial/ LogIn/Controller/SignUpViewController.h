@@ -13,4 +13,6 @@
  */
 @interface SignUpViewController : BaseViewController
 
++ (void)pushToController:(UIViewController *)controller Complete:(void(^)(BOOL success))complete;
+
 @end

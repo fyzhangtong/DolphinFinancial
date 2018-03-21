@@ -10,6 +10,7 @@
 #import "BaseNavigationController.h"
 #import "UIImage+ImageWithColor.h"
 #import "SetPasswordController.h"
+#import "SignUpViewController.h"
 
 typedef enum LoginModel
 {
@@ -248,6 +249,7 @@ typedef enum LoginModel
         [_signUpButton setTitleColor:DFColorWithHexString(@"#101010 100%") forState:UIControlStateNormal];
         _signUpButton.alpha = 0.3;
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        [_signUpButton addTarget:self action:@selector(signUpButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _signUpButton;
 }
@@ -365,6 +367,11 @@ typedef enum LoginModel
 
 
 #pragma mark - Action
+
+- (void)signUpButtonClick:(UIButton *)sender
+{
+    [SignUpViewController pushToController:self Complete:nil];
+}
 
 - (void)changeModelButtonClick:(UIButton *)sender
 {
