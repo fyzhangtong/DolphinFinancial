@@ -12,6 +12,7 @@
 #import "AssetsTotalProfitCollectionViewCell.h"
 #import "AssetsProfitRecordsCollectionViewCell.h"
 #import "AssetsYieldCurveCollectionViewCell.h"
+#import "AssetsRecordViewController.h"
 
 @interface AssetsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -110,7 +111,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"**%ld,%ld",indexPath.section,indexPath.row);
+    if (indexPath.section == 2) {
+        [AssetsRecordViewController pushToController:self recordType:RecordTypeProfit];
+    };
 }
 
 #pragma mark UICollectionViewDataSource
@@ -153,6 +156,12 @@
 {
 
     return 4;
+}
+
+#pragma mark - action
+- (void)rightButtonClick:(UIButton *)sender
+{
+    [AssetsRecordViewController pushToController:self recordType:RecordTypeAessets];
 }
 
 @end

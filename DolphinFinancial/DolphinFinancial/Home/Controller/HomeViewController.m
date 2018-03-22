@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 
+#import "FinacialDetailsController.h"
+
 @interface HomeViewController ()
 
 @property (nonatomic, strong) UIView *amountBorrowersBackView;  //理财金额和借款人数量背景
@@ -286,6 +288,9 @@
     if (!_recommendingBackView) {
         _recommendingBackView  = [UIView new];
         _recommendingBackView.backgroundColor = [UIColor whiteColor];
+        _recommendingBackView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recommendingBackViewTapAction:)];
+        [_recommendingBackView addGestureRecognizer:tap];
     }
     return _recommendingBackView;
 }
@@ -334,6 +339,13 @@
         _recommendingLabel4.text = @"今日还剩100份";
     }
     return _recommendingLabel4;
+}
+
+#pragma mark - action
+- (void)recommendingBackViewTapAction:(UITapGestureRecognizer *)sender
+{
+    FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
+    [self.navigationController pushViewController:fdc animated:YES];
 }
 
 @end
