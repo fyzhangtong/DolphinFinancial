@@ -9,6 +9,7 @@
 #import "FinacialViewController.h"
 #import "FinancialViewCell.h"
 #import "MyFincialViewController.h"
+#import "FinacialDetailsController.h"
 
 @interface FinacialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -90,6 +91,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
+    [self.navigationController pushViewController:fdc animated:YES];
 }
 
 - (void)rightButtonClick:(UIButton *)sender

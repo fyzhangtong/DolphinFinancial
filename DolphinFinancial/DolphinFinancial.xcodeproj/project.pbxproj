@@ -24,6 +24,7 @@
 		7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195F205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m */; };
 		7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */; };
 		7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */; };
+		7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43648F20633EB700F1D110 /* FinacialDetailsController.m */; };
 		7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C2205B64A00020FFE6 /* BaseViewController.m */; };
 		7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C5205B70300020FFE6 /* BaseTabBarController.m */; };
 		7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C8205B70BA0020FFE6 /* BaseNavigationController.m */; };
@@ -32,6 +33,10 @@
 		7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4DF205B723E0020FFE6 /* FinacialViewController.m */; };
 		7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E4205B73060020FFE6 /* MyViewController.m */; };
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
+		7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */; };
+		7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */; };
+		7BCB08EE20638DEA00017FDD /* ProductDynamicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */; };
+		7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */; };
 		7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */; };
 		7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419C20626D7100FEED9E /* MyFincialViewController.m */; };
 		7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */; };
@@ -74,6 +79,8 @@
 		7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsProfitRecordsCollectionViewCell.m; sourceTree = "<group>"; };
 		7B431964205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsYieldCurveCollectionViewCell.h; sourceTree = "<group>"; };
 		7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsYieldCurveCollectionViewCell.m; sourceTree = "<group>"; };
+		7B43648E20633EB700F1D110 /* FinacialDetailsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialDetailsController.h; sourceTree = "<group>"; };
+		7B43648F20633EB700F1D110 /* FinacialDetailsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialDetailsController.m; sourceTree = "<group>"; };
 		7B48A4C1205B64A00020FFE6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		7B48A4C2205B64A00020FFE6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		7B48A4C4205B70300020FFE6 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
@@ -90,6 +97,14 @@
 		7B48A4E4205B73060020FFE6 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		7B48A4E7205BA1A50020FFE6 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
 		7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
+		7B7AA94A2063579600415C36 /* TargetAnnualRateOfReturnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetAnnualRateOfReturnCell.h; sourceTree = "<group>"; };
+		7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TargetAnnualRateOfReturnCell.m; sourceTree = "<group>"; };
+		7B7AA94D20635FDD00415C36 /* FinacialCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialCollectionReusableView.h; sourceTree = "<group>"; };
+		7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialCollectionReusableView.m; sourceTree = "<group>"; };
+		7BCB08EC20638DEA00017FDD /* ProductDynamicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDynamicCollectionViewCell.h; sourceTree = "<group>"; };
+		7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDynamicCollectionViewCell.m; sourceTree = "<group>"; };
+		7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialExplainCollectionViewCell.h; sourceTree = "<group>"; };
+		7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialExplainCollectionViewCell.m; sourceTree = "<group>"; };
 		7BFB419820620CB000FEED9E /* MBProgressHUD+DFStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DFStyle.h"; sourceTree = "<group>"; };
 		7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DFStyle.m"; sourceTree = "<group>"; };
 		7BFB419B20626D7100FEED9E /* MyFincialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFincialViewController.h; sourceTree = "<group>"; };
@@ -219,6 +234,14 @@
 				7B431955205F50F300040FBA /* FinancialViewCell.m */,
 				7BFB419E206270B800FEED9E /* MyFinacialTableViewCell.h */,
 				7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */,
+				7B7AA94A2063579600415C36 /* TargetAnnualRateOfReturnCell.h */,
+				7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */,
+				7B7AA94D20635FDD00415C36 /* FinacialCollectionReusableView.h */,
+				7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */,
+				7BCB08EC20638DEA00017FDD /* ProductDynamicCollectionViewCell.h */,
+				7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */,
+				7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */,
+				7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +325,8 @@
 				7B48A4DF205B723E0020FFE6 /* FinacialViewController.m */,
 				7BFB419B20626D7100FEED9E /* MyFincialViewController.h */,
 				7BFB419C20626D7100FEED9E /* MyFincialViewController.m */,
+				7B43648E20633EB700F1D110 /* FinacialDetailsController.h */,
+				7B43648F20633EB700F1D110 /* FinacialDetailsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -496,15 +521,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */,
 				7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */,
+				7BCB08EE20638DEA00017FDD /* ProductDynamicCollectionViewCell.m in Sources */,
 				7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */,
 				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
 				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
 				7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
+				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
 				7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */,
+				7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
@@ -515,6 +544,7 @@
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
 				7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
+				7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */,
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
@@ -655,6 +685,7 @@
 			baseConfigurationReference = 1EA40CF10350D22C1821E2B2 /* Pods-DolphinFinancial.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HY799MBKL;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DolphinFinancial/PrefixHeader.pch";
@@ -663,6 +694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DolphinFinancial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -672,6 +704,7 @@
 			baseConfigurationReference = 6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HY799MBKL;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DolphinFinancial/PrefixHeader.pch";
@@ -680,6 +713,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DolphinFinancial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

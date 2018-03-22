@@ -32,6 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self makeView];
+}
+
+- (void)makeView
+{
     [self setCenterTitle:@"资产"];
     [self setRightButtonImage:[UIImage imageNamed:@"assetsRecords"]];
     [self.view addSubview:self.collectionView];
@@ -47,6 +52,7 @@
         _collectionView.dataSource = self;
         _collectionView.scrollEnabled = YES;
         _collectionView.backgroundColor = DFColorWithHexString(@"#F8F8F8");
+        _collectionView.alwaysBounceVertical = YES;
         
         [AssetsMoneyCollectionViewCell registCell:_collectionView];
         [AssetsTotalCollectionViewCell registCell:_collectionView];

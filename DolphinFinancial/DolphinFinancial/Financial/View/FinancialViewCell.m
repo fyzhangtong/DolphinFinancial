@@ -10,7 +10,7 @@
 
 @interface FinancialViewCell()
 
-@property (nonatomic, strong) UILabel *nameLabell;
+@property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *interestRateLabel;
 @property (nonatomic, strong) UILabel *explainLabel;
 @property (nonatomic, strong) UILabel *surplusLabel;
@@ -52,19 +52,19 @@
 }
 - (void)makeView
 {
-    [self.contentView addSubview:self.nameLabell];
-    [self.nameLabell mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_equalTo(7);
         make.left.mas_equalTo(self.contentView.mas_left).mas_equalTo(16);
     }];
     [self.contentView addSubview:self.interestRateLabel];
     [self.interestRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.nameLabell.mas_bottom).mas_equalTo(7);
-        make.left.mas_equalTo(self.nameLabell.mas_left);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_equalTo(7);
+        make.left.mas_equalTo(self.nameLabel.mas_left);
     }];
     [self.contentView addSubview:self.explainLabel];
     [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.nameLabell.mas_centerY);
+        make.centerY.mas_equalTo(self.nameLabel.mas_centerY);
         make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-18);
     }];
     [self.contentView addSubview:self.surplusLabel];
@@ -73,17 +73,16 @@
         make.right.mas_equalTo(self.explainLabel.mas_right);
     }];
 }
-- (UILabel *)nameLabell
+- (UILabel *)nameLabel
 {
-    if (!_nameLabell) {
-        _nameLabell = [UILabel new];
-        _nameLabell = [UILabel new];
-        _nameLabell.textAlignment = NSTextAlignmentLeft;
-        _nameLabell.font = [UIFont systemFontOfSize:14];
-        _nameLabell.textColor = DFColorWithHexString(@"#101010");
-        _nameLabell.text = @"1月定存";
+    if (!_nameLabel) {
+        _nameLabel = [UILabel new];
+        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.font = [UIFont systemFontOfSize:14];
+        _nameLabel.textColor = DFColorWithHexString(@"#101010");
+        _nameLabel.text = @"1月定存";
     }
-    return _nameLabell;
+    return _nameLabel;
 }
 - (UILabel *)interestRateLabel
 {
