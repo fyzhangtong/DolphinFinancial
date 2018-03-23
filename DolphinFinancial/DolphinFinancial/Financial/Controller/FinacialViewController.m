@@ -48,7 +48,7 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        [_tableView registerClass:[FinancialViewCell class] forCellReuseIdentifier:[FinancialViewCell reuseIdentifier]];
+        [FinancialViewCell registerCellTableView:_tableView];
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];

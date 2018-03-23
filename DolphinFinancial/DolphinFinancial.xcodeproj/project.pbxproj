@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */; };
+		7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */; };
+		7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F252064D19B0051249E /* BaseTableView.m */; };
+		7B0A5F292064D1AA0051249E /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */; };
 		7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007EC205A7BEC00C3B723 /* AppDelegate.m */; };
 		7B2007F3205A7BEC00C3B723 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F1205A7BEC00C3B723 /* Main.storyboard */; };
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
@@ -52,6 +56,14 @@
 		1EA40CF10350D22C1821E2B2 /* Pods-DolphinFinancial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.debug.xcconfig"; sourceTree = "<group>"; };
 		4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DolphinFinancial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.release.xcconfig"; sourceTree = "<group>"; };
+		7B0A5F1D2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisAccountNumberTableViewCell.h; sourceTree = "<group>"; };
+		7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisAccountNumberTableViewCell.m; sourceTree = "<group>"; };
+		7B0A5F202064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisPaymentDateTableViewCell.h; sourceTree = "<group>"; };
+		7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisPaymentDateTableViewCell.m; sourceTree = "<group>"; };
+		7B0A5F242064D19B0051249E /* BaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
+		7B0A5F252064D19B0051249E /* BaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		7B0A5F272064D1AA0051249E /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		7B2007E8205A7BEC00C3B723 /* DolphinFinancial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DolphinFinancial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2007EB205A7BEC00C3B723 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7B2007EC205A7BEC00C3B723 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +169,17 @@
 				6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7B0A5F232064D16D0051249E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B0A5F242064D19B0051249E /* BaseTableView.h */,
+				7B0A5F252064D19B0051249E /* BaseTableView.m */,
+				7B0A5F272064D1AA0051249E /* BaseTableViewCell.h */,
+				7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7B2007DF205A7BEC00C3B723 = {
@@ -276,6 +299,10 @@
 				7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */,
 				7BCB08F52063C4A700017FDD /* AssetsRecordTableViewCell.h */,
 				7BCB08F62063C4A700017FDD /* AssetsRecordTableViewCell.m */,
+				7B0A5F1D2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.h */,
+				7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */,
+				7B0A5F202064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.h */,
+				7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +310,7 @@
 		7B48A4C0205B64490020FFE6 /* BaseService */ = {
 			isa = PBXGroup;
 			children = (
+				7B0A5F232064D16D0051249E /* View */,
 				7B48A4C1205B64A00020FFE6 /* BaseViewController.h */,
 				7B48A4C2205B64A00020FFE6 /* BaseViewController.m */,
 				7B48A4C4205B70300020FFE6 /* BaseTabBarController.h */,
@@ -556,6 +584,7 @@
 				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
 				7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
+				7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
@@ -566,8 +595,11 @@
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
 				7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */,
+				7B0A5F292064D1AA0051249E /* BaseTableViewCell.m in Sources */,
 				7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */,
+				7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */,
 				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
+				7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
 				7BCB08FA2063CC1700017FDD /* BalanceViewController.m in Sources */,

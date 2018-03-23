@@ -47,7 +47,7 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        [_tableView registerClass:[AssetsRecordTableViewCell class] forCellReuseIdentifier:[AssetsRecordTableViewCell reuseIdentifier]];
+        [AssetsRecordTableViewCell registerCellTableView:_tableView];
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
@@ -80,12 +80,17 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, DFSCREENW, 24)];
-    lable.text = @"      提示：仅展示近30天内的收益记录";
-    lable.font = [UIFont systemFontOfSize:9];
-    lable.textColor = DFColorWithHexString(@"#E51C23 100%");
-    lable.backgroundColor = DFColorWithHexString(@"#F8F8F8");
-    return lable;
+    if (section == 0) {
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, DFSCREENW, 24)];
+        lable.text = @"      提示：仅展示近30天内的收益记录";
+        lable.font = [UIFont systemFontOfSize:9];
+        lable.textColor = DFColorWithHexString(@"#E51C23 100%");
+        lable.backgroundColor = DFColorWithHexString(@"#F8F8F8");
+        return lable;
+    }else{
+        return [UIView new];
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
