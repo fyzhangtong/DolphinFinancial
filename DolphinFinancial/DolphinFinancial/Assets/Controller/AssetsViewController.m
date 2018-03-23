@@ -13,6 +13,7 @@
 #import "AssetsProfitRecordsCollectionViewCell.h"
 #import "AssetsYieldCurveCollectionViewCell.h"
 #import "AssetsRecordViewController.h"
+#import "BalanceViewController.h"
 
 @interface AssetsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -111,6 +112,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1 || indexPath.row == 2) {
+            [BalanceViewController pushToController:self];
+        }
+    }
     if (indexPath.section == 2) {
         [AssetsRecordViewController pushToController:self recordType:RecordTypeProfit];
     };

@@ -52,7 +52,7 @@ DFColorWithHex(x);\
  @param design 设计比例
  @return 实际大小
  */
-#define RV_WIDTH(value,design) ((value)/(design) * GTSCREENW)
+#define RV_WIDTH(value,design) ((value)/(design) * DFSCREENW)
 /**
  按iPhone6 375.0f成比例
  
