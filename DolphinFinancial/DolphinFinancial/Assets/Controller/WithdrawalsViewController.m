@@ -13,8 +13,10 @@
 #import "BaseTableView.h"
 #import "WithdrawaisAmountTableViewCell.h"
 #import "WithdrawalsConfirmTableViewCell.h"
+#import "SetPasswordController.h"
+#import "DNPayAlertView.h"
 
-@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate>
 
 @property (nonatomic, strong) BaseTableView *tableView;
 
@@ -102,6 +104,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAmountTableViewCell reuseIdentifier]];
     }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
+        ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -151,6 +154,25 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+#pragma mark - WithdrawalsConfirmTableViewCellDelegate
+- (void)confirmWithdrawals
+{
+    
+    DNPayAlertView *payAlert = [[DNPayAlertView alloc]init];
+    payAlert.titleStr = @"请输入支付密码";
+    payAlert.detail = @"提现8C40-4A08E98F89C6/data/Containers/Shared/SystemGroup/systemgroup.com.apple.configurationprofiles2018-03-26 15:34:43.270167+0800 DolphinFinancial[7079:238416] [MC] Reading from private effective user settings.2018-03-26 ";
+    payAlert.amount= 10;
+    [payAlert show];
+    payAlert.completeHandle = ^(NSString *inputPwd) {
+        NSLog(@"密码是%@",inputPwd);
+    };
+}
 
+- (void)forgetPWD {
+    
+    [SetPasswordController pushToController:self setPasswrodState:SetPasswordStateVerify passwordType:PasswordTypePay Complete:^(BOOL success) {
+        
+    }];
+}
 
 @end

@@ -30,6 +30,7 @@
 		7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */; };
 		7B431CE62068927C00D89476 /* WithdrawaisAmountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CE52068927C00D89476 /* WithdrawaisAmountTableViewCell.m */; };
 		7B431CE92068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */; };
+		7B431CF32068D8B000D89476 /* DNPayAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CF22068D8B000D89476 /* DNPayAlertView.m */; };
 		7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43648F20633EB700F1D110 /* FinacialDetailsController.m */; };
 		7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C2205B64A00020FFE6 /* BaseViewController.m */; };
 		7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C5205B70300020FFE6 /* BaseTabBarController.m */; };
@@ -102,6 +103,8 @@
 		7B431CE52068927C00D89476 /* WithdrawaisAmountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisAmountTableViewCell.m; sourceTree = "<group>"; };
 		7B431CE72068A19C00D89476 /* WithdrawalsConfirmTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawalsConfirmTableViewCell.h; sourceTree = "<group>"; };
 		7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsConfirmTableViewCell.m; sourceTree = "<group>"; };
+		7B431CF12068D8B000D89476 /* DNPayAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNPayAlertView.h; sourceTree = "<group>"; };
+		7B431CF22068D8B000D89476 /* DNPayAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNPayAlertView.m; sourceTree = "<group>"; };
 		7B43648E20633EB700F1D110 /* FinacialDetailsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialDetailsController.h; sourceTree = "<group>"; };
 		7B43648F20633EB700F1D110 /* FinacialDetailsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialDetailsController.m; sourceTree = "<group>"; };
 		7B48A4C1205B64A00020FFE6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 		7B0A5F232064D16D0051249E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7B431CF12068D8B000D89476 /* DNPayAlertView.h */,
+				7B431CF22068D8B000D89476 /* DNPayAlertView.m */,
 				7B0A5F242064D19B0051249E /* BaseTableView.h */,
 				7B0A5F252064D19B0051249E /* BaseTableView.m */,
 				7B0A5F272064D1AA0051249E /* BaseTableViewCell.h */,
@@ -596,6 +601,7 @@
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
+				7B431CF32068D8B000D89476 /* DNPayAlertView.m in Sources */,
 				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
 				7BCB08F72063C4A700017FDD /* AssetsRecordTableViewCell.m in Sources */,

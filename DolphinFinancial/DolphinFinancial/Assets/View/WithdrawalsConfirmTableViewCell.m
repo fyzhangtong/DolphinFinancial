@@ -70,6 +70,9 @@
 - (void)confirmButtonClick:(UIButton *)sender
 {
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(confirmWithdrawals)]) {
+        [self.delegate confirmWithdrawals];
+    }
 }
 
 @end

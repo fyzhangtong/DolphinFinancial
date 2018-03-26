@@ -8,9 +8,18 @@
 
 #import "BaseTableViewCell.h"
 
+@protocol WithdrawalsConfirmTableViewCellDelegate<NSObject>
+
+@required
+- (void)confirmWithdrawals;
+
+@end
+
 /**
  提现确认cell
  */
 @interface WithdrawalsConfirmTableViewCell : BaseTableViewCell
+
+@property (nonatomic, weak) id<WithdrawalsConfirmTableViewCellDelegate> delegate;
 
 @end
