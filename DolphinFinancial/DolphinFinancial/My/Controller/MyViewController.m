@@ -11,6 +11,11 @@
 #import "MyTitleAndExplainCell.h"
 #import "MyLogoutTableViewCell.h"
 #import "LoginViewController.h"
+#import "MemberDetailsViewController.h"
+#import "ChangePasswordViewController.h"
+#import "MessageCenterViewController.h"
+#import "QuestionFeedbackViewController.h"
+#import "AboutUsViewController.h"
 
 #define MyInfoCell @"MyInfoCell"
 #define MyInfoDetailsCell @"MyInfoDetailsCell"
@@ -45,8 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _loginDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyLogoutCell]];
-    _logoutDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell]];
+    _loginDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell],@[MyLogoutCell]];
+    _logoutDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell]];
     [self makeView];
     self.dataSource = _loginDataSource;
 }
@@ -149,7 +154,7 @@
     CGFloat height = 0;
     if (section == 0) {
         height = 15;
-    }else if (section == 3){
+    }else if (section == 4){
         height = 20;
     }else{
         height = 10;
@@ -171,17 +176,17 @@
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyInfoCell]) {
     }else if ([string isEqualToString:MyInfoDetailsCell]){
-
+        [MemberDetailsViewController pushToController:self];
     }else if ([string isEqualToString:MyLoginPasswordCell]){
-
+        [ChangePasswordViewController pushToController:self passwordType:ChangePasswordTypeLogin];
     }else if ([string isEqualToString:MyPayPasswordCell]){
-
+        [ChangePasswordViewController pushToController:self passwordType:ChangePasswordTypePayment];
     }else if ([string isEqualToString:MyMessageCenterCell]){
-
+        [MessageCenterViewController pushToController:self];
     }else if ([string isEqualToString:MyQuestionFeedbackCell]){
-
+        [QuestionFeedbackViewController pushToController:self];
     }else if ([string isEqualToString:MyAboutUsCell]){
-
+        [AboutUsViewController pushToController:self];
     }else if ([string isEqualToString:MyLogoutCell]){
         [self logout];
     }

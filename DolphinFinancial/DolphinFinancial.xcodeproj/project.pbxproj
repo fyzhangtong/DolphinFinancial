@@ -44,6 +44,13 @@
 		7B61A42820649D170001F77F /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42720649D170001F77F /* RechargeViewController.m */; };
 		7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */; };
 		7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */; };
+		7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485D92068F197000459C2 /* MemberDetailsViewController.m */; };
+		7B8485DD2068F1D2000459C2 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485DC2068F1D2000459C2 /* ChangePasswordViewController.m */; };
+		7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485E22068F204000459C2 /* MessageCenterViewController.m */; };
+		7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485E52068F223000459C2 /* QuestionFeedbackViewController.m */; };
+		7B8485E92068F232000459C2 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485E82068F232000459C2 /* AboutUsViewController.m */; };
+		7B8485EC2068F87F000459C2 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485EB2068F87F000459C2 /* TextFieldTableViewCell.m */; };
+		7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */; };
 		7BCB08EE20638DEA00017FDD /* ProductDynamicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */; };
 		7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */; };
 		7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F32063C28400017FDD /* AssetsRecordViewController.m */; };
@@ -131,6 +138,20 @@
 		7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TargetAnnualRateOfReturnCell.m; sourceTree = "<group>"; };
 		7B7AA94D20635FDD00415C36 /* FinacialCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialCollectionReusableView.h; sourceTree = "<group>"; };
 		7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialCollectionReusableView.m; sourceTree = "<group>"; };
+		7B8485D82068F197000459C2 /* MemberDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsViewController.h; sourceTree = "<group>"; };
+		7B8485D92068F197000459C2 /* MemberDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsViewController.m; sourceTree = "<group>"; };
+		7B8485DB2068F1D2000459C2 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		7B8485DC2068F1D2000459C2 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		7B8485E12068F204000459C2 /* MessageCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterViewController.h; sourceTree = "<group>"; };
+		7B8485E22068F204000459C2 /* MessageCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterViewController.m; sourceTree = "<group>"; };
+		7B8485E42068F223000459C2 /* QuestionFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionFeedbackViewController.h; sourceTree = "<group>"; };
+		7B8485E52068F223000459C2 /* QuestionFeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionFeedbackViewController.m; sourceTree = "<group>"; };
+		7B8485E72068F232000459C2 /* AboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		7B8485E82068F232000459C2 /* AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		7B8485EA2068F87F000459C2 /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
+		7B8485EB2068F87F000459C2 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
+		7B8485ED20690886000459C2 /* ChangePasswordButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordButtonTableViewCell.h; sourceTree = "<group>"; };
+		7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordButtonTableViewCell.m; sourceTree = "<group>"; };
 		7BCB08EC20638DEA00017FDD /* ProductDynamicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDynamicCollectionViewCell.h; sourceTree = "<group>"; };
 		7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDynamicCollectionViewCell.m; sourceTree = "<group>"; };
 		7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialExplainCollectionViewCell.h; sourceTree = "<group>"; };
@@ -251,6 +272,10 @@
 				7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */,
 				7B40E8622060A4FF005562D5 /* MyLogoutTableViewCell.h */,
 				7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */,
+				7B8485EA2068F87F000459C2 /* TextFieldTableViewCell.h */,
+				7B8485EB2068F87F000459C2 /* TextFieldTableViewCell.m */,
+				7B8485ED20690886000459C2 /* ChangePasswordButtonTableViewCell.h */,
+				7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -431,6 +456,16 @@
 			children = (
 				7B48A4E3205B73060020FFE6 /* MyViewController.h */,
 				7B48A4E4205B73060020FFE6 /* MyViewController.m */,
+				7B8485D82068F197000459C2 /* MemberDetailsViewController.h */,
+				7B8485D92068F197000459C2 /* MemberDetailsViewController.m */,
+				7B8485DB2068F1D2000459C2 /* ChangePasswordViewController.h */,
+				7B8485DC2068F1D2000459C2 /* ChangePasswordViewController.m */,
+				7B8485E12068F204000459C2 /* MessageCenterViewController.h */,
+				7B8485E22068F204000459C2 /* MessageCenterViewController.m */,
+				7B8485E42068F223000459C2 /* QuestionFeedbackViewController.h */,
+				7B8485E52068F223000459C2 /* QuestionFeedbackViewController.m */,
+				7B8485E72068F232000459C2 /* AboutUsViewController.h */,
+				7B8485E82068F232000459C2 /* AboutUsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -596,6 +631,7 @@
 				7B61A42820649D170001F77F /* RechargeViewController.m in Sources */,
 				7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */,
 				7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */,
+				7B8485EC2068F87F000459C2 /* TextFieldTableViewCell.m in Sources */,
 				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
 				7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
@@ -609,14 +645,18 @@
 				7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */,
 				7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
+				7B8485E92068F232000459C2 /* AboutUsViewController.m in Sources */,
 				7B431CE62068927C00D89476 /* WithdrawaisAmountTableViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
+				7B8485DD2068F1D2000459C2 /* ChangePasswordViewController.m in Sources */,
 				7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */,
 				7B0A5F292064D1AA0051249E /* BaseTableViewCell.m in Sources */,
 				7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */,
 				7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */,
 				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
+				7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */,
+				7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */,
 				7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
@@ -624,8 +664,10 @@
 				7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */,
 				7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
+				7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */,
 				7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */,
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
+				7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
