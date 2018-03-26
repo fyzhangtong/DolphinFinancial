@@ -9,7 +9,7 @@
 #import "RechargeViewController.h"
 #import "UIImage+ImageWithColor.h"
 
-@interface RechargeViewController ()
+@interface RechargeViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UILabel *moneyLabel;
@@ -131,6 +131,7 @@
         _moneyTextField.textColor = DFColorWithHexString(@"#101010");
         _moneyTextField.font = [UIFont systemFontOfSize:14.0];
         _moneyTextField.placeholder = @"请输入充值金额";
+        _moneyTextField.delegate = self;
     }
     return _moneyTextField;
 }
@@ -150,7 +151,7 @@
 {
     if (!_rechargeButton) {
         _rechargeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rechargeButton setTitle:@"充值" forState:UIControlStateNormal];
+        [_rechargeButton setTitle:@"确认转入" forState:UIControlStateNormal];
         [_rechargeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_rechargeButton setBackgroundImage:[UIImage createImageWithColor:DFTINTCOLOR] forState:UIControlStateNormal];
         _rechargeButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -160,7 +161,17 @@
     }
     return _rechargeButton;
 }
-
+#pragma mark - textFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        if ([textField respondsToSelector:@selector(resignFirstResponder)]) {
+            [textField resignFirstResponder];
+        }
+        
+    }
+    return YES;
+}
 #pragma mark - action
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

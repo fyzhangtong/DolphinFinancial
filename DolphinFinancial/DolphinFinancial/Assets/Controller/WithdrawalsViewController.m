@@ -11,6 +11,8 @@
 #import "WithdrawaisAccountNumberTableViewCell.h"
 #import "WithdrawaisPaymentDateTableViewCell.h"
 #import "BaseTableView.h"
+#import "WithdrawaisAmountTableViewCell.h"
+#import "WithdrawalsConfirmTableViewCell.h"
 
 @interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -49,6 +51,8 @@
         _tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [WithdrawaisAccountNumberTableViewCell registerCellTableView:_tableView];
         [WithdrawaisPaymentDateTableViewCell registerCellTableView:_tableView];
+        [WithdrawaisAmountTableViewCell registerCellTableView:_tableView];
+        [WithdrawalsConfirmTableViewCell registerCellTableView:_tableView];
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
@@ -70,8 +74,12 @@
     CGFloat height = 0;
     if (indexPath.section == 0) {
         height = [WithdrawaisAccountNumberTableViewCell cellHeight];
-    }else{
+    }else if(indexPath.section == 1){
         height = [WithdrawaisPaymentDateTableViewCell cellHeight];
+    }else if (indexPath.section == 2){
+        height = [WithdrawaisAmountTableViewCell cellHeight];
+    }else if (indexPath.section == 3){
+        height = [WithdrawalsConfirmTableViewCell cellHeight];
     }
     return height;
 }
@@ -81,16 +89,21 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
-    }else{
+    }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisPaymentDateTableViewCell reuseIdentifier]];
+    }else if (indexPath.section == 2){
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAmountTableViewCell reuseIdentifier]];
+    }else if (indexPath.section == 3){
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -114,6 +127,16 @@
         height = 24;
     }
     return height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [UIView new];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 9;
 }
 #pragma mark - tableViewDelegate
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

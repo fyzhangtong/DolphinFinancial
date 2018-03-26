@@ -8,7 +8,7 @@
 
 #import "WithdrawaisAccountNumberTableViewCell.h"
 
-@interface WithdrawaisAccountNumberTableViewCell()
+@interface WithdrawaisAccountNumberTableViewCell()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *accountNumberTextField;
 
@@ -55,6 +55,8 @@
         _accountNumberTextField.textColor = DFColorWithHexString(@"#101010");
         _accountNumberTextField.font = [UIFont systemFontOfSize:14.0];
         _accountNumberTextField.placeholder = @"请输入收款账号";
+        _accountNumberTextField.delegate = self;
+        _accountNumberTextField.keyboardType = UIKeyboardTypeDefault;
         
         UILabel *label = [UILabel new];
         label.textColor = DFColorWithHexString(@"#101010");
@@ -66,6 +68,17 @@
         _accountNumberTextField.leftViewMode = UITextFieldViewModeAlways;
     }
     return _accountNumberTextField;
+}
+#pragma mark - textFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        if ([textField respondsToSelector:@selector(resignFirstResponder)]) {
+            [textField resignFirstResponder];
+        }
+        
+    }
+    return YES;
 }
 
 @end

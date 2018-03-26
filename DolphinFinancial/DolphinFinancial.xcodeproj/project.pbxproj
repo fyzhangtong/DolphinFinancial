@@ -28,6 +28,8 @@
 		7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195F205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m */; };
 		7B431963205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */; };
 		7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */; };
+		7B431CE62068927C00D89476 /* WithdrawaisAmountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CE52068927C00D89476 /* WithdrawaisAmountTableViewCell.m */; };
+		7B431CE92068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */; };
 		7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43648F20633EB700F1D110 /* FinacialDetailsController.m */; };
 		7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C2205B64A00020FFE6 /* BaseViewController.m */; };
 		7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C5205B70300020FFE6 /* BaseTabBarController.m */; };
@@ -96,6 +98,10 @@
 		7B431962205F8A6500040FBA /* AssetsProfitRecordsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsProfitRecordsCollectionViewCell.m; sourceTree = "<group>"; };
 		7B431964205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsYieldCurveCollectionViewCell.h; sourceTree = "<group>"; };
 		7B431965205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsYieldCurveCollectionViewCell.m; sourceTree = "<group>"; };
+		7B431CE42068927C00D89476 /* WithdrawaisAmountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisAmountTableViewCell.h; sourceTree = "<group>"; };
+		7B431CE52068927C00D89476 /* WithdrawaisAmountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisAmountTableViewCell.m; sourceTree = "<group>"; };
+		7B431CE72068A19C00D89476 /* WithdrawalsConfirmTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawalsConfirmTableViewCell.h; sourceTree = "<group>"; };
+		7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsConfirmTableViewCell.m; sourceTree = "<group>"; };
 		7B43648E20633EB700F1D110 /* FinacialDetailsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialDetailsController.h; sourceTree = "<group>"; };
 		7B43648F20633EB700F1D110 /* FinacialDetailsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialDetailsController.m; sourceTree = "<group>"; };
 		7B48A4C1205B64A00020FFE6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -303,6 +309,10 @@
 				7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */,
 				7B0A5F202064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.h */,
 				7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */,
+				7B431CE42068927C00D89476 /* WithdrawaisAmountTableViewCell.h */,
+				7B431CE52068927C00D89476 /* WithdrawaisAmountTableViewCell.m */,
+				7B431CE72068A19C00D89476 /* WithdrawalsConfirmTableViewCell.h */,
+				7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -589,9 +599,11 @@
 				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
 				7BCB08F72063C4A700017FDD /* AssetsRecordTableViewCell.m in Sources */,
+				7B431CE92068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m in Sources */,
 				7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */,
 				7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
+				7B431CE62068927C00D89476 /* WithdrawaisAmountTableViewCell.m in Sources */,
 				7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */,
 				7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */,
 				7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */,
