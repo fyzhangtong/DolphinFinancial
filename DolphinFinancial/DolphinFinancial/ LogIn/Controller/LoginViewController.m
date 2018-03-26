@@ -132,7 +132,7 @@ typedef enum LoginModel
     [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.loginButton.mas_bottom).mas_offset(7);
         make.left.mas_equalTo(self.loginButton.mas_left);
-        make.width.mas_equalTo(57);
+        //make.width.mas_equalTo(57);
         make.height.mas_equalTo(23);
     }];
     
@@ -140,7 +140,7 @@ typedef enum LoginModel
     [self.findPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.signUpButton.mas_top);
         make.right.mas_equalTo(self.loginButton.mas_right);
-        make.width.mas_equalTo(57);
+        //make.width.mas_equalTo(57);
         make.height.mas_equalTo(23);
     }];
 }

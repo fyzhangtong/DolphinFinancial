@@ -11,14 +11,14 @@
 #define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define kPAYMENT_WIDTH kSCREEN_WIDTH-80
+#define kKeyboardHeight (kSCREEN_HEIGHT == 812.0 ? 333 : 216)
 
 static NSInteger const kPasswordCount = 6;
 
 static CGFloat const kTitleHeight     = 46.f;
 static CGFloat const kDotWidth        = 10;
-static CGFloat const kKeyboardHeight  = 216;
 static CGFloat const kAlertHeight     = 200;
-static CGFloat const kCommonMargin    = 100;
+static CGFloat const kCommonMargin    = 40;
 
 @interface DNPayAlertView () <UITextFieldDelegate>
 
