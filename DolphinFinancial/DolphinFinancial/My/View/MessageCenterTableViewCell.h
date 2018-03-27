@@ -8,6 +8,9 @@
 
 #import "BaseTableViewCell.h"
 
+/**
+ 消息cell
+ */
 @interface MessageCenterTableViewCell : BaseTableViewCell
 
 @end

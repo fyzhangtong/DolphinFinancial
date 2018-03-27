@@ -14,6 +14,10 @@
 		7B103D222069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D212069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m */; };
 		7B103D252069F2870012494C /* ZTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D242069F2870012494C /* ZTTextView.m */; };
 		7B103D282069F7610012494C /* MessageCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D272069F7610012494C /* MessageCenterTableViewCell.m */; };
+		7B103D2B206A21C00012494C /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D2A206A21C00012494C /* BaseCollectionViewCell.m */; };
+		7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D2D206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m */; };
+		7B103D31206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D30206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m */; };
+		7B103D34206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D33206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.m */; };
 		7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007EC205A7BEC00C3B723 /* AppDelegate.m */; };
 		7B2007F3205A7BEC00C3B723 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F1205A7BEC00C3B723 /* Main.storyboard */; };
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
@@ -45,6 +49,7 @@
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
 		7B61A42520649C350001F77F /* WithdrawalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42420649C350001F77F /* WithdrawalsViewController.m */; };
 		7B61A42820649D170001F77F /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42720649D170001F77F /* RechargeViewController.m */; };
+		7B73E184206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */; };
 		7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */; };
 		7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */; };
 		7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485D92068F197000459C2 /* MemberDetailsViewController.m */; };
@@ -83,6 +88,14 @@
 		7B103D242069F2870012494C /* ZTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTextView.m; sourceTree = "<group>"; };
 		7B103D262069F7610012494C /* MessageCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterTableViewCell.h; sourceTree = "<group>"; };
 		7B103D272069F7610012494C /* MessageCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterTableViewCell.m; sourceTree = "<group>"; };
+		7B103D29206A21C00012494C /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
+		7B103D2A206A21C00012494C /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
+		7B103D2C206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsMyLevelCollectionViewCell.h; sourceTree = "<group>"; };
+		7B103D2D206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsMyLevelCollectionViewCell.m; sourceTree = "<group>"; };
+		7B103D2F206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsLevelRuleCollectionViewCell.h; sourceTree = "<group>"; };
+		7B103D30206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsLevelRuleCollectionViewCell.m; sourceTree = "<group>"; };
+		7B103D32206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsLevelOrPriceCollectionViewCell.h; sourceTree = "<group>"; };
+		7B103D33206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsLevelOrPriceCollectionViewCell.m; sourceTree = "<group>"; };
 		7B2007E8205A7BEC00C3B723 /* DolphinFinancial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DolphinFinancial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2007EB205A7BEC00C3B723 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7B2007EC205A7BEC00C3B723 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -143,6 +156,8 @@
 		7B61A42420649C350001F77F /* WithdrawalsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsViewController.m; sourceTree = "<group>"; };
 		7B61A42620649D170001F77F /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
 		7B61A42720649D170001F77F /* RechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
+		7B73E182206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsLevelExplainCollectionViewCell.h; sourceTree = "<group>"; };
+		7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsLevelExplainCollectionViewCell.m; sourceTree = "<group>"; };
 		7B7AA94A2063579600415C36 /* TargetAnnualRateOfReturnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetAnnualRateOfReturnCell.h; sourceTree = "<group>"; };
 		7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TargetAnnualRateOfReturnCell.m; sourceTree = "<group>"; };
 		7B7AA94D20635FDD00415C36 /* FinacialCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialCollectionReusableView.h; sourceTree = "<group>"; };
@@ -219,6 +234,8 @@
 				7B0A5F252064D19B0051249E /* BaseTableView.m */,
 				7B0A5F272064D1AA0051249E /* BaseTableViewCell.h */,
 				7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */,
+				7B103D29206A21C00012494C /* BaseCollectionViewCell.h */,
+				7B103D2A206A21C00012494C /* BaseCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +304,14 @@
 				7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */,
 				7B103D262069F7610012494C /* MessageCenterTableViewCell.h */,
 				7B103D272069F7610012494C /* MessageCenterTableViewCell.m */,
+				7B103D2C206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.h */,
+				7B103D2D206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m */,
+				7B103D2F206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.h */,
+				7B103D30206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m */,
+				7B103D32206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.h */,
+				7B103D33206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.m */,
+				7B73E182206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.h */,
+				7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -661,6 +686,7 @@
 				7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */,
 				7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */,
 				7B103D222069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
+				7B103D2B206A21C00012494C /* BaseCollectionViewCell.m in Sources */,
 				7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */,
 				7B8485E92068F232000459C2 /* AboutUsViewController.m in Sources */,
 				7B431CE62068927C00D89476 /* WithdrawaisAmountTableViewCell.m in Sources */,
@@ -671,6 +697,7 @@
 				7B0A5F292064D1AA0051249E /* BaseTableViewCell.m in Sources */,
 				7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */,
 				7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */,
+				7B103D34206A31FF0012494C /* MemberDetailsLevelOrPriceCollectionViewCell.m in Sources */,
 				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
 				7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */,
 				7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */,
@@ -686,11 +713,14 @@
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
 				7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
+				7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
 				7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */,
 				7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */,
+				7B103D31206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m in Sources */,
 				7B103D252069F2870012494C /* ZTTextView.m in Sources */,
+				7B73E184206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
