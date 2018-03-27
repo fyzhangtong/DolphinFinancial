@@ -33,7 +33,12 @@
 
 - (void)makeView
 {
-    [self setCenterTitle:@"资产记录"];
+    if (self.recordType == RecordTypeAessets) {
+        [self setCenterTitle:@"资产记录"];
+    }else{
+        [self setCenterTitle:@"收益记录"];
+    }
+    
     [self addLeftBackButton];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

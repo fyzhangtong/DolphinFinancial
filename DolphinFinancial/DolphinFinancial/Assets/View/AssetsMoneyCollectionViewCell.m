@@ -42,6 +42,13 @@
     [collectionView registerClass:[self class] forCellWithReuseIdentifier:[self reuseIdentifier]];
 }
 
+- (void)reloadData:(NSString *)title money:(NSString *)money
+{
+    _titleLabel.text = title;
+    _moneyLabel.text = money;
+    _checkLabel.text = @"点击查看";
+}
+
 - (void)makeView
 {
     [self.contentView addSubview:self.titleLabel];
@@ -67,7 +74,6 @@
         _titleLabel = [UILabel new];
         _titleLabel.textColor = DFColorWithHexString(@"#101010");
         _titleLabel.font = [UIFont systemFontOfSize:14.0];
-        _titleLabel.text = @"余额";
     }
     return _titleLabel;
 }
@@ -77,7 +83,6 @@
         _moneyLabel = [UILabel new];
         _moneyLabel.textColor = DFColorWithHexString(@"#1779D4");
         _moneyLabel.font = [UIFont systemFontOfSize:12.0];
-        _moneyLabel.text = @"¥0.00";
     }
     return _moneyLabel;
 }
@@ -87,7 +92,7 @@
         _checkLabel = [UILabel new];
         _checkLabel.textColor = DFColorWithHexString(@"#E51C23");
         _checkLabel.font = [UIFont systemFontOfSize:8.0];
-        _checkLabel.text = @"点击查看";
+        
     }
     return _checkLabel;
 }

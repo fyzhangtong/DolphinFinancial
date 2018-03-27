@@ -145,7 +145,15 @@
         if (indexPath.row == 0) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsTotalCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
         }else{
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsMoneyCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+            AssetsMoneyCollectionViewCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsMoneyCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+            if (indexPath.row == 1) {
+                [cell1 reloadData:@"余额" money:@"¥0.00"];
+            }else if (indexPath.row == 2){
+                [cell1 reloadData:@"奖励金" money:@"¥0.00"];
+            }else if (indexPath.row == 3){
+                [cell1 reloadData:@"理财资产" money:@"¥0.00"];
+            }
+            cell = cell1;
         }
     }else if (indexPath.section == 1){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsTotalProfitCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
