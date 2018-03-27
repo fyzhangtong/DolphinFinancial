@@ -12,6 +12,7 @@
 		7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F252064D19B0051249E /* BaseTableView.m */; };
 		7B0A5F292064D1AA0051249E /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */; };
 		7B103D222069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D212069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m */; };
+		7B103D252069F2870012494C /* ZTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B103D242069F2870012494C /* ZTTextView.m */; };
 		7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007EC205A7BEC00C3B723 /* AppDelegate.m */; };
 		7B2007F3205A7BEC00C3B723 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F1205A7BEC00C3B723 /* Main.storyboard */; };
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
@@ -77,6 +78,8 @@
 		7B0A5F282064D1AA0051249E /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		7B103D202069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ChangeLineSpaceAndWordSpace.h"; sourceTree = "<group>"; };
 		7B103D212069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ChangeLineSpaceAndWordSpace.m"; sourceTree = "<group>"; };
+		7B103D232069F2870012494C /* ZTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTTextView.h; sourceTree = "<group>"; };
+		7B103D242069F2870012494C /* ZTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTextView.m; sourceTree = "<group>"; };
 		7B2007E8205A7BEC00C3B723 /* DolphinFinancial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DolphinFinancial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2007EB205A7BEC00C3B723 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7B2007EC205A7BEC00C3B723 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 		7B48A4E6205BA18C0020FFE6 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				7B103D232069F2870012494C /* ZTTextView.h */,
+				7B103D242069F2870012494C /* ZTTextView.m */,
 				7B48A4E7205BA1A50020FFE6 /* UIImage+ImageWithColor.h */,
 				7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */,
 				7BFB419820620CB000FEED9E /* MBProgressHUD+DFStyle.h */,
@@ -679,6 +684,7 @@
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
 				7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */,
 				7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */,
+				7B103D252069F2870012494C /* ZTTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
