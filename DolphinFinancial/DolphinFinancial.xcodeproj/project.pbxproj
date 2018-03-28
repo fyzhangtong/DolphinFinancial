@@ -29,6 +29,7 @@
 		7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8682060F99C005562D5 /* LoginViewController.m */; };
 		7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E86B2060F9EA005562D5 /* SetPasswordController.m */; };
 		7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E86E2060FA7C005562D5 /* SignUpViewController.m */; };
+		7B420129206B2B200039A586 /* MyFinancialBorrowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B420128206B2B200039A586 /* MyFinancialBorrowersViewController.m */; };
 		7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431955205F50F300040FBA /* FinancialViewCell.m */; };
 		7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */; };
 		7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */; };
@@ -50,6 +51,9 @@
 		7B61A42520649C350001F77F /* WithdrawalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42420649C350001F77F /* WithdrawalsViewController.m */; };
 		7B61A42820649D170001F77F /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42720649D170001F77F /* RechargeViewController.m */; };
 		7B73E184206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */; };
+		7B73E187206A590100A7C117 /* MyFinancialDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E186206A590100A7C117 /* MyFinancialDetailsViewController.m */; };
+		7B73E18A206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E189206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m */; };
+		7B73E18D206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E18C206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m */; };
 		7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */; };
 		7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AA94E20635FDD00415C36 /* FinacialCollectionReusableView.m */; };
 		7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485D92068F197000459C2 /* MemberDetailsViewController.m */; };
@@ -116,6 +120,8 @@
 		7B40E86B2060F9EA005562D5 /* SetPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPasswordController.m; sourceTree = "<group>"; };
 		7B40E86D2060FA7C005562D5 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		7B40E86E2060FA7C005562D5 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		7B420127206B2B200039A586 /* MyFinancialBorrowersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialBorrowersViewController.h; sourceTree = "<group>"; };
+		7B420128206B2B200039A586 /* MyFinancialBorrowersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialBorrowersViewController.m; sourceTree = "<group>"; };
 		7B431954205F50F300040FBA /* FinancialViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewCell.h; sourceTree = "<group>"; };
 		7B431955205F50F300040FBA /* FinancialViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewCell.m; sourceTree = "<group>"; };
 		7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsMoneyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -158,6 +164,12 @@
 		7B61A42720649D170001F77F /* RechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
 		7B73E182206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberDetailsLevelExplainCollectionViewCell.h; sourceTree = "<group>"; };
 		7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberDetailsLevelExplainCollectionViewCell.m; sourceTree = "<group>"; };
+		7B73E185206A590100A7C117 /* MyFinancialDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialDetailsViewController.h; sourceTree = "<group>"; };
+		7B73E186206A590100A7C117 /* MyFinancialDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialDetailsViewController.m; sourceTree = "<group>"; };
+		7B73E188206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialDetailsTotalTableViewCell.h; sourceTree = "<group>"; };
+		7B73E189206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialDetailsTotalTableViewCell.m; sourceTree = "<group>"; };
+		7B73E18B206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialDetailsExplainTableViewCell.h; sourceTree = "<group>"; };
+		7B73E18C206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialDetailsExplainTableViewCell.m; sourceTree = "<group>"; };
 		7B7AA94A2063579600415C36 /* TargetAnnualRateOfReturnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetAnnualRateOfReturnCell.h; sourceTree = "<group>"; };
 		7B7AA94B2063579600415C36 /* TargetAnnualRateOfReturnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TargetAnnualRateOfReturnCell.m; sourceTree = "<group>"; };
 		7B7AA94D20635FDD00415C36 /* FinacialCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialCollectionReusableView.h; sourceTree = "<group>"; };
@@ -352,6 +364,10 @@
 				7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */,
 				7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */,
 				7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */,
+				7B73E188206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.h */,
+				7B73E189206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m */,
+				7B73E18B206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.h */,
+				7B73E18C206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +464,10 @@
 				7BFB419C20626D7100FEED9E /* MyFincialViewController.m */,
 				7B43648E20633EB700F1D110 /* FinacialDetailsController.h */,
 				7B43648F20633EB700F1D110 /* FinacialDetailsController.m */,
+				7B73E185206A590100A7C117 /* MyFinancialDetailsViewController.h */,
+				7B73E186206A590100A7C117 /* MyFinancialDetailsViewController.m */,
+				7B420127206B2B200039A586 /* MyFinancialBorrowersViewController.h */,
+				7B420128206B2B200039A586 /* MyFinancialBorrowersViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -675,12 +695,14 @@
 				7B103D282069F7610012494C /* MessageCenterTableViewCell.m in Sources */,
 				7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */,
 				7B40E8692060F99C005562D5 /* LoginViewController.m in Sources */,
+				7B73E187206A590100A7C117 /* MyFinancialDetailsViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B431CF32068D8B000D89476 /* DNPayAlertView.m in Sources */,
 				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,
 				7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */,
+				7B420129206B2B200039A586 /* MyFinancialBorrowersViewController.m in Sources */,
 				7BCB08F72063C4A700017FDD /* AssetsRecordTableViewCell.m in Sources */,
 				7B431CE92068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m in Sources */,
 				7B40E86C2060F9EA005562D5 /* SetPasswordController.m in Sources */,
@@ -701,6 +723,7 @@
 				7B431966205F8AF200040FBA /* AssetsYieldCurveCollectionViewCell.m in Sources */,
 				7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */,
 				7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */,
+				7B73E18A206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m in Sources */,
 				7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
@@ -710,6 +733,7 @@
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
 				7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */,
 				7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */,
+				7B73E18D206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m in Sources */,
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
 				7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,

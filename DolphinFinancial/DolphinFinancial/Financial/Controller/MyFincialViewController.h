@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 /**
- 我的理财产品
+ 我的理财列表
  */
 @interface MyFincialViewController : BaseViewController
 

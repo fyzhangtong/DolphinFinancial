@@ -8,6 +8,7 @@
 
 #import "MyFincialViewController.h"
 #import "MyFinacialTableViewCell.h"
+#import "MyFinancialDetailsViewController.h"
 
 @interface MyFincialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -90,6 +91,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [MyFinancialDetailsViewController pushToController:self];
 }
 
 
