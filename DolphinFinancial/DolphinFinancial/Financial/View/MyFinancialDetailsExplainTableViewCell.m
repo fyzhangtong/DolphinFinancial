@@ -33,7 +33,7 @@
 
 - (void)showRightArrow:(BOOL)show
 {
-    CGFloat width = show ? 24 : 0;
+    CGFloat width = show ? 34 : 0;
     self.rightArrowWidthConstraint.offset(width);
 }
 
@@ -50,7 +50,7 @@
     [self.contentView addSubview:self.rightArrow];
     [self.rightArrow mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-15);
+        make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-20);
         self.rightArrowWidthConstraint = make.width.mas_equalTo(0);
         make.height.mas_equalTo(24);
     }];
@@ -87,6 +87,8 @@
 {
     if (!_rightArrow) {
         _rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rightArrow"]];
+        _rightArrow.contentMode = UIViewContentModeRight;
+        _rightArrow.layer.masksToBounds = YES;
     }
     return _rightArrow;
 }
