@@ -13,6 +13,6 @@
  */
 @interface LoginViewController : BaseViewController
 
-+ (void)loginToController:(UIViewController *)controller Complete:(void(^)(BOOL success))complete;
++ (void)loginWithComplete:(void(^)(BOOL success))complete;
 
 @end

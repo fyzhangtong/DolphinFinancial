@@ -11,6 +11,7 @@
 #import "UIImage+ImageWithColor.h"
 #import "SetPasswordController.h"
 #import "SignUpViewController.h"
+#import "GTUtil.h"
 
 typedef enum LoginModel
 {
@@ -40,13 +41,16 @@ typedef enum LoginModel
 @implementation LoginViewController
 
 #pragma mark - 登录方法
-+ (void)loginToController:(UIViewController *)controller Complete:(void(^)(BOOL success))complete
++ (void)loginWithComplete:(void(^)(BOOL success))complete
 {
+    if ([[GTUtil getCurrentVC] isKindOfClass:[LoginViewController class]]) {
+        return;
+    }
     LoginViewController *landVC = [[LoginViewController alloc] init];
     landVC.complete = complete;
     BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:landVC];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [controller presentViewController:navigationController animated:YES completion:nil];
+        [[GTUtil getCurrentVC] presentViewController:navigationController animated:YES completion:nil];
     });
 }
 

@@ -32,6 +32,7 @@
 		7B420129206B2B200039A586 /* MyFinancialBorrowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B420128206B2B200039A586 /* MyFinancialBorrowersViewController.m */; };
 		7B42012C206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B42012B206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.m */; };
 		7B42012F206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B42012E206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m */; };
+		7B420136206B7BE90039A586 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B420135206B7BE90039A586 /* UserManager.m */; };
 		7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431955205F50F300040FBA /* FinancialViewCell.m */; };
 		7B43195A205F687E00040FBA /* AssetsMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431959205F687E00040FBA /* AssetsMoneyCollectionViewCell.m */; };
 		7B43195D205F694700040FBA /* AssetsTotalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43195C205F694700040FBA /* AssetsTotalCollectionViewCell.m */; };
@@ -50,6 +51,8 @@
 		7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4DF205B723E0020FFE6 /* FinacialViewController.m */; };
 		7B48A4E5205B73060020FFE6 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E4205B73060020FFE6 /* MyViewController.m */; };
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
+		7B4EABA3206DCF7400693163 /* GTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EABA2206DCF7400693163 /* GTUtil.m */; };
+		7B4EABA6206DD22C00693163 /* GTNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EABA4206DD22C00693163 /* GTNetWorking.m */; };
 		7B61A42520649C350001F77F /* WithdrawalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42420649C350001F77F /* WithdrawalsViewController.m */; };
 		7B61A42820649D170001F77F /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42720649D170001F77F /* RechargeViewController.m */; };
 		7B73E184206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73E183206A41E500A7C117 /* MemberDetailsLevelExplainCollectionViewCell.m */; };
@@ -128,6 +131,8 @@
 		7B42012B206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialBorrowersHeadTableViewCell.m; sourceTree = "<group>"; };
 		7B42012D206B43D20039A586 /* MyFinancialBorrowerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialBorrowerTableViewCell.h; sourceTree = "<group>"; };
 		7B42012E206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialBorrowerTableViewCell.m; sourceTree = "<group>"; };
+		7B420134206B7BE90039A586 /* UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		7B420135206B7BE90039A586 /* UserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		7B431954205F50F300040FBA /* FinancialViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialViewCell.h; sourceTree = "<group>"; };
 		7B431955205F50F300040FBA /* FinancialViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialViewCell.m; sourceTree = "<group>"; };
 		7B431958205F687E00040FBA /* AssetsMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsMoneyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -164,6 +169,10 @@
 		7B48A4E4205B73060020FFE6 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		7B48A4E7205BA1A50020FFE6 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
 		7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
+		7B4EABA1206DCF7400693163 /* GTUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTUtil.h; sourceTree = "<group>"; };
+		7B4EABA2206DCF7400693163 /* GTUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTUtil.m; sourceTree = "<group>"; };
+		7B4EABA4206DD22C00693163 /* GTNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTNetWorking.m; sourceTree = "<group>"; };
+		7B4EABA5206DD22C00693163 /* GTNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTNetWorking.h; sourceTree = "<group>"; };
 		7B61A42320649C350001F77F /* WithdrawalsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawalsViewController.h; sourceTree = "<group>"; };
 		7B61A42420649C350001F77F /* WithdrawalsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsViewController.m; sourceTree = "<group>"; };
 		7B61A42620649D170001F77F /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
@@ -279,6 +288,7 @@
 		7B2007EA205A7BEC00C3B723 /* DolphinFinancial */ = {
 			isa = PBXGroup;
 			children = (
+				7B420133206B7BD00039A586 /* UserManager */,
 				7B40E8652060F7DC005562D5 /*  LogIn */,
 				7B40E85720609A53005562D5 /* NetWorking */,
 				7B48A4E6205BA18C0020FFE6 /* Tool */,
@@ -303,6 +313,8 @@
 		7B40E85720609A53005562D5 /* NetWorking */ = {
 			isa = PBXGroup;
 			children = (
+				7B4EABA5206DD22C00693163 /* GTNetWorking.h */,
+				7B4EABA4206DD22C00693163 /* GTNetWorking.m */,
 			);
 			path = NetWorking;
 			sourceTree = "<group>";
@@ -353,6 +365,15 @@
 				7B40E86E2060FA7C005562D5 /* SignUpViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7B420133206B7BD00039A586 /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				7B420134206B7BE90039A586 /* UserManager.h */,
+				7B420135206B7BE90039A586 /* UserManager.m */,
+			);
+			path = UserManager;
 			sourceTree = "<group>";
 		};
 		7B431953205F500C00040FBA /* View */ = {
@@ -547,6 +568,8 @@
 				7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */,
 				7B103D202069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.h */,
 				7B103D212069EC3F0012494C /* UILabel+ChangeLineSpaceAndWordSpace.m */,
+				7B4EABA1206DCF7400693163 /* GTUtil.h */,
+				7B4EABA2206DCF7400693163 /* GTUtil.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -742,12 +765,15 @@
 				7B42012C206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.m in Sources */,
 				7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
+				7B4EABA6206DD22C00693163 /* GTNetWorking.m in Sources */,
 				7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */,
 				7B42012F206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m in Sources */,
 				7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */,
+				7B420136206B7BE90039A586 /* UserManager.m in Sources */,
 				7B73E18D206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m in Sources */,
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
 				7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */,
+				7B4EABA3206DCF7400693163 /* GTUtil.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
 				7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
