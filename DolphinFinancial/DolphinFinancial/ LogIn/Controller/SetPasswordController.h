@@ -24,6 +24,6 @@ typedef enum PasswordType
  */
 @interface SetPasswordController : BaseViewController
 
-+ (void)pushToController:(UIViewController *)controller setPasswrodState:(SetPasswordState)setPasswrodState passwordType:(PasswordType)passwordType Complete:(void(^)(BOOL success))complete;
++ (void)setWithPasswrodState:(SetPasswordState)setPasswrodState passwordType:(PasswordType)passwordType Complete:(void(^)(BOOL success))complete;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SignUpViewController.h"
 #import "UIImage+ImageWithColor.h"
+#import "SetPasswordController.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 
@@ -325,6 +326,7 @@
         [_signUpButton setTitle:@"注册" forState:UIControlStateNormal];
         [_signUpButton setTitleColor:DFColorWithHexString(@"#FFFFFF") forState:UIControlStateNormal];
         [_signUpButton setBackgroundImage:[UIImage createImageWithColor:DFColorWithHexString(@"#1779D4")] forState:UIControlStateNormal];
+        [_signUpButton addTarget:self action:@selector(signUpButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         _signUpButton.layer.cornerRadius = 4.0;
         _signUpButton.layer.masksToBounds = YES;
@@ -375,10 +377,10 @@
 }
 
 //开始倒计时
--(void) startTimer{
+-(void) startTimer:(int)time{
     self.isCountDowning = YES;
     _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
-    __block int timeout = 60; //倒计时时间
+    __block int timeout = time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -418,7 +420,23 @@
 
 -(void)getVerificationCodeButtonClick:(UIButton *)sender
 {
-    [self startTimer];
+    [self.view endEditing:YES];
+    __weak typeof(self) weakSelf = self;
+    self.verificationCodeButton.enabled = NO;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberTextField.text,@"from":@"register"} success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            [weakSelf startTimer:[data intValue]];
+        }else{
+            weakSelf.verificationCodeButton.enabled = YES;
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        self.verificationCodeButton.enabled = YES;
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -431,7 +449,32 @@
 }
 - (void)aggrementButtonClick:(UIButton *)sender
 {
-    sender.selected = !sender.selected;
+    NSLog(@"海豚理财协议");
+}
+
+- (void)signUpButtonClick:(UIButton *)sender
+{
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *params = @{@"phone":self.phoneNumberTextField.text,
+                             @"code":self.verificationCodeTextField.text,
+                             @"password":self.loginPasswordLabelTextField.text,
+                             @"referrer":self.refereeTextField.text};
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_REGISTER params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            [weakSelf leftButtonClick:nil];
+            BOOL need_pay_password = [data[@"need_pay_password"] boolValue];
+            if (need_pay_password) {
+                [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
+                    
+                }];
+            }
+        }
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end

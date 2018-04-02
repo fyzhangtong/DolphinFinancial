@@ -9,6 +9,7 @@
 #import "SetPasswordController.h"
 #import "MBProgressHUD+DFStyle.h"
 #import "UIImage+ImageWithColor.h"
+#import "GTUtil.h"
 
 @interface SetPasswordController ()<UITextFieldDelegate>
 
@@ -24,19 +25,20 @@
 @property (nonatomic, strong) UIButton *nextStepButton;
 @property (nonatomic, strong) MASConstraint *getVerificationCodeButtonConstraintW;
 @property (nonatomic, assign) BOOL isCountDowning;  //正在倒计时
+@property (nonatomic, copy) NSString *u_token;      //未登录状态修改密码时请在header头信息中带上
 
 @end
 
 @implementation SetPasswordController
 
-+ (void)pushToController:(UIViewController *)controller setPasswrodState:(SetPasswordState)setPasswrodState passwordType:(PasswordType)passwordType Complete:(void(^)(BOOL success))complete
++ (void)setWithPasswrodState:(SetPasswordState)setPasswrodState passwordType:(PasswordType)passwordType Complete:(void(^)(BOOL success))complete
 {
     SetPasswordController *landVC = [[SetPasswordController alloc] init];
     landVC->_setPasswordState = setPasswrodState;
     landVC->_passwordType = passwordType;
     landVC.complete = complete;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [controller.navigationController pushViewController:landVC animated:YES];
+        [[GTUtil getCurrentVC].navigationController pushViewController:landVC animated:YES];
     });
 }
 
@@ -303,10 +305,10 @@
 }
 
 //开始倒计时
--(void) startTimer{
+-(void) startTimer:(int)time{
     self.isCountDowning = YES;
     _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
-    __block int timeout = 60; //倒计时时间
+    __block int timeout = time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -354,11 +356,70 @@
 }
 -(void)getVerificationCodeButtonClick:(UIButton *)sender
 {
-    [self startTimer];
+    [self.view endEditing:YES];
+    self.getVerificationCodeButton.enabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"from":@"change"} success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            [weakSelf startTimer:[data intValue]];
+        }else{
+            weakSelf.getVerificationCodeButton.enabled = YES;
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }        
+    } fail:^(NSError *error) {
+        weakSelf.getVerificationCodeButton.enabled = YES;
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 - (void)nextStepButtonClick:(UIButton *)sender
 {
-    self.setPasswordState = !self.setPasswordState;
+    [self.view endEditing:YES];
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (self.setPasswordState == SetPasswordStateVerify) {
+        NSDictionary *param = @{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"code":self.VerificationCodeOrPasswordAgainTextField.text};
+        [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param success:^(NSNumber *code, NSString *msg, id data) {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            weakSelf.u_token = data;
+            weakSelf.setPasswordState = SetPasswordStateSetNewPassword;
+        } fail:^(NSError *error) {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        }];
+    }else{
+        if (self.passwordType == PasswordTypeLogin) {
+            //设置登录密码
+            NSDictionary *params = @{@"U-Token":self.u_token,@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
+            [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_PWDLOSS params:params success:^(NSNumber *code, NSString *msg, id data) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                if ([code integerValue] == 200) {
+                    [weakSelf rightButtonClick:nil];
+                }
+                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            } fail:^(NSError *error) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+            }];
+        }else{
+            //设置支付密码
+            NSDictionary *params = @{@"pay_password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_pay_password":self.VerificationCodeOrPasswordAgainTextField.text};
+            [GTNetWorking postWithUrl:DOLPHIN_API_PAYINIT params:params success:^(NSNumber *code, NSString *msg, id data) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                if ([code integerValue] == 200) {
+                    [weakSelf rightButtonClick:nil];
+                }
+                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            } fail:^(NSError *error) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+            }];
+        }
+        
+    }
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

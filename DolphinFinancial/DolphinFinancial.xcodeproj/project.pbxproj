@@ -219,6 +219,7 @@
 		7BFB419C20626D7100FEED9E /* MyFincialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFincialViewController.m; sourceTree = "<group>"; };
 		7BFB419E206270B800FEED9E /* MyFinacialTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinacialTableViewCell.h; sourceTree = "<group>"; };
 		7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinacialTableViewCell.m; sourceTree = "<group>"; };
+		7BFDD0A9206DD982009B14F5 /* DolphinFinancialApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DolphinFinancialApi.h; sourceTree = "<group>"; };
 		7BFFF72B205A82C1001E7E59 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7BFFF72C205A84AD001E7E59 /* CommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -289,9 +290,9 @@
 			isa = PBXGroup;
 			children = (
 				7B420133206B7BD00039A586 /* UserManager */,
-				7B40E8652060F7DC005562D5 /*  LogIn */,
 				7B40E85720609A53005562D5 /* NetWorking */,
 				7B48A4E6205BA18C0020FFE6 /* Tool */,
+				7B40E8652060F7DC005562D5 /*  LogIn */,
 				7B48A4E1205B72B20020FFE6 /* My */,
 				7B48A4D6205B718E0020FFE6 /* Assets */,
 				7B48A4D1205B71510020FFE6 /* Financial */,
@@ -306,6 +307,7 @@
 				7B2007FA205A7BEC00C3B723 /* main.m */,
 				7BFFF72B205A82C1001E7E59 /* PrefixHeader.pch */,
 				7BFFF72C205A84AD001E7E59 /* CommonConfig.h */,
+				7BFDD0A9206DD982009B14F5 /* DolphinFinancialApi.h */,
 			);
 			path = DolphinFinancial;
 			sourceTree = "<group>";

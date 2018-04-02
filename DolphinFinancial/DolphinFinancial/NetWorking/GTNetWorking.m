@@ -78,30 +78,11 @@
         }
     };
     successBlock = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"code"] integerValue] == 5) {
-            [UserManager removeUser];
-            if (showLoginIfNeed) {
-                [LoginViewController loginWithComplete:^(BOOL landSuccess) {
-                    if (landSuccess) {
-                        [GTNetWorking baseRequestType:type url:url params:params showLoginIfNeed:NO success:success fail:fail];
-                    }else{
-                        if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:5 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
-                            fail(error);
-                        }
-                    }
-                }];
-            }else{
-                if (success) {
-                    success(responseObject);
-                }
-            }
-        }else{
-            if (success) {
-                success(responseObject);
-            }
-        }
-        
+        NSDictionary *dic = responseObject;
+        NSNumber *code = dic[@"code"];
+        NSString *msg = dic[@"msg"];
+        id data = dic[@"data"];
+        success(code,msg,data);
     };
     
     if (type==1) {
@@ -148,7 +129,11 @@
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
-            success(responseObject);
+            NSDictionary *dic = responseObject;
+            NSNumber *code = dic[@"code"];
+            NSString *msg = dic[@"msg"];
+            id data = dic[@"data"];
+            success(code,msg,data);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (fail) {
@@ -191,7 +176,7 @@
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         if (error == nil) {
             if (success) {
-                success([filePath path]);//返回完整路径
+                success(@(200),@"成功",filePath);//返回完整路径
             }
         } else {
             if (fail) {

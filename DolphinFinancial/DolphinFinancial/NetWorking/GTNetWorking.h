@@ -17,7 +17,7 @@ typedef enum{
     
 }NetworkStatus;
 
-typedef void( ^ GTResponseSuccess)(id response);
+typedef void( ^ GTResponseSuccess)(NSNumber *code,NSString *msg,id data);
 typedef void( ^ GTResponseFail)(NSError *error);
 
 typedef void( ^ GTUploadProgress)(int64_t bytesProgress,

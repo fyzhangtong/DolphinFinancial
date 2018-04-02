@@ -12,6 +12,8 @@
 #import "SetPasswordController.h"
 #import "SignUpViewController.h"
 #import "GTUtil.h"
+#import "UserManager.h"
+#import "SetPasswordController.h"
 
 typedef enum LoginModel
 {
@@ -239,6 +241,7 @@ typedef enum LoginModel
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         [_loginButton setTitleColor:DFColorWithHexString(@"#FFFFFF") forState:UIControlStateNormal];
         [_loginButton setBackgroundImage:[UIImage createImageWithColor:DFColorWithHexString(@"#1779D4")] forState:UIControlStateNormal];
+        [_loginButton addTarget:self action:@selector(loginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         _loginButton.layer.cornerRadius = 4.0;
         _loginButton.layer.masksToBounds = YES;
@@ -331,10 +334,10 @@ typedef enum LoginModel
 }
 
 //开始倒计时
--(void) startTimer{
+-(void) startTimer:(int)time{
     self.isCountDowning = YES;
     _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
-    __block int timeout = 60; //倒计时时间
+    __block int timeout = time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -383,12 +386,30 @@ typedef enum LoginModel
 }
 -(void)getVerificationCodeButtonClick:(UIButton *)sender
 {
-    [self startTimer];
+    [self.view endEditing:YES];
+    self.getVerificationCodeButton.enabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSDictionary *param = @{@"phone":self.phoneNumberTextField.text,@"from":@"login"};
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:param success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            int time = [data intValue];
+            [weakSelf startTimer:time];
+        }else{
+            weakSelf.getVerificationCodeButton.enabled = YES;
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        weakSelf.getVerificationCodeButton.enabled = YES;
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    }];
+    
 }
 
 -(void)findPasswordButtonClick:(UIButton *)sender
 {
-    [SetPasswordController pushToController:self setPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:nil];
+    [SetPasswordController setWithPasswrodState:SetPasswordStateVerify passwordType:PasswordTypeLogin Complete:nil];
 }
 
 - (void)leftButtonClick:(UIButton *)sender
@@ -399,6 +420,52 @@ typedef enum LoginModel
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+- (void)loginButtonClick:(UIButton *)sender
+{
+    [self.view endEditing:YES];
+    if (_phoneNumberTextField.text.length != 11) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请输入正确手机号" andHideTime:1];
+        return;
+    }
+    
+    NSString *type;
+    NSString *pwdOrCodeKey;
+    if (self.loginModel == LoginModelPassword) {
+        type = @"pwd";
+        pwdOrCodeKey = @"password";
+    }else{
+        type = @"code";
+        pwdOrCodeKey = @"code";
+    }
+    if (self.passwordOrVerificationCodeTextField.text.length == 0) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请输入验证码" andHideTime:2];
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *param = @{@"phone":_phoneNumberTextField.text,@"type":type,pwdOrCodeKey:self.passwordOrVerificationCodeTextField.text};
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_LOGIN params:param success:^(NSNumber *code, NSString *msg, id data) {
+
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            //成功
+            [UserManager setUseraToken:data[@"token"]];
+            [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+                if ([data[@"need_pay_password"] boolValue]) {
+                    [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
+                    }];
+                }
+            }];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
+    
 }
 
 @end
