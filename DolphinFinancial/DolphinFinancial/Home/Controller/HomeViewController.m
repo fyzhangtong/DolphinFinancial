@@ -115,6 +115,7 @@
     
     [self setCenterImage:[UIImage imageNamed:@"dolphin"] title:@"海豚理财" titleColor:[UIColor whiteColor]];
     [self makeView];
+    [self loadData];
 }
 
 - (void)makeView
@@ -156,7 +157,7 @@
     [self.noticeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.amountBorrowersBackView.mas_bottom);
         make.left.right.mas_equalTo(self.amountBorrowersBackView);
-        self.noticeBackViewConstraintH = make.height.mas_equalTo(40);
+        self.noticeBackViewConstraintH = make.height.mas_equalTo(0);
     }];
     [self.noticeBackView addSubview:self.hornImageView];
     [self.hornImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,14 +188,14 @@
     [self.recommendingTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.noticeBackView.mas_bottom).mas_offset(8);
         make.left.right.mas_equalTo(self.view).mas_offset(0);
-        self.recommendingTitleLabelConstraintH = make.height.mas_equalTo(35);
+        self.recommendingTitleLabelConstraintH = make.height.mas_equalTo(0);
     }];
     
     [self.view addSubview:self.recommendingBackView];
     [self.recommendingBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.recommendingTitleLabel.mas_bottom).mas_offset(1);
         make.left.right.mas_equalTo(self.view);
-        self.recommendingBackViewConstraintH = make.height.mas_equalTo(60);
+        self.recommendingBackViewConstraintH = make.height.mas_equalTo(0);
     }];
     [self.recommendingBackView addSubview:self.recommendingLabel1];
     [self.recommendingLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -237,7 +238,7 @@
         _amountLabel.textAlignment = NSTextAlignmentCenter;
         _amountLabel.font = [UIFont boldSystemFontOfSize:20];
         _amountLabel.textColor = [UIColor whiteColor];
-        _amountLabel.text = @"10.01(万元)";
+        _amountLabel.text = @"(万元)";
         
     }
     return _amountLabel;
@@ -263,7 +264,7 @@
         _borrowersLabel.textAlignment = NSTextAlignmentCenter;
         _borrowersLabel.font = [UIFont boldSystemFontOfSize:18];
         _borrowersLabel.textColor = [UIColor whiteColor];
-        _borrowersLabel.text = @"28.73(万人)";
+        _borrowersLabel.text = @"(万人)";
         
     }
     return _borrowersLabel;
@@ -345,6 +346,7 @@
         _recommendingTitleLabel.font = [UIFont systemFontOfSize:14];
         _recommendingTitleLabel.textColor = DFColorWithHexString(@"#101010");
         _recommendingTitleLabel.text = @"   今日推荐产品";
+        _recommendingTitleLabel.layer.masksToBounds = YES;
         [_recommendingTitleLabel setBackgroundColor:[UIColor whiteColor]];
     }
     return _recommendingTitleLabel;
@@ -355,6 +357,7 @@
         _recommendingBackView  = [UIView new];
         _recommendingBackView.backgroundColor = [UIColor whiteColor];
         _recommendingBackView.userInteractionEnabled = YES;
+        _recommendingBackView.layer.masksToBounds = YES;
         UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recommendingBackViewTapAction:)];
         [_recommendingBackView addGestureRecognizer:tap];
     }
@@ -439,7 +442,7 @@
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];
 }
 

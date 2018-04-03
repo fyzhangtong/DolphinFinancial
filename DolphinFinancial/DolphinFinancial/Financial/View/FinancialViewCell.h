@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class DFProduct;
+
 @interface FinancialViewCell : UITableViewCell
 
 + (NSString *)reuseIdentifier;
 + (void)registerCellTableView:(UITableView *)tableView;
 + (CGFloat)cellHeight;
 
+- (void)reloadData:(DFProduct *)product;
 
 @end

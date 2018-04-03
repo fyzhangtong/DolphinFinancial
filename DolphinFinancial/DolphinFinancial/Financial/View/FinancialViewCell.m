@@ -7,6 +7,7 @@
 //
 
 #import "FinancialViewCell.h"
+#import "DFProduct.h"
 
 @interface FinancialViewCell()
 
@@ -118,4 +119,13 @@
     }
     return _surplusLabel;
 }
+
+- (void)reloadData:(DFProduct *)product
+{
+    self.nameLabel.text = product.name;
+    self.interestRateLabel.text = product.interest_rate;
+    self.explainLabel.text = product.descriptions.firstObject;
+    self.surplusLabel.text = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+}
+
 @end

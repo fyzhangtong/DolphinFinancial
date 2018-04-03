@@ -10,11 +10,12 @@
 #import "FinancialViewCell.h"
 #import "MyFincialViewController.h"
 #import "FinacialDetailsController.h"
+#import "DFProduct.h"
 
 @interface FinacialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 {
-    NSMutableArray *_dataSource;
+    NSMutableArray<DFProduct *> *_dataSource;
     
 }
 @property (nonatomic, strong) UITableView *tableView;
@@ -42,7 +43,8 @@
         make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-49);
         make.left.right.mas_equalTo(self.view);
     }];
-    
+    _dataSource = [[NSMutableArray alloc] init];
+    [self loadData];
 }
 - (UITableView *)tableView
 {
@@ -71,12 +73,12 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return _dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FinancialViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FinancialViewCell reuseIdentifier]];
-
+    [cell reloadData:_dataSource[indexPath.row]];
     return cell;
 }
 #pragma mark - tableViewDelegate
@@ -93,6 +95,27 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
     [self.navigationController pushViewController:fdc animated:YES];
+}
+
+#pragma mark - 网络请求
+- (void)loadData
+{
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        if ([code integerValue] == 200) {
+            _dataSource = data;
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (NSDictionary *dic  in (NSArray *)data) {
+                DFProduct *product = [DFProduct yy_modelWithDictionary:dic];
+                [array addObject:product];
+            }
+            [weakSelf.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 - (void)rightButtonClick:(UIButton *)sender
