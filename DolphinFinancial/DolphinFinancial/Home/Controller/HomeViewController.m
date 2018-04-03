@@ -9,29 +9,94 @@
 #import "HomeViewController.h"
 
 #import "FinacialDetailsController.h"
+#import "DFNotice.h"
+#import "DFProduct.h"
 
 @interface HomeViewController ()
 
-@property (nonatomic, strong) UIView *amountBorrowersBackView;  //理财金额和借款人数量背景
-@property (nonatomic, strong) UILabel *amountLabel;             //理财金额
-@property (nonatomic, strong) UILabel *amountDescLabel;         //理财金额描述
-@property (nonatomic, strong) UIView *amountBorrowerLine;           //分割线
-@property (nonatomic, strong) UILabel *borrowersLabel;          //借款人数量
-@property (nonatomic, strong) UILabel *borrowersDescLabel;      //借款人数量描述
+/**
+ 理财金额和借款人数量背景
+ */
+@property (nonatomic, strong) UIView *amountBorrowersBackView;
+/**
+ 理财金额
+ */
+@property (nonatomic, strong) UILabel *amountLabel;
+/**
+ 理财金额描述
+ */
+@property (nonatomic, strong) UILabel *amountDescLabel;
+/**
+ 分割线
+ */
+@property (nonatomic, strong) UIView *amountBorrowerLine;
+/**
+ 借款人数量
+ */
+@property (nonatomic, strong) UILabel *borrowersLabel;
+/**
+ 借款人数量描述
+ */
+@property (nonatomic, strong) UILabel *borrowersDescLabel;
 
-@property (nonatomic, strong) UIView *noticeBackView;       //公告背景
-@property (nonatomic, strong) UIImageView *hornImageView;   //喇叭
-@property (nonatomic, strong) UILabel *noticeTitleLabel;    //公告标题
-@property (nonatomic, strong) UILabel *noticeCheckLabel;          //查看
-@property (nonatomic, strong) UIImageView *noticeRightImageView;  //右箭头
+/**
+ 公告背景
+ */
+@property (nonatomic, strong) UIView *noticeBackView;
+/**
+ 喇叭
+ */
+@property (nonatomic, strong) UIImageView *hornImageView;
+/**
+ 公告标题
+ */
+@property (nonatomic, strong) UILabel *noticeTitleLabel;
+/**
+ 查看
+ */
+@property (nonatomic, strong) UILabel *noticeCheckLabel;
+/**
+ 右箭头
+ */
+@property (nonatomic, strong) UIImageView *noticeRightImageView;
 
-@property (nonatomic, strong) UILabel *recommendingTitleLabel;          //@"今日推荐产品"
+/**
+ @"今日推荐产品"
+ */
+@property (nonatomic, strong) UILabel *recommendingTitleLabel;
+/**
+ 背景
+ */
 @property (nonatomic, strong) UIView *recommendingBackView;
-@property (nonatomic, strong) UILabel *recommendingLabel1;  //@"1月定存"
-@property (nonatomic, strong) UILabel *recommendingLabel2;  //@"到期自动转出"
-@property (nonatomic, strong) UILabel *recommendingLabel3;  //@"5.8%"
-@property (nonatomic, strong) UILabel *recommendingLabel4;  //@"今日还剩100份"
+/**
+ @"1月定存"
+ */
+@property (nonatomic, strong) UILabel *recommendingLabel1;
+/**
+ @"到期自动转出"
+ */
+@property (nonatomic, strong) UILabel *recommendingLabel2;
+/**
+ @"5.8%"
+ */
+@property (nonatomic, strong) UILabel *recommendingLabel3;
+/**
+ @"今日还剩100份"
+ */
+@property (nonatomic, strong) UILabel *recommendingLabel4;
 
+/**
+ 公告背景高度限定
+ */
+@property (nonatomic, strong) MASConstraint *noticeBackViewConstraintH;
+/**
+ 今日推荐高度限定
+ */
+@property (nonatomic, strong) MASConstraint *recommendingTitleLabelConstraintH;
+/**
+ 推荐背景
+ */
+@property (nonatomic, strong) MASConstraint *recommendingBackViewConstraintH;
 @end
 
 @implementation HomeViewController
@@ -91,7 +156,7 @@
     [self.noticeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.amountBorrowersBackView.mas_bottom);
         make.left.right.mas_equalTo(self.amountBorrowersBackView);
-        make.height.mas_equalTo(40);
+        self.noticeBackViewConstraintH = make.height.mas_equalTo(40);
     }];
     [self.noticeBackView addSubview:self.hornImageView];
     [self.hornImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,14 +187,14 @@
     [self.recommendingTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.noticeBackView.mas_bottom).mas_offset(8);
         make.left.right.mas_equalTo(self.view).mas_offset(0);
-        make.height.mas_equalTo(35);
+        self.recommendingTitleLabelConstraintH = make.height.mas_equalTo(35);
     }];
     
     [self.view addSubview:self.recommendingBackView];
     [self.recommendingBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.recommendingTitleLabel.mas_bottom).mas_offset(1);
         make.left.right.mas_equalTo(self.view);
-        make.height.mas_equalTo(60);
+        self.recommendingBackViewConstraintH = make.height.mas_equalTo(60);
     }];
     [self.recommendingBackView addSubview:self.recommendingLabel1];
     [self.recommendingLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -230,6 +295,7 @@
 {
     if (!_noticeBackView) {
         _noticeBackView = [UIView new];
+        _noticeBackView.layer.masksToBounds = YES;
         [_noticeBackView setBackgroundColor:[UIColor whiteColor]];
     }
     return _noticeBackView;
@@ -339,6 +405,42 @@
         _recommendingLabel4.text = @"今日还剩100份";
     }
     return _recommendingLabel4;
+}
+#pragma mark - 网络请求
+- (void)loadData
+{
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_INDEX params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        if ([code integerValue] == 200) {
+            NSDictionary *platform_info = data[@"platform_info"];
+            DFNotice *notice = [DFNotice yy_modelWithDictionary:data[@"notice"]];
+            DFProduct *product = [DFProduct yy_modelWithDictionary:data[@"product"]];
+            weakSelf.amountLabel.text = platform_info[@"per_financial_amount"];
+            weakSelf.borrowersLabel.text = platform_info[@"total_borrower"];
+            if (notice.content.length) {
+                weakSelf.noticeTitleLabel.text = notice.content;
+                weakSelf.noticeBackViewConstraintH.mas_offset(40);
+            }else{
+                weakSelf.noticeBackViewConstraintH.mas_offset(0);
+            }
+            if (product.name.length) {
+                weakSelf.recommendingLabel1.text = product.name;
+                weakSelf.recommendingLabel2.text = product.descriptions.firstObject;
+                weakSelf.recommendingLabel3.text = product.interest_rate;
+                weakSelf.recommendingLabel4.text = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+                weakSelf.recommendingBackViewConstraintH.mas_offset(60);
+                weakSelf.recommendingTitleLabelConstraintH.mas_offset(35);
+            }else{
+                weakSelf.recommendingBackViewConstraintH.mas_offset(0);
+                weakSelf.recommendingTitleLabelConstraintH.mas_offset(0);
+            }
+            
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - action
