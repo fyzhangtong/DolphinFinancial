@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class DFProduct;
 /**
  目标年化收益率cell
  */
@@ -17,5 +17,7 @@
 + (CGSize)cellSize;
 + (NSString*)reuseIdentifier;
 + (void)registCell:(UICollectionView *) collectionView;
+
+- (void)reloadProduct:(DFProduct *)product;
 
 @end

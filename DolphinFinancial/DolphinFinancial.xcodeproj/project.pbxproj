@@ -80,6 +80,7 @@
 		7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */; };
 		7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419C20626D7100FEED9E /* MyFincialViewController.m */; };
 		7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */; };
+		7BFCB6742079B37500E4A5DE /* DFProductDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFCB6732079B37500E4A5DE /* DFProductDynamics.m */; };
 		7EBDBBCF2E424B0F273B1ED4 /* Pods_DolphinFinancial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */; };
 /* End PBXBuildFile section */
 
@@ -231,6 +232,8 @@
 		7BFB419C20626D7100FEED9E /* MyFincialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFincialViewController.m; sourceTree = "<group>"; };
 		7BFB419E206270B800FEED9E /* MyFinacialTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinacialTableViewCell.h; sourceTree = "<group>"; };
 		7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinacialTableViewCell.m; sourceTree = "<group>"; };
+		7BFCB6722079B37500E4A5DE /* DFProductDynamics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFProductDynamics.h; sourceTree = "<group>"; };
+		7BFCB6732079B37500E4A5DE /* DFProductDynamics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFProductDynamics.m; sourceTree = "<group>"; };
 		7BFDD0A9206DD982009B14F5 /* DolphinFinancialApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DolphinFinancialApi.h; sourceTree = "<group>"; };
 		7BFFF72B205A82C1001E7E59 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7BFFF72C205A84AD001E7E59 /* CommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonConfig.h; sourceTree = "<group>"; };
@@ -600,6 +603,8 @@
 				7B71B2E62071E0030013B787 /* UserFinancial.m */,
 				7B71B2E82071E1150013B787 /* Borrower.h */,
 				7B71B2E92071E1150013B787 /* Borrower.m */,
+				7BFCB6722079B37500E4A5DE /* DFProductDynamics.h */,
+				7BFCB6732079B37500E4A5DE /* DFProductDynamics.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */,
+				7BFCB6742079B37500E4A5DE /* DFProductDynamics.m in Sources */,
 				7B71B2E32071D5B20013B787 /* DFProduct.m in Sources */,
 				7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */,
 				7BCB08EE20638DEA00017FDD /* ProductDynamicCollectionViewCell.m in Sources */,

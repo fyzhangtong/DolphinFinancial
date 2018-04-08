@@ -7,6 +7,7 @@
 //
 
 #import "TargetAnnualRateOfReturnCell.h"
+#import "DFProduct.h"
 
 @interface TargetAnnualRateOfReturnCell()
 
@@ -38,6 +39,11 @@
 + (void)registCell:(UICollectionView *) collectionView
 {
     [collectionView registerClass:[self class] forCellWithReuseIdentifier:[self reuseIdentifier]];
+}
+
+- (void)reloadProduct:(DFProduct *)product
+{
+    self.rateLabel.text = product.interest_rate;
 }
 
 - (void)makeView

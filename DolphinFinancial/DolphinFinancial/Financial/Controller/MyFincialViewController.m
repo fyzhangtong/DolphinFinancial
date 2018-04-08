@@ -9,11 +9,13 @@
 #import "MyFincialViewController.h"
 #import "MyFinacialTableViewCell.h"
 #import "MyFinancialDetailsViewController.h"
+#import "UserFinancial.h"
 
 @interface MyFincialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, copy) void(^complete)(BOOL success);
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray<UserFinancial *> *dataSource;
 
 @end
 
@@ -32,6 +34,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    
+    _dataSource = [[NSMutableArray alloc] init];
+    [self loadData];
 }
 - (void)makeView
 {
@@ -71,7 +76,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -94,5 +99,24 @@
     [MyFinancialDetailsViewController pushToController:self];
 }
 
+#pragma mark - 网络请求
+- (void)loadData
+{
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        if ([code integerValue] == 200) {
+            [weakSelf.dataSource removeAllObjects];
+            for (NSDictionary *dic in (NSArray *)data) {
+                UserFinancial *product = [UserFinancial yy_modelWithDictionary:dic];
+                [weakSelf.dataSource addObject:product];
+            }
+            [weakSelf.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
 
 @end

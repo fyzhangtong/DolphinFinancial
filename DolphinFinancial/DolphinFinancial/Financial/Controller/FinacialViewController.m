@@ -15,10 +15,11 @@
 @interface FinacialViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 {
-    NSMutableArray<DFProduct *> *_dataSource;
+    
     
 }
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray<DFProduct *> *dataSource;
 
 @end
 
@@ -43,8 +44,8 @@
         make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-49);
         make.left.right.mas_equalTo(self.view);
     }];
-    _dataSource = [[NSMutableArray alloc] init];
-    [self loadData];
+    self.dataSource = [[NSMutableArray alloc] init];
+//    [self loadData];
 }
 - (UITableView *)tableView
 {
@@ -73,12 +74,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataSource.count;
+//    return _dataSource.count;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FinancialViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FinancialViewCell reuseIdentifier]];
-    [cell reloadData:_dataSource[indexPath.row]];
+//    [cell reloadData:_dataSource[indexPath.row]];
     return cell;
 }
 #pragma mark - tableViewDelegate
@@ -103,11 +105,10 @@
     __weak typeof(self) weakSelf = self;
     [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
         if ([code integerValue] == 200) {
-            _dataSource = data;
-            NSMutableArray *array = [[NSMutableArray alloc] init];
+            [weakSelf.dataSource removeAllObjects];
             for (NSDictionary *dic  in (NSArray *)data) {
                 DFProduct *product = [DFProduct yy_modelWithDictionary:dic];
-                [array addObject:product];
+                [weakSelf.dataSource addObject:product];
             }
             [weakSelf.tableView reloadData];
         }else{

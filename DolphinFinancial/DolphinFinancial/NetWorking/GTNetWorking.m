@@ -55,13 +55,13 @@
     if (url==nil) {
         return ;
     }
-    NSMutableDictionary*dic =[NSMutableDictionary dictionary];
-    [dic addEntriesFromDictionary:params];
-    NSString *token = [UserManager userToken];
-    if (token.length>0) {
-        [dic setObject:token forKey:@"token"];
-    }
-    NSLog(@"url:%@;params:%@",url,dic);
+//    NSMutableDictionary*dic =[NSMutableDictionary dictionary];
+//    [dic addEntriesFromDictionary:params];
+//    NSString *token = [UserManager userToken];
+//    if (token.length>0) {
+//        [dic setObject:token forKey:@"token"];
+//    }
+//    NSLog(@"url:%@;params:%@",url,dic);
     //检查地址中是否有中文
     NSString *urlStr=[NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
     
@@ -86,9 +86,9 @@
     };
     
     if (type==1) {
-        [manager GET:urlStr parameters:dic progress:progressBlock success:successBlock failure:failureBlock];
+        [manager GET:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
     }else{
-        [manager POST:urlStr parameters:dic progress:progressBlock success:successBlock failure:failureBlock];
+        [manager POST:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
     }
 }
 
@@ -230,7 +230,9 @@
     manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
     manager.requestSerializer.timeoutInterval=30;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/html",@"text/json",@"text/plain",@"text/javascript",@"text/xml",@"image/*"]];
-    
+    if ([UserManager userToken].length) {
+        [manager.requestSerializer setValue:[UserManager userToken] forHTTPHeaderField:@"token"];
+    }
     /*
     NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

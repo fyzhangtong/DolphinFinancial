@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class UserFinancial;
+
 @interface MyFinacialTableViewCell : UITableViewCell
 
 + (NSString *)reuseIdentifier;
 + (void)registerCellTableView:(UITableView *)tableView;
 + (CGFloat)cellHeight;
+
+- (void)reloadData:(UserFinancial *)product;
 
 @end

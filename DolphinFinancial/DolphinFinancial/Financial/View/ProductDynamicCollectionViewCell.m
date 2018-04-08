@@ -7,6 +7,8 @@
 //
 
 #import "ProductDynamicCollectionViewCell.h"
+#import "DFProductDynamics.h"
+#import "Borrower.h"
 
 @interface ProductDynamicCollectionViewCell()
 
@@ -182,6 +184,20 @@
     return _explainLabel;
 }
 
+- (void)reloadProduct:(DFProductDynamics *)dynamic
+{
+    self.owePeoplePhoneNumberLabel.text = dynamic.product_name;
+    self.owePeopleAmountLabel.text = dynamic.buy_amount;
+    self.owePeopleDateLabel.text = dynamic.buy_time;
+    if (dynamic.borrowers.count > 0) {
+        self.borrower1PhoneNumberLabel.text = dynamic.borrowers[0].borrower;
+    }
+    if (dynamic.borrowers.count > 1) {
+        self.borrower1PhoneNumberLabel.text = dynamic.borrowers[1].borrower;
+    }
+    self.explainLabel.text = dynamic.borrower_info;
+    
+}
 
 
 @end

@@ -14,12 +14,26 @@
 #import "FinacialCollectionReusableView.h"
 #import "UIImage+ImageWithColor.h"
 
+#import "DFProduct.h"
+#import "DFProductDynamics.h"
+
 @interface FinacialDetailsController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) UIView *bottomBGView;
+/**
+ 转入按钮
+ */
 @property (nonatomic, strong) UIButton *moveIntoButton;
+/**
+ 理财产品
+ */
+@property (nonatomic, strong) DFProduct *product;
+/**
+ 产品动态
+ */
+@property (nonatomic, strong) NSMutableArray<DFProductDynamics *> *dynamics;
 
 @end
 
@@ -29,11 +43,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    self.dynamics = [[NSMutableArray alloc] init];
 }
 
 - (void)makeView
 {
-    [self setCenterTitle:@"一月定存"];
     self.ownNavigationBarLine.hidden = YES;
     [self addLeftBackButton];
     [self.view addSubview:self.collectionView];
@@ -163,9 +177,9 @@
     if (section == 0) {
         count = 1;
     }else if (section == 1){
-        count = 3;
+        count = self.product.descriptions.count;
     }else if (section == 2){
-        count = 2;
+        count = self.dynamics.count;
     }
     return count;
 }
@@ -175,10 +189,13 @@
     UICollectionViewCell *cell = nil;
     if (indexPath.section == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[TargetAnnualRateOfReturnCell reuseIdentifier] forIndexPath:indexPath];
+        [(TargetAnnualRateOfReturnCell *)cell reloadProduct:self.product];
     }else if (indexPath.section == 1){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[FinacialExplainCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        [(FinacialExplainCollectionViewCell *)cell reloadExplain:self.product.descriptions[indexPath.row]];
     }else if (indexPath.section == 2){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ProductDynamicCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        [(ProductDynamicCollectionViewCell *)cell reloadProduct:self.dynamics[indexPath.row]];
     }
     
     return cell;
@@ -207,6 +224,49 @@
     return 4;
 }
 
+#pragma mark - 网络请求
+- (void)loadData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.product.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            weakSelf.product = [DFProduct yy_modelWithJSON:data];
+            [weakSelf.collectionView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }]; 
+}
+
+- (void)requestDynamics
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *param = @{@"page":@"0"};
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.product.productId) params:param success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            [weakSelf.dynamics removeAllObjects];
+            for (NSDictionary *dic in data) {
+                DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithDictionary:dic];
+                [weakSelf.dynamics addObject:dynamic];
+            }
+            [weakSelf.collectionView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
 #pragma mark - action
 
 - (void)moveInoButtonClick:(UIButton *)sender

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class DFProductDynamics;
 /**
  产品动态
  */
@@ -17,5 +18,7 @@
 + (CGSize)cellSize;
 + (NSString*)reuseIdentifier;
 + (void)registCell:(UICollectionView *) collectionView;
+
+- (void)reloadProduct:(DFProductDynamics *)dynamic;
 
 @end
