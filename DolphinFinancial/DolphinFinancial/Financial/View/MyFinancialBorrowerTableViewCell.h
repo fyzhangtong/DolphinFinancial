@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewCell.h"
+@class Borrower;
 
 @interface MyFinancialBorrowerTableViewCell : BaseTableViewCell
+
+- (void)reloadBorrower:(Borrower *)borrower;
 
 @end

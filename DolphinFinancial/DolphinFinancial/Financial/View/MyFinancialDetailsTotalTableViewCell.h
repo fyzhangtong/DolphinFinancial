@@ -10,4 +10,6 @@
 
 @interface MyFinancialDetailsTotalTableViewCell : BaseTableViewCell
 
+- (void)reloadName:(NSString *)name total:(NSString *)total;
+
 @end

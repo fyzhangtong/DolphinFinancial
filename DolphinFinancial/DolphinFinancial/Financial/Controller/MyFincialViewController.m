@@ -76,12 +76,19 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+//    return self.dataSource.count;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyFinacialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyFinacialTableViewCell reuseIdentifier]];
-    
+    UserFinancial *financial = [[UserFinancial alloc] init];
+    financial.product_name = @"产品名字";
+    financial.yesterday_income = @"38.2";
+    financial.total_amount = @"100";
+    financial.expiration_time = @"2018-04-10";
+    financial.buy_amount = @"3000";
+    [cell reloadData:financial];
     return cell;
 }
 #pragma mark - tableViewDelegate

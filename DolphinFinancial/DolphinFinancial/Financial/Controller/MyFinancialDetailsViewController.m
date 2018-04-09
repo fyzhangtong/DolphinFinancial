@@ -20,10 +20,13 @@
 #define MyFinancialDetailsBuyDate @"MyFinancialDetailsBuyDate"
 #define MyFinancialDetailsExpirationDate @"MyFinancialDetailsExpirationDate"
 
+#import "UserFinancial.h"
+
 @interface MyFinancialDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UserFinancial *financial;
 
 @end
 
@@ -40,7 +43,7 @@
     // Do any additional setup after loading the view.
     [self makeView];
     self.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
-    [self.tableView reloadData];
+    [self requestData];
 }
 - (void)makeView
 {
@@ -76,22 +79,23 @@
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyFinancialDetailsFirstTotal]) {
         cell =[tableView dequeueReusableCellWithIdentifier:[MyFinancialDetailsTotalTableViewCell reuseIdentifier]];
+        [(MyFinancialDetailsTotalTableViewCell *)cell reloadName:self.financial.product_name total:self.financial.total_amount];
     }else
     {
         MyFinancialDetailsExplainTableViewCell *cell1 =[tableView dequeueReusableCellWithIdentifier:[MyFinancialDetailsExplainTableViewCell reuseIdentifier]];
         if ([string isEqualToString:MyFinancialDetailsSecondTotal]){
-            [cell1 reloadData:@"购买金额" explain:@"¥3028.00"];
+            [cell1 reloadData:@"购买金额" explain:self.financial.total_amount];
         }else if ([string isEqualToString:MyFinancialDetailsTotalProfit]){
-            [cell1 reloadData:@"累计收益" explain:@"¥28.00"];
+            [cell1 reloadData:@"累计收益" explain:self.financial.total_income];
         }else if ([string isEqualToString:MyFinancialDetailsYestdayProfit]){
-            [cell1 reloadData:@"昨日收益" explain:@"¥1.23"];
+            [cell1 reloadData:@"昨日收益" explain:self.financial.yesterday_income];
         }else if ([string isEqualToString:MyFinancialDetailsBorrowers]){
-            [cell1 reloadData:@"借款人列表" explain:@"共4位借款人"];
+            [cell1 reloadData:@"借款人列表" explain:self.financial.borrower_info];
             [cell1 showRightArrow:YES];
         }else if ([string isEqualToString:MyFinancialDetailsBuyDate]){
-            [cell1 reloadData:@"购买时间" explain:@"2018-03-11 11:00:00"];
+            [cell1 reloadData:@"购买时间" explain:self.financial.buy_time];
         }else if ([string isEqualToString:MyFinancialDetailsExpirationDate]){
-            [cell1 reloadData:@"到期时间" explain:@"2018-03-11 11:00:00"];
+            [cell1 reloadData:@"到期时间" explain:self.financial.expiration_time];
         }
         cell = cell1;
     }
@@ -135,6 +139,35 @@
     if ([string isEqualToString:MyFinancialDetailsBorrowers]) {
         [MyFinancialBorrowersViewController pushToController:self];
     }
+}
+
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.financial.userFinancialId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];
+            weakSelf.financial = financail;
+            [weakSelf.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        UserFinancial *fina = [[UserFinancial alloc] init];
+        fina.total_amount = @"30298";
+        fina.total_income = @"768";
+        fina.yesterday_income = @"78";
+        fina.borrower_info = @"共8人借款人";
+        fina.buy_time = @"2018";
+        fina.expiration_time = @"2019";
+        weakSelf.financial = fina;
+        [weakSelf.tableView reloadData];
+    }];
+    
 }
 
 

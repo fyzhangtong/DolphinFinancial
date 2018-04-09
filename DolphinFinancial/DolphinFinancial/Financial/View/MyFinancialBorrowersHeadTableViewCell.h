@@ -10,4 +10,7 @@
 
 @interface MyFinancialBorrowersHeadTableViewCell : BaseTableViewCell
 
+
+- (void)reloadData:(NSInteger)number;
+
 @end

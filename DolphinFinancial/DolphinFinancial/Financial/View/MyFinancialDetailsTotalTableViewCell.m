@@ -62,4 +62,10 @@
     return _totalLabel;
 }
 
+- (void)reloadName:(NSString *)name total:(NSString *)total
+{
+    self.nameLabel.text = name;
+    self.totalLabel.text = total;
+}
+
 @end

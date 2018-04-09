@@ -11,9 +11,12 @@
 #import "MyFinancialBorrowersHeadTableViewCell.h"
 #import "MyFinancialBorrowerTableViewCell.h"
 
+#import "Borrower.h"
+
 @interface MyFinancialBorrowersViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray<Borrower *> *dataSource;
 
 @end
 
@@ -30,6 +33,8 @@
     // Do any additional setup after loading the view.
     
     [self makeView];
+    self.dataSource = [[NSMutableArray alloc] init];
+    [self requestData];
 }
 
 - (void)makeView
@@ -78,7 +83,11 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    NSInteger count = 0;
+    if (self.dataSource.count) {
+        count = 2;
+    }
+    return count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -86,7 +95,7 @@
     if (section == 0) {
         count = 1;
     }else{
-        count = 4;
+        count = self.dataSource.count;
     }
     return count;
 }
@@ -96,9 +105,11 @@
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         MyFinancialBorrowersHeadTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:[MyFinancialBorrowersHeadTableViewCell reuseIdentifier]];
+        [cell1 reloadData:self.dataSource.count];
         cell = cell1;
     }else{
         MyFinancialBorrowerTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:[MyFinancialBorrowerTableViewCell reuseIdentifier]];
+        [cell1 reloadBorrower:self.dataSource[indexPath.row]];
         cell = cell1;
     }
     return cell;
@@ -115,6 +126,35 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __weak typeof(self) weakSelf = self;
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCTS_BORROWERS(@(1)) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            [weakSelf.dataSource removeAllObjects];
+            for (NSDictionary *dic in data) {
+                Borrower *borrower = [Borrower yy_modelWithDictionary:dic];
+                [weakSelf.dataSource addObject:borrower];
+            }
+            [weakSelf.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        Borrower *borrower = [[Borrower alloc] init];
+        borrower.borrower = @"34520089";
+        borrower.status = @"还款中";
+        borrower.product_name = @"1月定存";
+        borrower.borrow_time = @"2018";
+        [weakSelf.dataSource addObject:borrower];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 

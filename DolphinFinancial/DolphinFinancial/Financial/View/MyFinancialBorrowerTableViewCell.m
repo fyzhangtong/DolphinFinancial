@@ -8,6 +8,8 @@
 
 #import "MyFinancialBorrowerTableViewCell.h"
 
+#import "Borrower.h"
+
 @interface MyFinancialBorrowerTableViewCell()
 
 @property(nonatomic, strong) UILabel *borrowerLabel;
@@ -114,6 +116,14 @@
         _dateLabel.text = @"2018-03-23";
     }
     return _dateLabel;
+}
+- (void)reloadBorrower:(Borrower *)borrower
+{
+    self.borrowerLabel.text = borrower.borrower;
+    self.amountLabel.text = borrower.borrow_amount;
+    self.stateLabel.text = borrower.status;
+    self.financialNameLabel.text = borrower.product_name;
+    self.dateLabel.text = borrower.borrow_time;
 }
 
 @end

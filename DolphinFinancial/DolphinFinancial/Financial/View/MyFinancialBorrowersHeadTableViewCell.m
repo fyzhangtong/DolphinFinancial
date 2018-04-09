@@ -138,4 +138,10 @@
     return _financialNameLabel;
 }
 
+- (void)reloadData:(NSInteger)number
+{
+    self.numberLabel.text = [NSString stringWithFormat:@"%ld",number];
+}
+
+
 @end

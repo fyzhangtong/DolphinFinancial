@@ -34,6 +34,10 @@
  产品动态
  */
 @property (nonatomic, strong) NSMutableArray<DFProductDynamics *> *dynamics;
+/**
+ 数据总条数（表示数据库中总共有多少条数据，而不是当前查出的数据量）
+ */
+@property (nonatomic, copy) NSNumber *total;
 
 @end
 
@@ -206,7 +210,7 @@
     if (indexPath.section == 1) {
         [headerView reloadTitle:@"产品描述" explain:@""];
     }else if (indexPath.section == 2){
-        [headerView reloadTitle:@"产品动态" explain:@"共29,183,726位借款人"];
+        [headerView reloadTitle:@"产品动态" explain:[NSString stringWithFormat:@"共%@位借款人",self.total]];
     }
     return headerView;
 }
@@ -253,8 +257,9 @@
     [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.product.productId) params:param success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
+            weakSelf.total = data[@"total"];
             [weakSelf.dynamics removeAllObjects];
-            for (NSDictionary *dic in data) {
+            for (NSDictionary *dic in data[@"content"]) {
                 DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithDictionary:dic];
                 [weakSelf.dynamics addObject:dynamic];
             }
