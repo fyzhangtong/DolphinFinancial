@@ -19,14 +19,21 @@
 #define MyFinancialDetailsBorrowers @"MyFinancialDetailsBorrowers"
 #define MyFinancialDetailsBuyDate @"MyFinancialDetailsBuyDate"
 #define MyFinancialDetailsExpirationDate @"MyFinancialDetailsExpirationDate"
+#define MYFinancialDetailsStatus @"MYFinancialDetailsStatus"
+#define MYFinancialDetailsAutoContinue @"MYFinancialDetailsAutoContinue"
+#define MYFinancialDetailsContinueTime @"MYFinancialDetailsContinueTime"
 
 #import "UserFinancial.h"
+#import "UIImage+ImageWithColor.h"
 
 @interface MyFinancialDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UserFinancial *financial;
+
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) UIButton *transferButton;
 
 @end
 
@@ -42,19 +49,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
-    self.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
     [self requestData];
 }
 - (void)makeView
 {
-    [self setCenterTitle:@"我的"];
+    [self setCenterTitle:@"我的理财产品"];
     [self addLeftBackButton];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.bottomView];
+    //底部试图
+    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self.view);
+        make.height.mas_equalTo(DFTABBARBOTTOMHEIGHT+55);//一行14字号的高度+上下边距为5+线
+    }];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ownNavigationBar.mas_bottom);
         make.left.right.mas_equalTo(self.view);
-        make.bottom.mas_equalTo(-49);
+        make.bottom.mas_equalTo(_bottomView.mas_top);
     }];
+    
+    [self.bottomView addSubview:self.transferButton];
+    [self.transferButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bottomView.mas_top).mas_offset(8);
+        make.left.mas_equalTo(self.bottomView.mas_left).mas_offset(10);
+        make.right.mas_equalTo(self.bottomView.mas_right).mas_offset(-10);
+        make.height.mas_equalTo(40);
+    }];
+    
 }
 #pragma mark - getter 方法
 - (UITableView *)tableView
@@ -71,7 +93,32 @@
     }
     return _tableView;
 }
-
+- (UIView *)bottomView
+{
+    if (!_bottomView) {
+        _bottomView = [UIView new];
+        [_bottomView setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _bottomView;
+}
+- (UIButton *)transferButton
+{
+    
+    if (!_transferButton) {
+        _transferButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_transferButton setTitle:@"转出" forState:UIControlStateNormal];
+        _transferButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        [_transferButton setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [_transferButton setTitleColor:DFTINTCOLOR forState:UIControlStateNormal];
+        _transferButton.layer.borderWidth = 1;
+        _transferButton.layer.cornerRadius = 4;
+        _transferButton.layer.masksToBounds = YES;
+        _transferButton.layer.borderColor = DFTINTCOLOR.CGColor;
+        [_transferButton addTarget:self action:@selector(transferButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _transferButton;
+}
 #pragma mark - tableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -96,6 +143,12 @@
             [cell1 reloadData:@"购买时间" explain:self.financial.buy_time];
         }else if ([string isEqualToString:MyFinancialDetailsExpirationDate]){
             [cell1 reloadData:@"到期时间" explain:self.financial.expiration_time];
+        }else if ([string isEqualToString:MYFinancialDetailsAutoContinue]){
+            [cell1 reloadData:@"到期自动续投" explain:self.financial.auto_continue];
+        }else if ([string isEqualToString:MYFinancialDetailsStatus]){
+            [cell1 reloadData:@"状态" explain:self.financial.status];
+        }else if ([string isEqualToString:MYFinancialDetailsContinueTime]){
+            [cell1 reloadData:@"当前续投" explain:self.financial.continue_time];
         }
         cell = cell1;
     }
@@ -150,6 +203,11 @@
         if ([code integerValue] == 200) {
             UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];
             weakSelf.financial = financail;
+            if ([financail.status isEqualToString:@"首投"] ) {
+                weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+            }else{
+                weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus,MYFinancialDetailsContinueTime],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+            }
             [weakSelf.tableView reloadData];
         }else{
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
@@ -167,6 +225,11 @@
         weakSelf.financial = fina;
         [weakSelf.tableView reloadData];
     }];
+    
+}
+
+- (void)transferButtonClick:(UIButton *)sender
+{
     
 }
 

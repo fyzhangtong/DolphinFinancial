@@ -43,7 +43,8 @@ DFColorWithHex(x);\
 #define SafeArrayObjectIndex(array, index) (array.count > index ? array[index] : nil)
 #define SafeArrayAddObject(array, object) (object ? [array addObject:object] : nil)
 //safeDictionary
-#define SafeDictionarySetObject(dictionary, object, key) ((object && key) ? [dictionary setObject:object forKey:key] : nil)
+//#define SafeDictionarySetObject(dictionary, object, key)  ((object && key) ? [dictionary setObject:object forKey:key] : nil)
+#define SafeDictionarySetObject(dictionary, object, key) ((object != nil && key != nil) ? [dictionary setObject:object forKey:key] : nil)
 
 /**
  获取实际大小

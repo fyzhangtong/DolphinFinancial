@@ -23,6 +23,10 @@
 		7B2007F5205A7BEC00C3B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F4205A7BEC00C3B723 /* Assets.xcassets */; };
 		7B2007F8205A7BEC00C3B723 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2007F6205A7BEC00C3B723 /* LaunchScreen.storyboard */; };
 		7B2007FB205A7BEC00C3B723 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2007FA205A7BEC00C3B723 /* main.m */; };
+		7B329DF1207C9D94001A8F2D /* FinacialTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF0207C9D94001A8F2D /* FinacialTransferViewController.m */; };
+		7B329DF4207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF3207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m */; };
+		7B329DF7207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF6207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m */; };
+		7B33DB93207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B33DB92207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m */; };
 		7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */; };
 		7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */; };
 		7B40E8642060A4FF005562D5 /* MyLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8632060A4FF005562D5 /* MyLogoutTableViewCell.m */; };
@@ -43,6 +47,8 @@
 		7B431CE92068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CE82068A19C00D89476 /* WithdrawalsConfirmTableViewCell.m */; };
 		7B431CF32068D8B000D89476 /* DNPayAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B431CF22068D8B000D89476 /* DNPayAlertView.m */; };
 		7B43649020633EB700F1D110 /* FinacialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B43648F20633EB700F1D110 /* FinacialDetailsController.m */; };
+		7B442594208057D500161123 /* FinancialTransferButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B442593208057D500161123 /* FinancialTransferButtonTableViewCell.m */; };
+		7B4425972080960D00161123 /* FinancialTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4425962080960D00161123 /* FinancialTransferModel.m */; };
 		7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C2205B64A00020FFE6 /* BaseViewController.m */; };
 		7B48A4C6205B70300020FFE6 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C5205B70300020FFE6 /* BaseTabBarController.m */; };
 		7B48A4C9205B70BA0020FFE6 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4C8205B70BA0020FFE6 /* BaseNavigationController.m */; };
@@ -118,6 +124,14 @@
 		7B2007F7205A7BEC00C3B723 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B2007F9205A7BEC00C3B723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B2007FA205A7BEC00C3B723 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B329DEF207C9D94001A8F2D /* FinacialTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialTransferViewController.h; sourceTree = "<group>"; };
+		7B329DF0207C9D94001A8F2D /* FinacialTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialTransferViewController.m; sourceTree = "<group>"; };
+		7B329DF2207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTranferProductNameTableViewCell.h; sourceTree = "<group>"; };
+		7B329DF3207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTranferProductNameTableViewCell.m; sourceTree = "<group>"; };
+		7B329DF5207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferAmountTableViewCell.h; sourceTree = "<group>"; };
+		7B329DF6207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferAmountTableViewCell.m; sourceTree = "<group>"; };
+		7B33DB91207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferInfoTableViewCell.h; sourceTree = "<group>"; };
+		7B33DB92207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferInfoTableViewCell.m; sourceTree = "<group>"; };
 		7B40E85C20609E5E005562D5 /* MyInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInfoTableViewCell.h; sourceTree = "<group>"; };
 		7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInfoTableViewCell.m; sourceTree = "<group>"; };
 		7B40E85F2060A4D1005562D5 /* MyTitleAndExplainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTitleAndExplainCell.h; sourceTree = "<group>"; };
@@ -158,6 +172,10 @@
 		7B431CF22068D8B000D89476 /* DNPayAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNPayAlertView.m; sourceTree = "<group>"; };
 		7B43648E20633EB700F1D110 /* FinacialDetailsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialDetailsController.h; sourceTree = "<group>"; };
 		7B43648F20633EB700F1D110 /* FinacialDetailsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialDetailsController.m; sourceTree = "<group>"; };
+		7B442592208057D500161123 /* FinancialTransferButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferButtonTableViewCell.h; sourceTree = "<group>"; };
+		7B442593208057D500161123 /* FinancialTransferButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferButtonTableViewCell.m; sourceTree = "<group>"; };
+		7B4425952080960D00161123 /* FinancialTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferModel.h; sourceTree = "<group>"; };
+		7B4425962080960D00161123 /* FinancialTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferModel.m; sourceTree = "<group>"; };
 		7B48A4C1205B64A00020FFE6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		7B48A4C2205B64A00020FFE6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		7B48A4C4205B70300020FFE6 /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
@@ -408,14 +426,22 @@
 				7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */,
 				7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */,
 				7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */,
-				7B73E188206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.h */,
 				7B73E189206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m */,
+				7B73E188206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.h */,
 				7B73E18B206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.h */,
 				7B73E18C206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m */,
 				7B42012A206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.h */,
 				7B42012B206B43B80039A586 /* MyFinancialBorrowersHeadTableViewCell.m */,
 				7B42012D206B43D20039A586 /* MyFinancialBorrowerTableViewCell.h */,
 				7B42012E206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m */,
+				7B329DF2207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.h */,
+				7B329DF3207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m */,
+				7B329DF5207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.h */,
+				7B329DF6207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m */,
+				7B33DB91207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.h */,
+				7B33DB92207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m */,
+				7B442592208057D500161123 /* FinancialTransferButtonTableViewCell.h */,
+				7B442593208057D500161123 /* FinancialTransferButtonTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -517,6 +543,8 @@
 				7BFB419C20626D7100FEED9E /* MyFincialViewController.m */,
 				7B43648E20633EB700F1D110 /* FinacialDetailsController.h */,
 				7B43648F20633EB700F1D110 /* FinacialDetailsController.m */,
+				7B329DEF207C9D94001A8F2D /* FinacialTransferViewController.h */,
+				7B329DF0207C9D94001A8F2D /* FinacialTransferViewController.m */,
 				7B73E185206A590100A7C117 /* MyFinancialDetailsViewController.h */,
 				7B73E186206A590100A7C117 /* MyFinancialDetailsViewController.m */,
 				7B420127206B2B200039A586 /* MyFinancialBorrowersViewController.h */,
@@ -605,6 +633,8 @@
 				7B71B2E92071E1150013B787 /* Borrower.m */,
 				7BFCB6722079B37500E4A5DE /* DFProductDynamics.h */,
 				7BFCB6732079B37500E4A5DE /* DFProductDynamics.m */,
+				7B4425952080960D00161123 /* FinancialTransferModel.h */,
+				7B4425962080960D00161123 /* FinancialTransferModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -752,6 +782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B4425972080960D00161123 /* FinancialTransferModel.m in Sources */,
 				7B7AA94F20635FDD00415C36 /* FinacialCollectionReusableView.m in Sources */,
 				7BFCB6742079B37500E4A5DE /* DFProductDynamics.m in Sources */,
 				7B71B2E32071D5B20013B787 /* DFProduct.m in Sources */,
@@ -796,6 +827,8 @@
 				7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */,
 				7B73E18A206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m in Sources */,
 				7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */,
+				7B329DF7207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m in Sources */,
+				7B329DF1207C9D94001A8F2D /* FinacialTransferViewController.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
 				7BCB08FA2063CC1700017FDD /* BalanceViewController.m in Sources */,
@@ -804,10 +837,12 @@
 				7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */,
 				7B2007ED205A7BEC00C3B723 /* AppDelegate.m in Sources */,
 				7B4EABA6206DD22C00693163 /* GTNetWorking.m in Sources */,
+				7B329DF4207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m in Sources */,
 				7B8485DA2068F197000459C2 /* MemberDetailsViewController.m in Sources */,
 				7B42012F206B43D20039A586 /* MyFinancialBorrowerTableViewCell.m in Sources */,
 				7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */,
 				7B71B2E72071E0030013B787 /* UserFinancial.m in Sources */,
+				7B33DB93207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m in Sources */,
 				7B420136206B7BE90039A586 /* UserManager.m in Sources */,
 				7B73E18D206A59E700A7C117 /* MyFinancialDetailsExplainTableViewCell.m in Sources */,
 				7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */,
@@ -818,6 +853,7 @@
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
 				7B71B2EA2071E1150013B787 /* Borrower.m in Sources */,
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
+				7B442594208057D500161123 /* FinancialTransferButtonTableViewCell.m in Sources */,
 				7B48A4E0205B723E0020FFE6 /* FinacialViewController.m in Sources */,
 				7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */,
 				7B103D31206A27840012494C /* MemberDetailsLevelRuleCollectionViewCell.m in Sources */,

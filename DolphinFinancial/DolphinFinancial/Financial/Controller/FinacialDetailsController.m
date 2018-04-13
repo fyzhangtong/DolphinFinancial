@@ -7,6 +7,7 @@
 //
 
 #import "FinacialDetailsController.h"
+#import "FinacialTransferViewController.h"
 
 #import "TargetAnnualRateOfReturnCell.h"
 #import "FinacialExplainCollectionViewCell.h"
@@ -60,7 +61,7 @@
     //底部试图
     [_bottomBGView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.view);
-        make.height.mas_equalTo(DFTABBARBOTTOMHEIGHT+45);//一行14字号的高度+上下边距为5+线
+        make.height.mas_equalTo(DFTABBARBOTTOMHEIGHT+55);//一行14字号的高度+上下边距为5+线
     }];
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ownNavigationBar.mas_bottom);
@@ -68,12 +69,12 @@
         make.bottom.mas_equalTo(self.bottomBGView.mas_top);
     }];
     
-    [self.view addSubview:self.moveIntoButton];
+    [self.bottomBGView addSubview:self.moveIntoButton];
     [self.moveIntoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.bottomBGView.mas_top).mas_offset(8);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(10);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-10);
-        make.height.mas_equalTo(30);
+        make.left.mas_equalTo(self.bottomBGView.mas_left).mas_offset(10);
+        make.right.mas_equalTo(self.bottomBGView.mas_right).mas_offset(-10);
+        make.height.mas_equalTo(40);
     }];
 }
 
@@ -116,7 +117,6 @@
         _moveIntoButton.layer.borderWidth = 1;
         _moveIntoButton.layer.cornerRadius = 4;
         _moveIntoButton.layer.masksToBounds = YES;
-        _moveIntoButton.enabled = NO;
         _moveIntoButton.layer.borderColor = DFTINTCOLOR.CGColor;
         [_moveIntoButton addTarget:self action:@selector(moveInoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -276,7 +276,7 @@
 
 - (void)moveInoButtonClick:(UIButton *)sender
 {
-    
+    [FinacialTransferViewController pushToController:self productId:self.product.productId];
 }
 
 

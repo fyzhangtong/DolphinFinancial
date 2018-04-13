@@ -178,4 +178,11 @@
     [AssetsRecordViewController pushToController:self recordType:RecordTypeAessets];
 }
 
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:2];
+    __weak typeof(self) weakSelf = self;
+//    [GTNetWorking ]
+}
+
 @end

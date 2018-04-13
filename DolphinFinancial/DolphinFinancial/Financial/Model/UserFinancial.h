@@ -53,6 +53,17 @@
  到期时间
  */
 @property (nonatomic, copy) NSString *expiration_time;
-
+/**
+ 是否续存，"是","否"
+ */
+@property (nonatomic, copy) NSString *auto_continue;
+/**
+ "首投","续投"
+ */
+@property (nonatomic, copy) NSString *status;
+/**
+ 续投次数
+ */
+@property (nonatomic, copy) NSString *continue_time;
 
 @end
