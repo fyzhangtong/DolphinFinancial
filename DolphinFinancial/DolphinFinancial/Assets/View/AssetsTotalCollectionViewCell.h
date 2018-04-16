@@ -17,4 +17,6 @@
 + (NSString*)reuseIdentifier;
 + (void)registCell:(UICollectionView *) collectionView;
 
+- (void)reloadTotalAsset:(NSString *)totalAsset yesterdayEarn:(NSString *)yesterdayEarn;
+
 @end

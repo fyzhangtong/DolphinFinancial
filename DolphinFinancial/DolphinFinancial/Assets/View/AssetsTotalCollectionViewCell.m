@@ -81,7 +81,6 @@
         _totalMoneyLabel = [UILabel new];
         _totalMoneyLabel.textColor = DFColorWithHexString(@"#1779D4");
         _totalMoneyLabel.font = [UIFont systemFontOfSize:20.0];
-        _totalMoneyLabel.text = @"¥0.00";
     }
     return _totalMoneyLabel;
 }
@@ -101,8 +100,13 @@
         _incomeMoneyLabel = [UILabel new];
         _incomeMoneyLabel.textColor = DFColorWithHexString(@"#101010");
         _incomeMoneyLabel.font = [UIFont systemFontOfSize:14.0];
-        _incomeMoneyLabel.text = @"¥13.26";
     }
     return _incomeMoneyLabel;
 }
+- (void)reloadTotalAsset:(NSString *)totalAsset yesterdayEarn:(NSString *)yesterdayEarn
+{
+    self.totalMoneyLabel.text = totalAsset;
+    self.incomeMoneyLabel.text = yesterdayEarn;
+}
+
 @end

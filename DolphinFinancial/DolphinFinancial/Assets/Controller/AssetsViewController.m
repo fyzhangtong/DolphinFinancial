@@ -15,9 +15,14 @@
 #import "AssetsRecordViewController.h"
 #import "BalanceViewController.h"
 
+#import "FinancailAsset.h"
+#import "AssetEarn.h"
+
 @interface AssetsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) FinancailAsset *asset;
+@property (nonatomic, strong) NSMutableArray<AssetEarn *> *earns;
 
 @end
 
@@ -35,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    self.earns = [[NSMutableArray alloc] init];
 }
 
 - (void)makeView
@@ -127,7 +133,7 @@
 {
     NSInteger count = 0;
     if (section == 0) {
-        count = 5;
+        count = 3;
     }else if (section == 1){
         count = 4;
     }else if (section == 2){
@@ -144,23 +150,42 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsTotalCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+            [(AssetsTotalCollectionViewCell *)cell reloadTotalAsset:self.asset.total_asset yesterdayEarn:self.asset.yesterday_total_earn];
         }else{
             AssetsMoneyCollectionViewCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsMoneyCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
             if (indexPath.row == 1) {
-                [cell1 reloadData:@"余额" money:@"¥0.00"];
+                [cell1 reloadData:@"余额" money:self.asset.balance_amount];
             }else if (indexPath.row == 2){
-                [cell1 reloadData:@"奖励金" money:@"¥0.00"];
-            }else if (indexPath.row == 3){
-                [cell1 reloadData:@"理财资产" money:@"¥0.00"];
+                [cell1 reloadData:@"理财资产" money:self.asset.total_finance_amount];
             }
             cell = cell1;
         }
     }else if (indexPath.section == 1){
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsTotalProfitCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        AssetsTotalProfitCollectionViewCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsTotalProfitCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        if (indexPath.row == 0) {
+            [cell1 reloadTitle:@"累计充值" desc:self.asset.total_recharge];
+        }else if (indexPath.row == 1){
+            [cell1 reloadTitle:@"累计收益" desc:self.asset.total_earn];
+        }else if (indexPath.row == 2){
+            [cell1 reloadTitle:@"累计提现" desc:self.asset.total_withdraw];
+        }else if (indexPath.row == 3){
+            [cell1 reloadTitle:@"累计奖励" desc:self.asset.bounty];
+        }
+        cell = cell1;
+        
     }else if (indexPath.section == 2){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsProfitRecordsCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
     }else if (indexPath.section == 3){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsYieldCurveCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];
+        for (int i = 0; i < 4; i++) {
+            AssetEarn *earn = [[AssetEarn alloc] init];
+            earn.date = @"3 - 24";
+            double val = arc4random_uniform(33) + 3;
+            earn.earn = @(val);
+            [array addObject:earn];
+        }
+        [(AssetsYieldCurveCollectionViewCell *)cell reloadTrend:array];
     }
     
     return cell;
@@ -182,7 +207,24 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:2];
     __weak typeof(self) weakSelf = self;
-//    [GTNetWorking ]
+    [GTNetWorking getWithUrl:DOLPHIN_API_ASSET params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            weakSelf.asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];
+            [weakSelf.earns removeAllObjects];
+            NSArray<NSDictionary *> *trend = data[@"trend"];
+            [trend enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                AssetEarn *earn = [AssetEarn yy_modelWithDictionary:obj];
+                [weakSelf.earns addObject:earn];
+            }];
+            [weakSelf.collectionView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end

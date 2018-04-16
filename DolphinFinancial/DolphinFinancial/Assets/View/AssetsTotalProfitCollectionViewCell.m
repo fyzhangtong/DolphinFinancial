@@ -75,4 +75,10 @@
     return _moneyLabel;
 }
 
+- (void)reloadTitle:(NSString *)title desc:(NSString *)desc;
+{
+    self.titleLabel.text = title;
+    self.moneyLabel.text = desc;
+}
+
 @end

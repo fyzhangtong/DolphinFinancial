@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class AssetEarn;
+
 /**
  收益曲线
  */
@@ -16,5 +18,7 @@
 + (CGSize)cellSize;
 + (NSString*)reuseIdentifier;
 + (void)registCell:(UICollectionView *) collectionView;
+
+- (void)reloadTrend:(NSArray<AssetEarn *> *)trend;
 
 @end
