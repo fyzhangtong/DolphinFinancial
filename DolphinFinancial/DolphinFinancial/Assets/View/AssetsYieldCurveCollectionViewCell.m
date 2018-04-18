@@ -104,6 +104,7 @@
         
         ChartXAxis *xAxis = _chartView.xAxis;
         xAxis.labelPosition = XAxisLabelPositionBottom;
+        xAxis.avoidFirstLastClippingEnabled = YES;
         xAxis.axisMinimum = 0.0;
         xAxis.granularity = 1.0;
         xAxis.valueFormatter = self;
@@ -111,7 +112,7 @@
         
         _chartView.legend.form = ChartLegendFormLine;
         
-        [_chartView animateWithXAxisDuration:2.5];
+//        [_chartView animateWithXAxisDuration:2.5];
     }
     return _chartView;
 }

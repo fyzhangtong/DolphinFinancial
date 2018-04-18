@@ -8,11 +8,13 @@
 
 #import "AssetsRecordViewController.h"
 #import "AssetsRecordTableViewCell.h"
+#import "FinacialRecord.h"
 
 @interface AssetsRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) RecordType recordType;
+@property (nonatomic, strong) NSMutableArray<FinacialRecord *> *dataSource;
 
 @end
 
@@ -29,6 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    self.dataSource = [[NSMutableArray alloc] init];
 }
 
 - (void)makeView
@@ -118,5 +121,33 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
+#pragma mark - 网络请求
+- (void)reqestData
+{
+    __weak typeof(self) weakSelf = self;
+    NSString *url;
+    if (self.recordType == RecordTypeProfit) {
+        //收益记录
+        url = DOLPHIN_API_EARN_RECORD;
+    }else{
+        //资产记录
+        url = DOLPHIN_API_ASSET_RECORD;
+    }
+    [GTNetWorking getWithUrl:url params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        if ([code integerValue] == 200) {
+            [weakSelf.dataSource removeAllObjects];
+            NSArray<NSDictionary *> *array = data;
+            [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                FinacialRecord *record = [FinacialRecord yy_modelWithDictionary:obj];
+                [weakSelf.dataSource addObject:record];
+            }];
+            [weakSelf.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+        
+    } fail:^(NSError *error) {
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
 @end

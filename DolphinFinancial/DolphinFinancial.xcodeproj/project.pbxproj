@@ -85,6 +85,7 @@
 		7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F32063C28400017FDD /* AssetsRecordViewController.m */; };
 		7BCB08F72063C4A700017FDD /* AssetsRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F62063C4A700017FDD /* AssetsRecordTableViewCell.m */; };
 		7BCB08FA2063CC1700017FDD /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F92063CC1700017FDD /* BalanceViewController.m */; };
+		7BF38B1320872F3900B92419 /* FinacialRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF38B1220872F3900B92419 /* FinacialRecord.m */; };
 		7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */; };
 		7BFB419D20626D7100FEED9E /* MyFincialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419C20626D7100FEED9E /* MyFincialViewController.m */; };
 		7BFB41A0206270B800FEED9E /* MyFinacialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB419F206270B800FEED9E /* MyFinacialTableViewCell.m */; };
@@ -250,6 +251,8 @@
 		7BCB08F62063C4A700017FDD /* AssetsRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsRecordTableViewCell.m; sourceTree = "<group>"; };
 		7BCB08F82063CC1700017FDD /* BalanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
 		7BCB08F92063CC1700017FDD /* BalanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceViewController.m; sourceTree = "<group>"; };
+		7BF38B1120872F3900B92419 /* FinacialRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialRecord.h; sourceTree = "<group>"; };
+		7BF38B1220872F3900B92419 /* FinacialRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinacialRecord.m; sourceTree = "<group>"; };
 		7BFB419820620CB000FEED9E /* MBProgressHUD+DFStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DFStyle.h"; sourceTree = "<group>"; };
 		7BFB419920620CB000FEED9E /* MBProgressHUD+DFStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DFStyle.m"; sourceTree = "<group>"; };
 		7BFB419B20626D7100FEED9E /* MyFincialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFincialViewController.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				7B44259A2080ACB400161123 /* FinancailAsset.m */,
 				7B44259C2080B02800161123 /* AssetEarn.h */,
 				7B44259D2080B02800161123 /* AssetEarn.m */,
+				7BF38B1120872F3900B92419 /* FinacialRecord.h */,
+				7BF38B1220872F3900B92419 /* FinacialRecord.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -849,6 +854,7 @@
 				7B329DF7207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m in Sources */,
 				7B329DF1207C9D94001A8F2D /* FinacialTransferViewController.m in Sources */,
 				7B48A4C3205B64A00020FFE6 /* BaseViewController.m in Sources */,
+				7BF38B1320872F3900B92419 /* FinacialRecord.m in Sources */,
 				7B2007FB205A7BEC00C3B723 /* main.m in Sources */,
 				7BCB08FA2063CC1700017FDD /* BalanceViewController.m in Sources */,
 				7B431960205F6AAE00040FBA /* AssetsTotalProfitCollectionViewCell.m in Sources */,

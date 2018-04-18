@@ -222,7 +222,15 @@
         fina.borrower_info = @"共8人借款人";
         fina.buy_time = @"2018";
         fina.expiration_time = @"2019";
+        fina.status = @"续投";
+        fina.continue_time = @"第三次";
+        fina.auto_continue = @"是";
         weakSelf.financial = fina;
+        if ([fina.status isEqualToString:@"首投"] ) {
+            weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+        }else{
+            weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus,MYFinancialDetailsContinueTime],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+        }
         [weakSelf.tableView reloadData];
     }];
     
