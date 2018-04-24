@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class FinacialRecord;
 /**
  资产记录/收益记录cell
  */
@@ -16,5 +17,7 @@
 + (NSString *)reuseIdentifier;
 + (void)registerCellTableView:(UITableView *)tableView;
 + (CGFloat)cellHeight;
+
+- (void)reloadData:(FinacialRecord *)record;
 
 @end

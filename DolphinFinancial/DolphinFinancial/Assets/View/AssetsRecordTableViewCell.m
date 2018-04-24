@@ -7,6 +7,7 @@
 //
 
 #import "AssetsRecordTableViewCell.h"
+#import "FinacialRecord.h"
 
 @interface AssetsRecordTableViewCell()
 
@@ -117,6 +118,14 @@
         _dateLabel.text = @"交易时间：01-03 11:29:10";
     }
     return _dateLabel;
+}
+
+- (void)reloadData:(FinacialRecord *)record
+{
+    self.operationTypeLabel.text = record.type;
+    self.operationStateLabel.text = record.status;
+    self.moneyLabel.text = record.amount;
+    self.dateLabel.text = record.time;
 }
 
 @end

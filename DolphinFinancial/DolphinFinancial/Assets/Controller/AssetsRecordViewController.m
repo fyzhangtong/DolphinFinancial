@@ -83,7 +83,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AssetsRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[AssetsRecordTableViewCell reuseIdentifier]];
-    
+    [cell reloadData:SafeArrayObjectIndex(self.dataSource, indexPath.row)];
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

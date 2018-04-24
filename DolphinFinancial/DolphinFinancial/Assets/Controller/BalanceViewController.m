@@ -140,7 +140,7 @@
     return _rechargeButton;
 }
 
-#pragma mark - view
+#pragma mark - action
 - (void)withdrawalsButtonClick:(UIButton *)sender
 {
     [WithdrawalsViewController pushToController:self];
@@ -150,7 +150,20 @@
     [RechargeViewController pushToController:self];
 }
 
-
+- (void)requestData
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [GTNetWorking getWithUrl:DOLPHIN_API_BALANCE params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        if ([code integerValue] == 200) {
+            weakSelf.moneyLabel.text = data;
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
 
 
 
