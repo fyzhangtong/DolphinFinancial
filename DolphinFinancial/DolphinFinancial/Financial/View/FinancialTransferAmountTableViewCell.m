@@ -22,6 +22,10 @@
  余额
  */
 @property (nonatomic, strong) UILabel *balanceLabel;
+/**
+ 手续费
+ */
+@property (nonatomic, strong) UILabel *feeLabel;
 
 @end
 
@@ -40,11 +44,13 @@
 
 + (CGFloat)cellHeight
 {
-    return 80;
+    return 100;
 }
 
 - (void)makeView
 {
+    self.layer.masksToBounds = YES;
+    
     [self.contentView addSubview:self.titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(8);
@@ -55,6 +61,7 @@
     [_amountTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_titleLabel.mas_bottom).mas_offset(8);
         make.left.mas_equalTo(_titleLabel.mas_left);
+        make.height.mas_equalTo(40);
         make.right.mas_equalTo(self.contentView.mas_right);
     }];
     
@@ -69,7 +76,12 @@
     
     [self.contentView addSubview:self.balanceLabel];
     [_balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(line1.mas_bottom).mas_offset(5);
+        make.top.mas_equalTo(line1.mas_bottom).mas_offset(3);
+        make.left.mas_equalTo(_amountTextField.mas_left);
+    }];
+    [self.contentView addSubview:self.feeLabel];
+    [_feeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_balanceLabel.mas_bottom).mas_offset(5);
         make.left.mas_equalTo(_amountTextField.mas_left);
     }];
 }
@@ -98,7 +110,7 @@
         
         UILabel *leftLabel = [UILabel new];
         leftLabel.textColor = DFColorWithHexString(@"#101010");
-        leftLabel.font = [UIFont systemFontOfSize:17];
+        leftLabel.font = [UIFont systemFontOfSize:24];
         leftLabel.text = @"¥    ";
         [leftLabel sizeToFit];
         
@@ -117,10 +129,24 @@
     }
     return _balanceLabel;
 }
+- (UILabel *)feeLabel
+{
+    if (!_feeLabel) {
+        _feeLabel = [UILabel new];
+        _feeLabel.textColor = DFColorWithHexString(@"#969696");
+        _feeLabel.font = [UIFont systemFontOfSize:12];
+        _feeLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _feeLabel;
+}
 
-- (void)reloadBlance:(NSString *)balance
+- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee
 {
     self.balanceLabel.text = [NSString stringWithFormat:@"余额：%@",balance];
+    NSString *string1 = @"手续费：";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",string1,fee]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:DFTINTCOLOR range:NSMakeRange(string1.length, fee.length)];
+    self.feeLabel.attributedText = attributedString;
 }
 
 #pragma mark - textFieldDelegate

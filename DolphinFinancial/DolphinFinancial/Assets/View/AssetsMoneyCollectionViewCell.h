@@ -17,6 +17,6 @@
 + (NSString*)reuseIdentifier;
 + (void)registCell:(UICollectionView *) collectionView;
 
-- (void)reloadData:(NSString *)title money:(NSString *)money;
+- (void)reloadData:(NSString *)title money:(NSString *)money desc:(NSString *)desc;
 
 @end

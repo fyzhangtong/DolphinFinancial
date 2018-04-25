@@ -42,11 +42,11 @@
     [collectionView registerClass:[self class] forCellWithReuseIdentifier:[self reuseIdentifier]];
 }
 
-- (void)reloadData:(NSString *)title money:(NSString *)money
+- (void)reloadData:(NSString *)title money:(NSString *)money desc:(NSString *)desc
 {
     _titleLabel.text = title;
     _moneyLabel.text = money;
-    _checkLabel.text = @"点击查看";
+    _checkLabel.text = desc;
 }
 
 - (void)makeView

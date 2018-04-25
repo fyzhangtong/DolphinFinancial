@@ -11,13 +11,15 @@
 #import "WithdrawaisAccountNumberTableViewCell.h"
 #import "WithdrawaisPaymentDateTableViewCell.h"
 #import "BaseTableView.h"
-#import "WithdrawaisAmountTableViewCell.h"
+#import "FinancialTransferAmountTableViewCell.h"
 #import "WithdrawalsConfirmTableViewCell.h"
+#import "WithdrawaisMemberLevelTableViewCell.h"
 #import "DNPayAlertView.h"
 
-@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate>
+@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate,FinancialTransferAmountTableViewCellDelegate>
 
 @property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, copy) NSString *amount;
 
 @end
 
@@ -52,8 +54,9 @@
         _tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         [WithdrawaisAccountNumberTableViewCell registerCellTableView:_tableView];
         [WithdrawaisPaymentDateTableViewCell registerCellTableView:_tableView];
-        [WithdrawaisAmountTableViewCell registerCellTableView:_tableView];
+        [FinancialTransferAmountTableViewCell registerCellTableView:_tableView];
         [WithdrawalsConfirmTableViewCell registerCellTableView:_tableView];
+        [WithdrawaisMemberLevelTableViewCell registerCellTableView:_tableView];
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
@@ -78,8 +81,10 @@
     }else if(indexPath.section == 1){
         height = [WithdrawaisPaymentDateTableViewCell cellHeight];
     }else if (indexPath.section == 2){
-        height = [WithdrawaisAmountTableViewCell cellHeight];
+        height = 123;
     }else if (indexPath.section == 3){
+        height = [WithdrawaisMemberLevelTableViewCell cellHeight];
+    }else if (indexPath.section == 4){
         height = [WithdrawalsConfirmTableViewCell cellHeight];
     }
     return height;
@@ -90,7 +95,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -100,10 +105,16 @@
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisPaymentDateTableViewCell reuseIdentifier]];
     }else if (indexPath.section == 2){
-        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAmountTableViewCell reuseIdentifier]];
+        cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"100" fee:@"1"];
     }else if (indexPath.section == 3){
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
+        [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:@"普通会员" earn:@"2.00%"];
+    }else if (indexPath.section == 4){
+        
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
         ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
+        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认提现"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -152,6 +163,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma mark - FinancialTransferAmountTableViewCellDelegate
+
+- (void)textDidEndEdit:(UITextField *)textField
+{
+    self.amount = textField.text;
 }
 #pragma mark - WithdrawalsConfirmTableViewCellDelegate
 - (void)confirmWithdrawals

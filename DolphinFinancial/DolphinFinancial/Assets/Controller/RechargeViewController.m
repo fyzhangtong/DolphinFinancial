@@ -7,16 +7,19 @@
 //
 
 #import "RechargeViewController.h"
-#import "UIImage+ImageWithColor.h"
 
-@interface RechargeViewController ()<UITextFieldDelegate>
+#import "WithdrawaisAccountNumberTableViewCell.h"
+#import "FinancialTransferAmountTableViewCell.h"
+#import "WithdrawalsConfirmTableViewCell.h"
+#import "WithdrawaisMemberLevelTableViewCell.h"
+#import "DNPayAlertView.h"
 
-@property (nonatomic, strong) UIView *backView;
-@property (nonatomic, strong) UILabel *moneyLabel;
-@property (nonatomic, strong) UILabel *yanLabel;
-@property (nonatomic, strong) UITextField *moneyTextField;
-@property (nonatomic, strong) UILabel *balanceLabel;
-@property (nonatomic, strong) UIButton *rechargeButton;
+#import "BaseTableView.h"
+
+@interface RechargeViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate,FinancialTransferAmountTableViewCellDelegate>
+
+@property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, copy) NSString *amount;
 
 @end
 
@@ -33,154 +36,147 @@
     // Do any additional setup after loading the view.
     [self makeView];
 }
-
 - (void)makeView
 {
     [self setCenterTitle:@"充值"];
     [self addLeftBackButton];
-    [self.view addSubview:self.backView];
-    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ownNavigationBar.mas_bottom);
+        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-49);
         make.left.right.mas_equalTo(self.view);
-        make.height.mas_equalTo(108);
-    }];
-    
-    [self.backView addSubview:self.moneyLabel];
-    [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backView.mas_top).mas_offset(5);
-        make.left.mas_equalTo(self.backView.mas_left).mas_offset(13);
-        make.height.mas_equalTo(23);
-    }];
-    
-    [self.backView addSubview:self.yanLabel];
-    [self.yanLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.moneyLabel.mas_bottom).mas_offset(7);
-        make.left.mas_equalTo(self.backView.mas_left).mas_offset(3);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(33);
-    }];
-    
-    [self.backView addSubview:self.moneyTextField];
-    [self.moneyTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.yanLabel.mas_centerY);
-        make.left.mas_equalTo(self.yanLabel.mas_right);
-        make.right.mas_equalTo(self.backView.mas_right).mas_offset(-25);
-        make.height.mas_equalTo(self.yanLabel.mas_height);
-    }];
-    
-    UIView *line = [UIView new];
-    line.backgroundColor = DFColorWithHexString(@"#F8F8F8");
-    [self.backView addSubview:line];
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.yanLabel.mas_bottom);
-        make.left.right.mas_equalTo(self.backView);
-        make.height.mas_equalTo(1);
-    }];
-    
-    [self.backView addSubview:self.balanceLabel];
-    [self.balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(line.mas_bottom).mas_offset(3);
-        make.left.mas_equalTo(self.backView.mas_left).mas_offset(13);
-        make.height.mas_equalTo(23);
-    }];
-    
-    [self.view addSubview:self.rechargeButton];
-    [self.rechargeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backView.mas_bottom).mas_offset(27);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(13);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-13);
-        make.height.mas_equalTo(40);
     }];
 }
 #pragma mark - getter
-- (UIView *)backView
+- (UITableView *)tableView
 {
-    if (!_backView) {
-        _backView = [UIView new];
-        _backView.backgroundColor = [UIColor whiteColor];
-    }
-    return _backView;
-}
-
-- (UILabel *)moneyLabel
-{
-    if (!_moneyLabel) {
-        _moneyLabel = [UILabel new];
-        _moneyLabel.textColor = DFColorWithHexString(@"#101010");
-        _moneyLabel.font = [UIFont systemFontOfSize:14.0];
-        _moneyLabel.text = @"充值金额";
-        _moneyLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _moneyLabel;
-}
-- (UILabel *)yanLabel
-{
-    if (!_yanLabel) {
-        _yanLabel = [UILabel new];
-        _yanLabel.textColor = DFColorWithHexString(@"#101010");
-        _yanLabel.font = [UIFont systemFontOfSize:24.0];
-        _yanLabel.text = @"￥";
-        _yanLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _yanLabel;
-}
-- (UITextField *)moneyTextField
-{
-    if (!_moneyTextField) {
-        _moneyTextField = [UITextField new];
-        _moneyTextField.textColor = DFColorWithHexString(@"#101010");
-        _moneyTextField.font = [UIFont systemFontOfSize:14.0];
-        _moneyTextField.placeholder = @"请输入充值金额";
-        _moneyTextField.delegate = self;
-    }
-    return _moneyTextField;
-}
-- (UILabel *)balanceLabel
-{
-    if (!_balanceLabel) {
-        _balanceLabel = [UILabel new];
-        _balanceLabel.textColor = DFColorWithHexString(@"#969696");
-        _balanceLabel.font = [UIFont systemFontOfSize:12.0];
-        _balanceLabel.text = @"余额：￥0.00";
-        _balanceLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _balanceLabel;
-}
-
-- (UIButton *)rechargeButton
-{
-    if (!_rechargeButton) {
-        _rechargeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rechargeButton setTitle:@"确认转入" forState:UIControlStateNormal];
-        [_rechargeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_rechargeButton setBackgroundImage:[UIImage createImageWithColor:DFTINTCOLOR] forState:UIControlStateNormal];
-        _rechargeButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-        _rechargeButton.layer.cornerRadius = 4.0;
-        _rechargeButton.layer.masksToBounds = YES;
-        [_rechargeButton addTarget:self action:@selector(rechargeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _rechargeButton;
-}
-#pragma mark - textFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if ([string isEqualToString:@"\n"]) {
-        if ([textField respondsToSelector:@selector(resignFirstResponder)]) {
-            [textField resignFirstResponder];
+    if (!_tableView) {
+        _tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        [WithdrawaisAccountNumberTableViewCell registerCellTableView:_tableView];
+        [FinancialTransferAmountTableViewCell registerCellTableView:_tableView];
+        [WithdrawalsConfirmTableViewCell registerCellTableView:_tableView];
+        [WithdrawaisMemberLevelTableViewCell registerCellTableView:_tableView];
+        _tableView.delegate  = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        [_tableView setBackgroundColor:DFColorWithHexString(@"#F8F8F8")];
+        [_tableView setSeparatorColor:DFColorWithHexString(@"#F8F8F8")];
+        if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+            [_tableView setSeparatorInset:UIEdgeInsetsZero];
+        }
+        if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+            [_tableView setLayoutMargins:UIEdgeInsetsZero];
         }
         
     }
-    return YES;
+    return _tableView;
 }
-#pragma mark - action
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+#pragma mark - tableViewDataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.view endEditing:YES];
+    CGFloat height = 0;
+    if (indexPath.section == 0) {
+        height = [WithdrawaisAccountNumberTableViewCell cellHeight];
+    }else if (indexPath.section == 1){
+        height = 123;
+    }else if (indexPath.section == 2){
+        height = [WithdrawaisMemberLevelTableViewCell cellHeight];
+    }else if (indexPath.section == 3){
+        height = [WithdrawalsConfirmTableViewCell cellHeight];
+    }
+    return height;
 }
-- (void)rechargeButtonClick:(UIButton *)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return 1;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 4;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
+    }else if (indexPath.section == 1){
+        cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
+        ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"1000" fee:@"2.00%"];
+    }else if (indexPath.section == 2){
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
+        [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:@"普通会员" earn:@"2.00%"];
+    }else if (indexPath.section == 3){
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
+        ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
+        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认充值"];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, DFSCREENW, 24)];
+        lable.text = @"      提示：当前只支持银行卡提现";
+        lable.font = [UIFont systemFontOfSize:9];
+        lable.textColor = DFColorWithHexString(@"#E51C23");
+        lable.backgroundColor = DFColorWithHexString(@"#F8F8F8");
+        return lable;
+    }else{
+        return [UIView new];
+    }
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 0;
+    if (section == 0) {
+        height = 24;
+    }
+    return height;
+}
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [UIView new];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 9;
+}
+#pragma mark - tableViewDelegate
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma mark - FinancialTransferAmountTableViewCellDelegate
+
+- (void)textDidEndEdit:(UITextField *)textField
+{
+    self.amount = textField.text;
+}
+#pragma mark - WithdrawalsConfirmTableViewCellDelegate
+- (void)confirmWithdrawals
+{
+    
+    DNPayAlertView *payAlert = [[DNPayAlertView alloc]init];
+    payAlert.titleStr = @"请输入交易密码";
+    payAlert.detail = @"提现";
+    payAlert.amount= 10;
+    [payAlert show];
+    payAlert.completeHandle = ^(NSString *inputPwd) {
+        NSLog(@"密码是%@",inputPwd);
+    };
+}
 
 @end

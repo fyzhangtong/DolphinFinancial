@@ -22,4 +22,6 @@
 
 @property (nonatomic, weak) id<WithdrawalsConfirmTableViewCellDelegate> delegate;
 
+- (void)reloadButtonTitle:(NSString *)title;
+
 @end

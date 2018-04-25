@@ -80,5 +80,8 @@
     }
     return YES;
 }
-
+- (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder
+{
+    
+}
 @end

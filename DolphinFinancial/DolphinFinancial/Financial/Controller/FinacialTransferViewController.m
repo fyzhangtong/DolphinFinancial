@@ -112,7 +112,7 @@
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount fee:@"2.00%"];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferInfoTableViewCell reuseIdentifier]];
         [(FinancialTransferInfoTableViewCell *)cell reloadinterestRate:self.transfer.interest_rate targetIncome:self.transfer.target_income incomeDescription:self.transfer.income_description];

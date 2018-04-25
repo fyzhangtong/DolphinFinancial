@@ -56,7 +56,7 @@
 {
     if (!_confirmButton) {
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_confirmButton setTitle:@"提现" forState:UIControlStateNormal];
+        
         _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.0f];
         [_confirmButton setBackgroundImage:[UIImage createImageWithColor:DFTINTCOLOR] forState:UIControlStateNormal];
         [_confirmButton setTitleColor:DFColorWithHexString(@"#FFFFFF") forState:UIControlStateNormal];
@@ -73,6 +73,11 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(confirmWithdrawals)]) {
         [self.delegate confirmWithdrawals];
     }
+}
+
+- (void)reloadButtonTitle:(NSString *)title
+{
+    [_confirmButton setTitle:title forState:UIControlStateNormal];
 }
 
 @end

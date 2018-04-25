@@ -119,7 +119,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (indexPath.row == 1 || indexPath.row == 2) {
+        if (indexPath.row == 1) {
             [BalanceViewController pushToController:self];
         }
     }
@@ -154,9 +154,9 @@
         }else{
             AssetsMoneyCollectionViewCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsMoneyCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
             if (indexPath.row == 1) {
-                [cell1 reloadData:@"余额" money:self.asset.balance_amount];
+                [cell1 reloadData:@"余额" money:@"1000" desc:@"点击查看"];
             }else if (indexPath.row == 2){
-                [cell1 reloadData:@"理财资产" money:self.asset.total_finance_amount];
+                [cell1 reloadData:@"理财资产" money:@"1000" desc:@"请到理财栏查看详情"];
             }
             cell = cell1;
         }
