@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view.
     [self makeView];
     self.earns = [[NSMutableArray alloc] init];
+    [self requestData];
 }
 
 - (void)makeView
@@ -150,9 +151,9 @@
         }else{
             AssetsMoneyCollectionViewCell *cell1 = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsMoneyCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
             if (indexPath.row == 1) {
-                [cell1 reloadData:@"余额" money:@"1000" desc:@"点击查看"];
+                [cell1 reloadData:@"余额" money:self.asset.balance_amount desc:@"点击查看"];
             }else if (indexPath.row == 2){
-                [cell1 reloadData:@"理财资产" money:@"1000" desc:@"请到理财栏查看详情"];
+                [cell1 reloadData:@"理财资产" money:self.asset.total_finance_amount desc:@"请到理财栏查看详情"];
             }
             cell = cell1;
         }
@@ -173,15 +174,8 @@
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsProfitRecordsCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
     }else if (indexPath.section == 3){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[AssetsYieldCurveCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];
-        for (int i = 0; i < 4; i++) {
-            AssetEarn *earn = [[AssetEarn alloc] init];
-            earn.date = @"3 - 24";
-            double val = arc4random_uniform(33) + 3;
-            earn.earn = @(val);
-            [array addObject:earn];
-        }
-        [(AssetsYieldCurveCollectionViewCell *)cell reloadTrend:array];
+
+        [(AssetsYieldCurveCollectionViewCell *)cell reloadTrend:self.earns];
     }
     
     return cell;
@@ -199,27 +193,25 @@
     [AssetsRecordViewController pushToController:self recordType:RecordTypeAessets];
 }
 
-+ (void)requestData:(void(^)(FinancailAsset *asset,NSMutableArray<AssetEarn *> *earns,BOOL success))complete
+- (void)requestData
 {
     
     [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:2];
     [GTNetWorking getWithUrl:DOLPHIN_API_ASSET params:nil success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([code integerValue] == 200) {
-            FinancailAsset *asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];
-            NSMutableArray<AssetEarn *> *earns = [[NSMutableArray alloc] init];
+            self.asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];
+            [self.earns removeAllObjects];
             NSArray<NSDictionary *> *trend = data[@"trend"];
             [trend enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 AssetEarn *earn = [AssetEarn yy_modelWithDictionary:obj];
-                [earns addObject:earn];
+                [self.earns addObject:earn];
             }];
-            complete(asset,earns,YES);
+            [self.collectionView reloadData];
         }else{
-            complete(nil,nil,NO);
             [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        complete(nil,nil,NO);
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:error.localizedDescription andHideTime:2];
     }];

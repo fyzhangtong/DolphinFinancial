@@ -414,7 +414,9 @@
 - (void)loadData
 {
     __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [GTNetWorking getWithUrl:DOLPHIN_API_INDEX params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             NSDictionary *platform_info = data[@"platform_info"];
             DFNotice *notice = [DFNotice yy_modelWithDictionary:data[@"notice"]];
@@ -443,6 +445,7 @@
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];
 }

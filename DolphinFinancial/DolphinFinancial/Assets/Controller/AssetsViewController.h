@@ -15,6 +15,5 @@
 
 @property (nonatomic, strong) FinancailAsset *asset;
 @property (nonatomic, strong) NSMutableArray<AssetEarn *> *earns;
-+ (void)requestData:(void(^)(FinancailAsset *asset,NSMutableArray<AssetEarn *> *earns,BOOL success))complete;
 
 @end
