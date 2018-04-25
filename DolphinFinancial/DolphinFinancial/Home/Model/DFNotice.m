@@ -14,9 +14,7 @@
 
 {
     
-    if ([key isEqualToString:@"id"]) {
-        self.noticeId = value;
-    }
+
 }
 
 @end

@@ -13,7 +13,7 @@
 /**
  资产ID
  */
-@property (nonatomic, copy) NSNumber *assetId;
+@property (nonatomic, copy) NSNumber *id;
 /**
  总资产
  */

@@ -198,7 +198,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.financial.userFinancialId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.financial.id) params:nil success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];

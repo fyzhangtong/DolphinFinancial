@@ -38,6 +38,8 @@ typedef enum LoginModel
 @property (nonatomic, strong) MASConstraint *getVerificationCodeButtonConstraintW;
 @property (nonatomic, assign) BOOL isCountDowning;  //正在倒计时
 
+@property (nonatomic, assign) BOOL loginSuccess;
+
 @end
 
 @implementation LoginViewController
@@ -62,6 +64,11 @@ typedef enum LoginModel
     [self addLeftBackButton];
     [self makeView];
     self.loginModel = LoginModelPassword;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.complete(self.loginSuccess);
 }
 
 - (void)makeView
@@ -451,6 +458,7 @@ typedef enum LoginModel
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             //成功
+            weakSelf.loginSuccess = YES;
             [UserManager setUseraToken:data[@"token"]];
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
                 if ([data[@"need_pay_password"] boolValue]) {

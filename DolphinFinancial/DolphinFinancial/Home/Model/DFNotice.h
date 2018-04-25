@@ -13,7 +13,7 @@
 /**
  公告ID
  */
-@property (nonatomic, copy) NSNumber *noticeId;
+@property (nonatomic, copy) NSNumber *id;
 /**
  公告标题
  */

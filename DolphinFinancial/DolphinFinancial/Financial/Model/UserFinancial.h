@@ -16,7 +16,7 @@
 /**
  我的理财产品ID
  */
-@property (nonatomic, copy) NSNumber *userFinancialId;
+@property (nonatomic, copy) NSNumber *id;
 /**
  产品名称
  */

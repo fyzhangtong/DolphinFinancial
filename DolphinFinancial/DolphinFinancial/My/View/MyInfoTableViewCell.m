@@ -93,7 +93,6 @@
         _tagLabel.layer.cornerRadius = 4;
         _tagLabel.font = [UIFont systemFontOfSize:8];
         _tagLabel.textAlignment = NSTextAlignmentCenter;
-        _tagLabel.text = @"普通会员";
     }
     return _tagLabel;
 }
@@ -104,9 +103,14 @@
         _phoneNumber.textColor = DFColorWithHexString(@"#101010");
         _phoneNumber.font = [UIFont systemFontOfSize:14];
         _phoneNumber.textAlignment = NSTextAlignmentCenter;
-        _phoneNumber.text = @"133****1920";
     }
     return _phoneNumber;
+}
+
+- (void)reloadPhone:(NSString *)phone member_level:(NSString *)member_level
+{
+    _phoneNumber.text = member_level;
+    _tagLabel.text = member_level;
 }
 
 @end

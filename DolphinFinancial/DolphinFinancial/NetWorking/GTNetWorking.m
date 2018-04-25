@@ -78,6 +78,7 @@
         }
     };
     successBlock = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
         NSDictionary *dic = responseObject;
         NSNumber *code = dic[@"code"];
         NSString *msg = dic[@"msg"];

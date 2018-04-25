@@ -13,7 +13,7 @@
 /**
  产品ID
  */
-@property (nonatomic, copy) NSNumber *productId;
+@property (nonatomic, copy) NSNumber *id;
 /**
  产品名称
  */

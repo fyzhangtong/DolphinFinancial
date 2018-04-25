@@ -10,4 +10,9 @@
 
 @interface MyViewController : BaseViewController
 
+@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *member_level;
+
++ (void)requestData:(void(^)(NSString *phone,NSString *member_level,BOOL success))complete;
+
 @end

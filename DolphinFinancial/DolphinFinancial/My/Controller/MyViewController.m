@@ -102,6 +102,7 @@
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyInfoCell]) {
         cell =[tableView dequeueReusableCellWithIdentifier:[MyInfoTableViewCell reuseIdentifier]];
+        [(MyInfoTableViewCell *)cell reloadPhone:self.phone member_level:self.member_level];
     }else if ([string isEqualToString:MyInfoDetailsCell]){
         cell =[tableView dequeueReusableCellWithIdentifier:[MyTitleAndExplainCell reuseIdentifier]];
         [((MyTitleAndExplainCell *)cell) reloadWithIcon:@"my_details" Title:@"会员详情" Explain:@"等级越高收益越高"];
@@ -203,9 +204,23 @@
     [self.navigationController presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)requeestData
++ (void)requestData:(void(^)(NSString *phone,NSString *member_level,BOOL success))complete
 {
     
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:2];
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([code integerValue] == 200) {
+            complete(data[@"phone"],data[@"member_level"],YES);
+        }else{
+            complete(nil,nil,NO);
+            [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        complete(nil,nil,NO);
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end

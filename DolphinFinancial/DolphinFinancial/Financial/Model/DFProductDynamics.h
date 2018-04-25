@@ -17,7 +17,7 @@
 /**
  动态id
  */
-@property (nonatomic, copy) NSNumber *dynamicsId;
+@property (nonatomic, copy) NSNumber *id;
 
 /**
  产品名称

@@ -15,14 +15,10 @@
 #import "AssetsRecordViewController.h"
 #import "BalanceViewController.h"
 
-#import "FinancailAsset.h"
-#import "AssetEarn.h"
-
 @interface AssetsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) FinancailAsset *asset;
-@property (nonatomic, strong) NSMutableArray<AssetEarn *> *earns;
+
 
 @end
 
@@ -203,27 +199,29 @@
     [AssetsRecordViewController pushToController:self recordType:RecordTypeAessets];
 }
 
-- (void)requestData
++ (void)requestData:(void(^)(FinancailAsset *asset,NSMutableArray<AssetEarn *> *earns,BOOL success))complete
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:2];
-    __weak typeof(self) weakSelf = self;
+    
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:2];
     [GTNetWorking getWithUrl:DOLPHIN_API_ASSET params:nil success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([code integerValue] == 200) {
-            weakSelf.asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];
-            [weakSelf.earns removeAllObjects];
+            FinancailAsset *asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];
+            NSMutableArray<AssetEarn *> *earns = [[NSMutableArray alloc] init];
             NSArray<NSDictionary *> *trend = data[@"trend"];
             [trend enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 AssetEarn *earn = [AssetEarn yy_modelWithDictionary:obj];
-                [weakSelf.earns addObject:earn];
+                [earns addObject:earn];
             }];
-            [weakSelf.collectionView reloadData];
+            complete(asset,earns,YES);
         }else{
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            complete(nil,nil,NO);
+            [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        complete(nil,nil,NO);
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:error.localizedDescription andHideTime:2];
     }];
 }
 

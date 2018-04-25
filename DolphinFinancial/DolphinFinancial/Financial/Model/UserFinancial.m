@@ -14,9 +14,6 @@
 
 {
     
-    if ([key isEqualToString:@"id"]) {
-        self.userFinancialId = value;
-    }
 }
 
 @end

@@ -14,4 +14,6 @@
 + (void)registerCellTableView:(UITableView *)tableView;
 + (CGFloat)cellHeight;
 
+- (void)reloadPhone:(NSString *)phone member_level:(NSString *)member_level;
+
 @end

@@ -7,8 +7,13 @@
 //
 
 #import "BaseTabBarController.h"
+#import "AssetsViewController.h"
+#import "MyViewController.h"
+#import "BaseNavigationController.h"
+#import "LoginViewController.h"
+#import "UserManager.h"
 
-@interface BaseTabBarController ()
+@interface BaseTabBarController ()<UITabBarControllerDelegate>
 
 @end
 
@@ -17,21 +22,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - tabbar delegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    
+    //这里我判断的是当前点击的tabBarItem的标题
+//    if ([viewController.tabBarItem.title isEqualToString:@"资产"]) {
+//
+//        return [BaseTabBarController checkLogin:2 tabBarController:tabBarController];
+//
+//    }else if([viewController.tabBarItem.title isEqualToString:@"我的"]){
+//
+//        return [BaseTabBarController checkLogin:3 tabBarController:tabBarController];
+//    }
+    return YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
++(BOOL)checkLogin:(NSInteger)index tabBarController:(UITabBarController *)tabBarController
+{
+    __weak typeof(tabBarController) weakTabBarController = tabBarController;
+    if ([UserManager userToken].length) {
+        return YES;
+    }else{
+        [LoginViewController loginWithComplete:^(BOOL success) {
+            if (success) {
+                weakTabBarController.selectedIndex = index;
+            }
+        }];
+        return NO;
+    }
 }
-*/
+
 
 @end

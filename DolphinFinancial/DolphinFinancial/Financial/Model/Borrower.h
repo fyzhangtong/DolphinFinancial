@@ -13,7 +13,7 @@
 /**
  借款信息ID
  */
-@property (nonatomic, copy) NSNumber *borrowerId;
+@property (nonatomic, copy) NSNumber *id;
 /**
  产品名称
  */

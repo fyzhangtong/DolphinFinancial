@@ -234,7 +234,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.product.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.product.id) params:nil success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             weakSelf.product = [DFProduct yy_modelWithJSON:data];
@@ -254,7 +254,7 @@
     
     __weak typeof(self) weakSelf = self;
     NSDictionary *param = @{@"page":@"0"};
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.product.productId) params:param success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.product.id) params:param success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             weakSelf.total = data[@"total"];
@@ -276,7 +276,7 @@
 
 - (void)moveInoButtonClick:(UIButton *)sender
 {
-    [FinacialTransferViewController pushToController:self productId:self.product.productId];
+    [FinacialTransferViewController pushToController:self productId:self.product.id];
 }
 
 
