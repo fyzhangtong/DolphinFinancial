@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Borrower;
+#import "Borrower.h"
 
 /**
  产品动态

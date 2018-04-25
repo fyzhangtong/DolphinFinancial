@@ -100,7 +100,7 @@
             }
         }
     };
-    
+    NSLog(@"url:%@",urlStr);
     if (type==1) {
         [manager GET:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
     }else{

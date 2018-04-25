@@ -136,10 +136,13 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
-            for (NSDictionary *dic in data) {
-                Borrower *borrower = [Borrower yy_modelWithDictionary:dic];
-                [weakSelf.dataSource addObject:borrower];
+            if ([data isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in data) {
+                    Borrower *borrower = [Borrower yy_modelWithDictionary:dic];
+                    [weakSelf.dataSource addObject:borrower];
+                }
             }
+            
             [weakSelf.tableView reloadData];
         }else{
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];

@@ -45,7 +45,7 @@
         make.left.right.mas_equalTo(self.view);
     }];
     self.dataSource = [[NSMutableArray alloc] init];
-//    [self loadData];
+    [self loadData];
 }
 - (UITableView *)tableView
 {
@@ -74,13 +74,12 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return _dataSource.count;
-    return 1;
+    return _dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FinancialViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FinancialViewCell reuseIdentifier]];
-//    [cell reloadData:_dataSource[indexPath.row]];
+    [cell reloadData:_dataSource[indexPath.row]];
     return cell;
 }
 #pragma mark - tableViewDelegate
@@ -94,8 +93,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DFProduct *product = self.dataSource[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
+    fdc.productId = product.id;
     [self.navigationController pushViewController:fdc animated:YES];
 }
 
@@ -103,7 +104,9 @@
 - (void)loadData
 {
     __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
             for (NSDictionary *dic  in (NSArray *)data) {
@@ -115,6 +118,7 @@
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];
 }

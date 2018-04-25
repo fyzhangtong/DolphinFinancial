@@ -10,9 +10,10 @@
 
 @implementation DFProductDynamics
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-
++(nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass{
+    return @{
+             @"borrowers"       : Borrower.class
+             };
 }
 
 @end

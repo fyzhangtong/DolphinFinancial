@@ -34,14 +34,16 @@
 
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UIButton *transferButton;
+@property (nonatomic, copy) NSNumber *productId;
 
 @end
 
 @implementation MyFinancialDetailsViewController
 
-+ (void)pushToController:(UIViewController *)controller
++ (void)pushToController:(UIViewController *)controller withId:(NSNumber *)productId
 {
     MyFinancialDetailsViewController *vc = [[MyFinancialDetailsViewController alloc] init];
+    vc.productId = productId;
     [controller.navigationController pushViewController:vc animated:YES];
 }
 
@@ -198,7 +200,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.financial.id) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];
@@ -215,23 +217,6 @@
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-        UserFinancial *fina = [[UserFinancial alloc] init];
-        fina.total_amount = @"30298";
-        fina.total_income = @"768";
-        fina.yesterday_income = @"78";
-        fina.borrower_info = @"共8人借款人";
-        fina.buy_time = @"2018";
-        fina.expiration_time = @"2019";
-        fina.status = @"续投";
-        fina.continue_time = @"第三次";
-        fina.auto_continue = @"是";
-        weakSelf.financial = fina;
-        if ([fina.status isEqualToString:@"首投"] ) {
-            weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
-        }else{
-            weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus,MYFinancialDetailsContinueTime],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
-        }
-        [weakSelf.tableView reloadData];
     }];
     
 }

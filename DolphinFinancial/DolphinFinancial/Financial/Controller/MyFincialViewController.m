@@ -36,7 +36,7 @@
     [self makeView];
     
     _dataSource = [[NSMutableArray alloc] init];
-    [self loadData];
+    [self requestData];
 }
 - (void)makeView
 {
@@ -76,19 +76,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.dataSource.count;
-    return 1;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyFinacialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyFinacialTableViewCell reuseIdentifier]];
-    UserFinancial *financial = [[UserFinancial alloc] init];
-    financial.product_name = @"产品名字";
-    financial.yesterday_income = @"38.2";
-    financial.total_amount = @"100";
-    financial.expiration_time = @"2018-04-10";
-    financial.buy_amount = @"3000";
-    [cell reloadData:financial];
+
+    [cell reloadData:self.dataSource[indexPath.row]];
     return cell;
 }
 #pragma mark - tableViewDelegate
@@ -103,14 +97,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [MyFinancialDetailsViewController pushToController:self];
+    UserFinancial *financial = self.dataSource[indexPath.row];
+    [MyFinancialDetailsViewController pushToController:self withId:financial.id];
 }
 
 #pragma mark - 网络请求
-- (void)loadData
+- (void)requestData
 {
     __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
             for (NSDictionary *dic in (NSArray *)data) {
@@ -122,6 +119,7 @@
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];
 }

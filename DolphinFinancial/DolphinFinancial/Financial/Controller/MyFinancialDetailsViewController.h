@@ -15,6 +15,6 @@
  */
 @interface MyFinancialDetailsViewController : BaseViewController
 
-+ (void)pushToController:(UIViewController *)controller;
++ (void)pushToController:(UIViewController *)controller withId:(NSNumber *)productId;
 
 @end

@@ -13,4 +13,6 @@
  */
 @interface FinacialDetailsController : BaseViewController
 
+@property (nonatomic, copy) NSNumber *productId;
+
 @end

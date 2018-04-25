@@ -49,6 +49,8 @@
     // Do any additional setup after loading the view.
     [self makeView];
     self.dynamics = [[NSMutableArray alloc] init];
+    [self requestProduct];
+    [self requestDynamics];
 }
 
 - (void)makeView
@@ -229,12 +231,12 @@
 }
 
 #pragma mark - 网络请求
-- (void)loadData
+- (void)requestProduct
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.product.id) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             weakSelf.product = [DFProduct yy_modelWithJSON:data];
@@ -254,15 +256,19 @@
     
     __weak typeof(self) weakSelf = self;
     NSDictionary *param = @{@"page":@"0"};
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.product.id) params:param success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.productId) params:param success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             weakSelf.total = data[@"total"];
             [weakSelf.dynamics removeAllObjects];
-            for (NSDictionary *dic in data[@"content"]) {
-                DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithDictionary:dic];
-                [weakSelf.dynamics addObject:dynamic];
+            NSArray<NSDictionary *> *content = data[@"content"];
+            if ([content isKindOfClass:[NSArray class]]) {
+                [content enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithJSON:obj];
+                    [weakSelf.dynamics addObject:dynamic];
+                }];
             }
+            
             [weakSelf.collectionView reloadData];
         }else{
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];

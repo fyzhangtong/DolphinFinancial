@@ -46,7 +46,7 @@
  用户理财产品详情接口
  @param u 用户理财产品ID
  */
-#define DOLPHIN_API_USER_PRODUCT(u) [NSString stringWithFormat:@"%@/%@",DOLPHIN_API(@"product"),(u)]
+#define DOLPHIN_API_USER_PRODUCT(u) [NSString stringWithFormat:@"%@/%@",DOLPHIN_API(@"user/product"),(u)]
 /**
  用户产品借款信息接口
  @param u 用户理财产品ID

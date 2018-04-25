@@ -98,6 +98,9 @@
  推荐背景
  */
 @property (nonatomic, strong) MASConstraint *recommendingBackViewConstraintH;
+
+@property (nonatomic, strong) DFProduct *product;
+
 @end
 
 @implementation HomeViewController
@@ -420,7 +423,7 @@
         if ([code integerValue] == 200) {
             NSDictionary *platform_info = data[@"platform_info"];
             DFNotice *notice = [DFNotice yy_modelWithDictionary:data[@"notice"]];
-            DFProduct *product = [DFProduct yy_modelWithDictionary:data[@"product"]];
+            self.product = [DFProduct yy_modelWithDictionary:data[@"product"]];
             weakSelf.amountLabel.text = platform_info[@"per_financial_amount"];
             weakSelf.borrowersLabel.text = platform_info[@"total_borrower"];
             if (notice.content.length) {
@@ -429,11 +432,11 @@
             }else{
                 weakSelf.noticeBackViewConstraintH.mas_offset(0);
             }
-            if (product.name.length) {
-                weakSelf.recommendingLabel1.text = product.name;
-                weakSelf.recommendingLabel2.text = product.descriptions.firstObject;
-                weakSelf.recommendingLabel3.text = product.interest_rate;
-                weakSelf.recommendingLabel4.text = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+            if (self.product.name.length) {
+                weakSelf.recommendingLabel1.text = self.product.name;
+                weakSelf.recommendingLabel2.text = self.product.descriptions.firstObject;
+                weakSelf.recommendingLabel3.text = self.product.interest_rate;
+                weakSelf.recommendingLabel4.text = [NSString stringWithFormat:@"今日还剩%@份",self.product.residue_number];
                 weakSelf.recommendingBackViewConstraintH.mas_offset(60);
                 weakSelf.recommendingTitleLabelConstraintH.mas_offset(35);
             }else{
@@ -454,6 +457,7 @@
 - (void)recommendingBackViewTapAction:(UITapGestureRecognizer *)sender
 {
     FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
+    fdc.productId = self.product.id;
     [self.navigationController pushViewController:fdc animated:YES];
 }
 

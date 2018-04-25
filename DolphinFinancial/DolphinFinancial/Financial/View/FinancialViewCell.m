@@ -81,7 +81,6 @@
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.font = [UIFont systemFontOfSize:14];
         _nameLabel.textColor = DFColorWithHexString(@"#101010");
-        _nameLabel.text = @"1月定存";
     }
     return _nameLabel;
 }
@@ -92,7 +91,6 @@
         _interestRateLabel.textAlignment = NSTextAlignmentLeft;
         _interestRateLabel.font = [UIFont systemFontOfSize:16];
         _interestRateLabel.textColor = DFColorWithHexString(@"#1779D4");
-        _interestRateLabel.text = @"5.8%";
     }
     return _interestRateLabel;
 }
@@ -104,7 +102,6 @@
         _explainLabel.textAlignment = NSTextAlignmentLeft;
         _explainLabel.font = [UIFont systemFontOfSize:12];
         _explainLabel.textColor = DFColorWithHexString(@"#969696");
-        _explainLabel.text = @"到期自动转出";
     }
     return _explainLabel;
 }
@@ -115,7 +112,6 @@
         _surplusLabel.textAlignment = NSTextAlignmentLeft;
         _surplusLabel.font = [UIFont systemFontOfSize:12];
         _surplusLabel.textColor = DFColorWithHexString(@"#969696");
-        _surplusLabel.text = @"今日还剩100份";
     }
     return _surplusLabel;
 }
