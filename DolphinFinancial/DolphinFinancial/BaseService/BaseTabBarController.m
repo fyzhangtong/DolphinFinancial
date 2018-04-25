@@ -30,14 +30,14 @@
 {
     
     //这里我判断的是当前点击的tabBarItem的标题
-//    if ([viewController.tabBarItem.title isEqualToString:@"资产"]) {
-//
-//        return [BaseTabBarController checkLogin:2 tabBarController:tabBarController];
-//
-//    }else if([viewController.tabBarItem.title isEqualToString:@"我的"]){
-//
-//        return [BaseTabBarController checkLogin:3 tabBarController:tabBarController];
-//    }
+    if ([viewController.tabBarItem.title isEqualToString:@"资产"]) {
+
+        return [BaseTabBarController checkLogin:2 tabBarController:tabBarController];
+
+    }else if([viewController.tabBarItem.title isEqualToString:@"我的"]){
+
+        return [BaseTabBarController checkLogin:3 tabBarController:tabBarController];
+    }
     return YES;
 }
 

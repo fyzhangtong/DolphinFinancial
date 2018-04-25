@@ -11,6 +11,7 @@
 #import "FinacialDetailsController.h"
 #import "DFNotice.h"
 #import "DFProduct.h"
+#import "UserManager.h"
 
 @interface HomeViewController ()
 

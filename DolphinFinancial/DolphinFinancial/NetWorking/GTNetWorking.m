@@ -83,7 +83,29 @@
         NSNumber *code = dic[@"code"];
         NSString *msg = dic[@"msg"];
         id data = dic[@"data"];
-        success(code,msg,data);
+        if ([code integerValue] == 401) {
+            [UserManager removeUser];
+            if (showLoginIfNeed) {
+                [LoginViewController loginWithComplete:^(BOOL landSuccess) {
+                    if (landSuccess) {
+                        [GTNetWorking baseRequestType:type url:url params:params showLoginIfNeed:NO success:success fail:fail];
+                    }else{
+                        if (fail) {
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            fail(error);
+                        }
+                    }
+                }];
+            }else{
+                if (success) {
+                    success(code,msg,data);
+                }
+            }
+        }else{
+            if (success) {
+                success(code,msg,data);
+            }
+        }
     };
     
     if (type==1) {
@@ -91,100 +113,6 @@
     }else{
         [manager POST:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
     }
-}
-
-+(void)uploadWithImage:(UIImage *)image
-                   url:(NSString *)url
-              filename:(NSString *)filename
-                  name:(NSString *)name
-                params:(NSDictionary *)params
-              progress:(GTUploadProgress)progress
-               success:(GTResponseSuccess)success
-                  fail:(GTResponseFail)fail
-               showHUD:(BOOL)showHUD{
-    
-    if (url==nil) {
-        return ;
-    }
-    
-    //检查地址中是否有中文
-    NSString *urlStr=[NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
-    AFHTTPSessionManager *manager=[self getAFManager];
-    
-    [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        //压缩图片
-        NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-        
-        NSString *imageFileName = filename;
-        if (filename == nil || ![filename isKindOfClass:[NSString class]] || filename.length == 0) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyyMMddHHmmss";
-            NSString *str = [formatter stringFromDate:[NSDate date]];
-            imageFileName = [NSString stringWithFormat:@"%@.jpg", str];
-        }
-        // 上传图片，以文件流的格式
-        [formData appendPartWithFileData:imageData name:name fileName:imageFileName mimeType:@"image/jpeg"];
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        if (progress) {
-            progress(uploadProgress.completedUnitCount, uploadProgress.totalUnitCount);
-        }
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            NSDictionary *dic = responseObject;
-            NSNumber *code = dic[@"code"];
-            NSString *msg = dic[@"msg"];
-            id data = dic[@"data"];
-            success(code,msg,data);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (fail) {
-            fail(error);
-        }
-    }];
-}
-
-+ (void)downloadWithUrl:(NSString *)url
-             saveToPath:(NSString *)saveToPath
-               progress:(GTDownloadProgress)progressBlock
-                success:(GTResponseSuccess)success
-                failure:(GTResponseFail)fail
-                showHUD:(BOOL)showHUD{
-    if (url==nil) {
-        return ;
-    }
-    NSURLRequest *downloadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    AFHTTPSessionManager *manager = [self getAFManager];
-    
-    [manager downloadTaskWithRequest:downloadRequest progress:^(NSProgress * _Nonnull downloadProgress) {
-        //回到主线程刷新UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (progressBlock) {
-                progressBlock(downloadProgress.completedUnitCount, downloadProgress.totalUnitCount);
-            }
-        });
-        
-    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        if (!saveToPath) {
-            
-            NSURL *downloadURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-            return [downloadURL URLByAppendingPathComponent:[response suggestedFilename]];
-            
-        }else{
-            return [NSURL fileURLWithPath:saveToPath];
-            
-        }
-        
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        if (error == nil) {
-            if (success) {
-                success(@(200),@"成功",filePath);//返回完整路径
-            }
-        } else {
-            if (fail) {
-                fail(error);
-            }
-        }
-    }];
 }
 
 #pragma makr - 开始监听网络连接
