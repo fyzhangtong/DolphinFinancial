@@ -55,13 +55,6 @@
     if (url==nil) {
         return ;
     }
-//    NSMutableDictionary*dic =[NSMutableDictionary dictionary];
-//    [dic addEntriesFromDictionary:params];
-//    NSString *token = [UserManager userToken];
-//    if (token.length>0) {
-//        [dic setObject:token forKey:@"token"];
-//    }
-//    NSLog(@"url:%@;params:%@",url,dic);
     //检查地址中是否有中文
     NSString *urlStr=[NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
     

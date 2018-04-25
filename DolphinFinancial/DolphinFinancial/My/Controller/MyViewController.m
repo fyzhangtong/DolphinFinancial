@@ -16,6 +16,7 @@
 #import "MessageCenterViewController.h"
 #import "QuestionFeedbackViewController.h"
 #import "AboutUsViewController.h"
+#import "UserManager.h"
 
 #define MyInfoCell @"MyInfoCell"
 #define MyInfoDetailsCell @"MyInfoDetailsCell"
@@ -50,10 +51,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _loginDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell],@[MyLogoutCell]];
-    _logoutDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell]];
     [self makeView];
-    self.dataSource = _loginDataSource;
+    _logoutDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell]];
+    _loginDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell],@[MyLogoutCell]];
+    
+    self.dataSource = _logoutDataSource;
+    [self requestData];
 }
 - (void)makeView
 {
@@ -64,12 +67,6 @@
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(-49);
     }];
-}
-#pragma mark - setter 方法
-- (void)setDataSource:(NSArray *)dataSource
-{
-    _dataSource = dataSource;
-    [self.tableView reloadData];
 }
 
 #pragma mark - getter 方法
@@ -102,7 +99,12 @@
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyInfoCell]) {
         cell =[tableView dequeueReusableCellWithIdentifier:[MyInfoTableViewCell reuseIdentifier]];
-        [(MyInfoTableViewCell *)cell reloadPhone:self.phone member_level:self.member_level];
+        if ([UserManager userToken]) {
+            [(MyInfoTableViewCell *)cell reloadPhone:self.phone member_level:self.member_level];
+        }else{
+            [(MyInfoTableViewCell *)cell reloadPhone:nil member_level:nil];
+        }
+        
     }else if ([string isEqualToString:MyInfoDetailsCell]){
         cell =[tableView dequeueReusableCellWithIdentifier:[MyTitleAndExplainCell reuseIdentifier]];
         [((MyTitleAndExplainCell *)cell) reloadWithIcon:@"my_details" Title:@"会员详情" Explain:@"等级越高收益越高"];
@@ -176,6 +178,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyInfoCell]) {
+        if (![UserManager userToken]) {
+            [LoginViewController loginWithComplete:^(BOOL success) {
+                if (success) {
+                    [self requestData];
+                }
+            }];
+        }
     }else if ([string isEqualToString:MyInfoDetailsCell]){
         [MemberDetailsViewController pushToController:self];
     }else if ([string isEqualToString:MyLoginPasswordCell]){
@@ -196,7 +205,15 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *confim = [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [LoginViewController loginWithComplete:nil];
+        [UserManager removeUser];
+        self.dataSource = _logoutDataSource;
+        [self.tableView reloadData];
+        [LoginViewController loginWithComplete:^(BOOL success) {
+            if (success) {
+                [self requestData];
+            }
+        }];
+        
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:confim];
@@ -204,20 +221,21 @@
     [self.navigationController presentViewController:alertController animated:YES completion:nil];
 }
 
-+ (void)requestData:(void(^)(NSString *phone,NSString *member_level,BOOL success))complete
+- (void)requestData
 {
     
     [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:2];
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER params:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([code integerValue] == 200) {
-            complete(data[@"phone"],data[@"member_level"],YES);
+            self.phone = data[@"phone"];
+            self.member_level = data[@"member_level"];
+            self.dataSource = _loginDataSource;
+            [self.tableView reloadData];
         }else{
-            complete(nil,nil,NO);
             [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        complete(nil,nil,NO);
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:error.localizedDescription andHideTime:2];
     }];

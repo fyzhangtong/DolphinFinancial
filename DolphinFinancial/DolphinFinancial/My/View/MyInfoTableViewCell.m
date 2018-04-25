@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *tagLabel;        //标签
 @property (nonatomic, strong) UILabel *phoneNumber;     //手机号
+@property (nonatomic, strong) UILabel *loginLabel;
 
 @end
 
@@ -72,6 +73,12 @@
         make.left.mas_equalTo(self.tagLabel.mas_left);
         make.bottom.mas_equalTo(self.headImageView.mas_bottom);
     }];
+    
+    [self.contentView addSubview:self.loginLabel];
+    [_loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.tagLabel.mas_left);
+        make.centerY.mas_equalTo(self.headImageView.mas_centerY);
+    }];
 }
 
 #pragma mark - getter
@@ -93,6 +100,7 @@
         _tagLabel.layer.cornerRadius = 4;
         _tagLabel.font = [UIFont systemFontOfSize:8];
         _tagLabel.textAlignment = NSTextAlignmentCenter;
+        _tagLabel.hidden = YES;
     }
     return _tagLabel;
 }
@@ -107,9 +115,24 @@
     return _phoneNumber;
 }
 
+- (UILabel *)loginLabel
+{
+    if (!_loginLabel) {
+        _loginLabel = [UILabel new];
+        _loginLabel.textColor = DFColorWithHexString(@"#101010");
+        _loginLabel.font = [UIFont systemFontOfSize:14];
+        _loginLabel.textAlignment = NSTextAlignmentCenter;
+        _loginLabel.hidden = YES;
+        _loginLabel.text = @"登录";
+    }
+    return _loginLabel;
+}
+
 - (void)reloadPhone:(NSString *)phone member_level:(NSString *)member_level
 {
-    _phoneNumber.text = member_level;
+    _tagLabel.hidden = member_level.length == 0;
+    _loginLabel.hidden = phone.length != 0;
+    _phoneNumber.text = phone;
     _tagLabel.text = member_level;
 }
 

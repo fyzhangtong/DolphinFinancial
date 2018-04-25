@@ -68,7 +68,10 @@ typedef enum LoginModel
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.complete(self.loginSuccess);
+    if (self.complete) {
+        self.complete(self.loginSuccess);
+    }
+    
 }
 
 - (void)makeView
