@@ -52,12 +52,7 @@
         _currentLevelLabel = [UILabel new];
         _currentLevelLabel.font = [UIFont systemFontOfSize:14.0];
         
-        NSString *string1 = @"当前会员等级：";
-        NSString *string2 = @"普通会员";
-        NSMutableAttributedString *attributeString =[[NSMutableAttributedString alloc]initWithString: [string1 stringByAppendingString:string2]];
-        [attributeString addAttribute:NSForegroundColorAttributeName value:DFColorWithHexString(@"#101010") range:NSMakeRange(0, string1.length)];
-        [attributeString addAttribute:NSForegroundColorAttributeName value:DFTINTCOLOR range:NSMakeRange(string1.length, string2.length)];
-        _currentLevelLabel.attributedText = attributeString;
+        
         
     }
     return _currentLevelLabel;
@@ -70,11 +65,19 @@
         _nextLevelLabel = [UILabel new];
         _nextLevelLabel.textColor = [UIColor redColor];
         _nextLevelLabel.font = [UIFont systemFontOfSize:10.0];
-        _nextLevelLabel.text = @"距离下一等级还需充值：￥3,000.00";
+        
     }
     return _nextLevelLabel;
 }
-
+- (void)reloadLevel:(NSString *)level needAmount:(NSString *)needAmount
+{
+    NSString *string1 = @"当前会员等级：";
+    NSMutableAttributedString *attributeString =[[NSMutableAttributedString alloc]initWithString: [NSString stringWithFormat:@"%@%@",string1,level]];
+    [attributeString addAttribute:NSForegroundColorAttributeName value:DFColorWithHexString(@"#101010") range:NSMakeRange(0, string1.length)];
+    [attributeString addAttribute:NSForegroundColorAttributeName value:DFTINTCOLOR range:NSMakeRange(string1.length, level.length)];
+    _currentLevelLabel.attributedText = attributeString;
+    _nextLevelLabel.text = [NSString stringWithFormat:@"距离下一等级还需充值：%@",needAmount];
+}
 
 
 @end

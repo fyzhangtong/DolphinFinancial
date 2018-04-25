@@ -13,4 +13,6 @@
  */
 @interface MemberDetailsMyLevelCollectionViewCell : BaseCollectionViewCell
 
+- (void)reloadLevel:(NSString *)level needAmount:(NSString *)needAmount;
+
 @end

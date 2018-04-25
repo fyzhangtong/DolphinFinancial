@@ -32,6 +32,7 @@
     // Do any additional setup after loading the view.
     [self makeView];
     self.dataSource = [[NSMutableArray alloc] init];
+    [self reqestData];
 }
 
 - (void)makeView
@@ -78,7 +79,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -133,7 +134,9 @@
         //资产记录
         url = DOLPHIN_API_ASSET_RECORD;
     }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [GTNetWorking getWithUrl:url params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
             NSArray<NSDictionary *> *array = data;
@@ -147,6 +150,7 @@
         }
         
     } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];
 }

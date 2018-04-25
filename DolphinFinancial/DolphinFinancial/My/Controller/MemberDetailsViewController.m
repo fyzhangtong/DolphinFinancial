@@ -16,11 +16,14 @@
 @interface MemberDetailsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 {
-    NSArray *_dataSource1;
+    NSMutableArray *_dataSource1;
     
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, copy) NSString *member_level;
+@property (nonatomic, copy) NSString *need_amount;
 
 @end
 
@@ -35,8 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataSource1 = @[@"会员等级",@"在线金额",@"余额收益奖励",@"普通会员",@"￥0.00",@"0.00%",@"一级会员",@"￥2,000.00",@"2.00%",@"二级会员",@"￥4,000.00",@"3.00%"];
+    _dataSource1 = [[NSMutableArray alloc] initWithArray:@[@"会员等级",@"在线金额",@"余额收益奖励"]];
     [self makeView];
+    [self requestData];
 }
 
 - (void)makeView
@@ -124,7 +128,7 @@
 {
     NSInteger count = 1;
     if (section == 1) {
-        count = 13;
+        count = _dataSource1.count + 1;
     }
     return count;
 }
@@ -134,6 +138,7 @@
     UICollectionViewCell *cell = nil;
     if (indexPath.section == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsMyLevelCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        [(MemberDetailsMyLevelCollectionViewCell*)cell reloadLevel:self.member_level needAmount:self.need_amount];
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsLevelRuleCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
@@ -141,7 +146,7 @@
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsLevelOrPriceCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
             NSString *text = _dataSource1[indexPath.row-1];
             UIColor *color = DFColorWithHexString(@"#101010") ;
-            if (indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 10) {
+            if (indexPath.row%3 == 1) {
                 color = DFTINTCOLOR;
             }
             [((MemberDetailsLevelOrPriceCollectionViewCell *)cell) reloadData:text color:color];
@@ -152,6 +157,38 @@
     }
     
     return cell;
+}
+
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_MEMBERS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            if ([data[@"user_info"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *user_info = data[@"user_info"];
+                self.member_level = user_info[@"member_level"];
+                self.need_amount = user_info[@"need_amount"];
+            }
+            if ([data[@"members"] isKindOfClass:[NSArray class]]) {
+                NSArray *members = data[@"members"];
+                [members enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj isKindOfClass:[NSDictionary class]]) {
+                        NSArray *values = [obj allValues];
+                        if (values.count) {
+                            [_dataSource1 addObjectsFromArray:values];
+                        }
+                    }
+                }];
+            }
+            [self.collectionView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end
