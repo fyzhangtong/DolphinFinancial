@@ -9,6 +9,9 @@
 #import "HomeViewController.h"
 
 #import "FinacialDetailsController.h"
+#import "MessageDetailsViewController.h"
+
+
 #import "DFNotice.h"
 #import "DFProduct.h"
 #import "UserManager.h"
@@ -100,6 +103,7 @@
 @property (nonatomic, strong) MASConstraint *recommendingBackViewConstraintH;
 
 @property (nonatomic, strong) DFProduct *product;
+@property (nonatomic, strong) DFNotice *notice;
 
 @end
 
@@ -302,6 +306,10 @@
         _noticeBackView = [UIView new];
         _noticeBackView.layer.masksToBounds = YES;
         [_noticeBackView setBackgroundColor:[UIColor whiteColor]];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noticeTap:)];
+        _noticeBackView.userInteractionEnabled = YES;
+        [_noticeBackView addGestureRecognizer:tap];
     }
     return _noticeBackView;
 }
@@ -423,11 +431,12 @@
         if ([code integerValue] == 200) {
             NSDictionary *platform_info = data[@"platform_info"];
             DFNotice *notice = [DFNotice yy_modelWithDictionary:data[@"notice"]];
+            weakSelf.notice = notice;
             self.product = [DFProduct yy_modelWithDictionary:data[@"product"]];
             weakSelf.amountLabel.text = platform_info[@"per_financial_amount"];
             weakSelf.borrowersLabel.text = platform_info[@"total_borrower"];
-            if (notice.content.length) {
-                weakSelf.noticeTitleLabel.text = notice.content;
+            if (notice.title.length) {
+                weakSelf.noticeTitleLabel.text = notice.title;
                 weakSelf.noticeBackViewConstraintH.mas_offset(40);
             }else{
                 weakSelf.noticeBackViewConstraintH.mas_offset(0);
@@ -459,6 +468,11 @@
     FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
     fdc.productId = self.product.id;
     [self.navigationController pushViewController:fdc animated:YES];
+}
+
+- (void)noticeTap:(UITapGestureRecognizer *)sender
+{
+    [MessageDetailsViewController pushToController:self.navigationController notice:self.notice];
 }
 
 @end

@@ -8,9 +8,13 @@
 
 #import "BaseTableViewCell.h"
 
+@class DFNotice;
+
 /**
  消息cell
  */
 @interface MessageCenterTableViewCell : BaseTableViewCell
+
+- (void)reloadData:(DFNotice *)notice;
 
 @end

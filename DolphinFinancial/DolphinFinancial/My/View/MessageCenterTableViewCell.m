@@ -8,6 +8,8 @@
 
 #import "MessageCenterTableViewCell.h"
 
+#import "DFNotice.h"
+
 @interface MessageCenterTableViewCell()
 
 @property (nonatomic, strong) UILabel *tagLabel;
@@ -82,7 +84,6 @@
         _titleLabel.textColor = DFColorWithHexString(@"#101010");
         _titleLabel.font = [UIFont systemFontOfSize:12];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.text = @"关于海豚理财正式运营通知";
     }
     return _titleLabel;
 }
@@ -93,7 +94,6 @@
         _dateLabel.textColor = DFColorWithHexString(@"#969696");
         _dateLabel.font = [UIFont systemFontOfSize:10];
         _dateLabel.textAlignment = NSTextAlignmentLeft;
-        _dateLabel.text = @"2018-02-28 11:19:01";
     }
     return _dateLabel;
 }
@@ -104,6 +104,12 @@
         _rightArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rightArrow"]];
     }
     return _rightArrowImageView;
+}
+
+- (void)reloadData:(DFNotice *)notice
+{
+    self.titleLabel.text = notice.title;
+    self.dateLabel.text = notice.publish_time;
 }
 
 @end

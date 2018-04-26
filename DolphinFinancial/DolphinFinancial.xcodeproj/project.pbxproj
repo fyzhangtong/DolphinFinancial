@@ -27,6 +27,7 @@
 		7B329DF1207C9D94001A8F2D /* FinacialTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF0207C9D94001A8F2D /* FinacialTransferViewController.m */; };
 		7B329DF4207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF3207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m */; };
 		7B329DF7207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B329DF6207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m */; };
+		7B33A8F42091AB55004D37BE /* MessageDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B33A8F32091AB55004D37BE /* MessageDetailsViewController.m */; };
 		7B33DB93207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B33DB92207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m */; };
 		7B40E85E20609E5E005562D5 /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E85D20609E5E005562D5 /* MyInfoTableViewCell.m */; };
 		7B40E8612060A4D1005562D5 /* MyTitleAndExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40E8602060A4D1005562D5 /* MyTitleAndExplainCell.m */; };
@@ -136,6 +137,8 @@
 		7B329DF3207CB425001A8F2D /* FinancialTranferProductNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTranferProductNameTableViewCell.m; sourceTree = "<group>"; };
 		7B329DF5207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferAmountTableViewCell.h; sourceTree = "<group>"; };
 		7B329DF6207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferAmountTableViewCell.m; sourceTree = "<group>"; };
+		7B33A8F22091AB55004D37BE /* MessageDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailsViewController.h; sourceTree = "<group>"; };
+		7B33A8F32091AB55004D37BE /* MessageDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsViewController.m; sourceTree = "<group>"; };
 		7B33DB91207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinancialTransferInfoTableViewCell.h; sourceTree = "<group>"; };
 		7B33DB92207F50A4003CA8A1 /* FinancialTransferInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinancialTransferInfoTableViewCell.m; sourceTree = "<group>"; };
 		7B40E85C20609E5E005562D5 /* MyInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -627,6 +630,8 @@
 				7B8485DC2068F1D2000459C2 /* ChangePasswordViewController.m */,
 				7B8485E12068F204000459C2 /* MessageCenterViewController.h */,
 				7B8485E22068F204000459C2 /* MessageCenterViewController.m */,
+				7B33A8F22091AB55004D37BE /* MessageDetailsViewController.h */,
+				7B33A8F32091AB55004D37BE /* MessageDetailsViewController.m */,
 				7B8485E42068F223000459C2 /* QuestionFeedbackViewController.h */,
 				7B8485E52068F223000459C2 /* QuestionFeedbackViewController.m */,
 				7B8485E72068F232000459C2 /* AboutUsViewController.h */,
@@ -881,6 +886,7 @@
 				7B8485E32068F204000459C2 /* MessageCenterViewController.m in Sources */,
 				7B4EABA3206DCF7400693163 /* GTUtil.m in Sources */,
 				7B48A4DD205B72240020FFE6 /* HomeViewController.m in Sources */,
+				7B33A8F42091AB55004D37BE /* MessageDetailsViewController.m in Sources */,
 				7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
 				7B71B2EA2071E1150013B787 /* Borrower.m in Sources */,

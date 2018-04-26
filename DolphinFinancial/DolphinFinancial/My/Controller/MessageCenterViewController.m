@@ -8,11 +8,15 @@
 
 #import "MessageCenterViewController.h"
 #import "MessageCenterTableViewCell.h"
+#import "MessageDetailsViewController.h"
+
 #import "BaseTableView.h"
+#import "DFNotice.h"
 
 @interface MessageCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, strong) NSMutableArray<DFNotice *> *dataSource;
 
 @end
 
@@ -28,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    self.dataSource = [[NSMutableArray alloc] initWithCapacity:3];
+    [self requestData];
 }
 
 - (void)makeView
@@ -69,12 +75,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MessageCenterTableViewCell reuseIdentifier]];
-    
+    DFNotice *notice = self.dataSource[indexPath.row];
+    [cell reloadData:notice];
     return cell;
 }
 
@@ -90,6 +97,29 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [MessageDetailsViewController pushToController:self.navigationController notice:self.dataSource[indexPath.row]];
+}
+
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking getWithUrl:DOLPHIN_API_NOTICES params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            [self.dataSource removeAllObjects];
+            if ([data isKindOfClass:[NSArray class]]) {
+                [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    DFNotice *notice = [DFNotice yy_modelWithJSON:obj];
+                    [self.dataSource addObject:notice];
+                }];
+            }
+            [self.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end
