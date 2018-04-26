@@ -379,52 +379,17 @@
 - (void)nextStepButtonClick:(UIButton *)sender
 {
     [self.view endEditing:YES];
-    __weak typeof(self) weakSelf = self;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     if (self.setPasswordState == SetPasswordStateVerify) {
-        NSDictionary *param = @{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"code":self.VerificationCodeOrPasswordAgainTextField.text};
-        [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param success:^(NSNumber *code, NSString *msg, id data) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            if ([code integerValue] == 200) {
-                weakSelf.u_token = data;
-                weakSelf.setPasswordState = SetPasswordStateSetNewPassword;
-            }else{
-                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
-            }
-        } fail:^(NSError *error) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-        }];
+        [self requestVerificationCode];
     }else{
         if (self.passwordType == PasswordTypeLogin) {
             //设置登录密码
-            NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
-            NSDictionary *hedader = @{@"U-Token":self.u_token};
-            [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_PWDLOSS params:params header:hedader success:^(NSNumber *code, NSString *msg, id data) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                if ([code integerValue] == 200) {
-                    [weakSelf rightButtonClick:nil];
-                }
-                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
-            } fail:^(NSError *error) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-            }];
+            [self setPassword:DOLPHIN_API_AUTH_PWDLOSS];
         }else{
             //设置支付密码
-            NSDictionary *params = @{@"pay_password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_pay_password":self.VerificationCodeOrPasswordAgainTextField.text};
-            [GTNetWorking postWithUrl:DOLPHIN_API_PAYINIT params:params success:^(NSNumber *code, NSString *msg, id data) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                if ([code integerValue] == 200) {
-                    [weakSelf rightButtonClick:nil];
-                }
-                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
-            } fail:^(NSError *error) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-            }];
+            [self setPassword:DOLPHIN_API_PAYINIT];
         }
-        
     }
     
 }
@@ -432,6 +397,41 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+//获取验证码
+- (void)requestVerificationCode
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSDictionary *param = @{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"code":self.VerificationCodeOrPasswordAgainTextField.text};
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            self.u_token = data;
+            self.setPasswordState = SetPasswordStateSetNewPassword;
+        }else{
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
+//设置密码
+- (void)setPassword:(NSString *)url
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
+    NSDictionary *hedader = @{@"U-Token":self.u_token};
+    [GTNetWorking postWithUrl:url params:params header:hedader success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            [self rightButtonClick:nil];
+        }
+        [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end

@@ -72,7 +72,6 @@
         if ([textField respondsToSelector:@selector(resignFirstResponder)]) {
             [textField resignFirstResponder];
         }
-        
     }
     return YES;
 }
@@ -86,6 +85,7 @@
 -(void)reloadWithTitle:(NSString *)title placeholder:(NSString *)placeholder  didEndEditingHandle:(void(^)(NSString *text))handle
 {
     self.titleLabel.text = title;
+    self.textField.text = nil;
     self.textField.placeholder = placeholder;
     self.handle = handle;
 }

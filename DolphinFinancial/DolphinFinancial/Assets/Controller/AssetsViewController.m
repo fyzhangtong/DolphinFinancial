@@ -37,6 +37,11 @@
     // Do any additional setup after loading the view.
     [self makeView];
     self.earns = [[NSMutableArray alloc] init];
+    
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self requestData];
 }
 

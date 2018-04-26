@@ -108,6 +108,7 @@
     
     if (indexPath.section == 0) {
         TextFieldTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:[TextFieldTableViewCell reuseIdentifier]];
+        self.originalPassword = @"";
         [cell1 reloadWithTitle:@"原登录密码" placeholder:@"请输入原登录密码" didEndEditingHandle:^(NSString *text) {
             weakSelf.originalPassword = text;
         }];
@@ -115,10 +116,12 @@
     }else if (indexPath.section == 1){
         TextFieldTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:[TextFieldTableViewCell reuseIdentifier]];
         if (indexPath.row == 0) {
+            self.password = @"";
             [cell1 reloadWithTitle:@"新登录密码" placeholder:@"6-16位，含数字、字母"  didEndEditingHandle:^(NSString *text) {
                 weakSelf.password = text;
             }];
         }else if (indexPath.row == 1){
+            self.confirmPassword = @"";
             [cell1 reloadWithTitle:@"确认密码" placeholder:@"6-16位，含数字、字母"  didEndEditingHandle:^(NSString *text) {
                 weakSelf.confirmPassword = text;
             }];
@@ -160,7 +163,31 @@
 #pragma mark - ChangePasswordButtonTableViewCellDelegate
 - (void)confirmChangePassword
 {
-    NSLog(@"确认");
+    NSLog(@"确定");
+    if (self.passwordType == ChangePasswordTypeLogin) {
+        [self setNewPassword:DOLPHIN_API_USER_PASSWORD_MODIFY];
+    }else{
+        [self setNewPassword:DOLPHIN_API_USER_PAY_MODIFY];
+    }
+}
+//设置密码
+- (void)setNewPassword:(NSString *)url
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    SafeDictionarySetObject(params, self.originalPassword, @"old_password");
+    SafeDictionarySetObject(params, self.password, @"new_password");
+    SafeDictionarySetObject(params, self.confirmPassword, @"confirm_password");
+    [GTNetWorking postWithUrl:url params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            [self.tableView reloadData];
+        }
+        [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
 
 @end
