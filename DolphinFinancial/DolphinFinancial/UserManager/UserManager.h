@@ -12,6 +12,6 @@
 
 + (NSString *)userToken;
 + (void)removeUser;
-+ (void)setUseraToken:(NSString *)Token ;
++ (void)setUseraToken:(NSString *)Token;
 
 @end

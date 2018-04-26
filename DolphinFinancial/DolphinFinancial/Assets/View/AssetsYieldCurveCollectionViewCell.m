@@ -112,7 +112,6 @@
         
         _chartView.legend.form = ChartLegendFormLine;
         
-//        [_chartView animateWithXAxisDuration:2.5];
     }
     return _chartView;
 }

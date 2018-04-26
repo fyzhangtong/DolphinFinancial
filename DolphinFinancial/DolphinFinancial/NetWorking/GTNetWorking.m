@@ -28,14 +28,14 @@
           success:(GTResponseSuccess)success
              fail:(GTResponseFail)fail{
     
-    return [self baseRequestType:1 url:url params:params showLoginIfNeed:YES success:success fail:fail];
+    return [self baseRequestType:1 url:url params:params header:nil showLoginIfNeed:YES success:success fail:fail];
 }
 +(void)getWithUrl:(NSString *)url
            params:(NSDictionary *)params
   showLoginIfNeed:(BOOL)showLoginIfNeed
           success:(GTResponseSuccess)success
              fail:(GTResponseFail)fail{
-    [self baseRequestType:1 url:url params:params showLoginIfNeed:showLoginIfNeed success:success fail:fail];
+    [self baseRequestType:1 url:url params:params header:nil showLoginIfNeed:showLoginIfNeed success:success fail:fail];
 }
 
 +(void)postWithUrl:(NSString *)url
@@ -43,12 +43,21 @@
            success:(GTResponseSuccess)success
               fail:(GTResponseFail)fail{
     
-    [self baseRequestType:2 url:url params:params showLoginIfNeed:YES success:success fail:fail];
+    [self baseRequestType:2 url:url params:params header:nil showLoginIfNeed:YES success:success fail:fail];
+}
++(void)postWithUrl:(NSString *)url
+            params:(NSDictionary *)params
+            header:(NSDictionary<NSString*,NSString*> *)header
+           success:(GTResponseSuccess)success
+              fail:(GTResponseFail)fail{
+    
+    [self baseRequestType:2 url:url params:params header:header showLoginIfNeed:YES success:success fail:fail];
 }
 
 +(void)baseRequestType:(NSUInteger)type
                    url:(NSString *)url
                 params:(NSDictionary *)params
+                header:(NSDictionary<NSString*,NSString*> *)header
        showLoginIfNeed:(BOOL)showLoginIfNeed
                success:(GTResponseSuccess)success
                   fail:(GTResponseFail)fail{
@@ -59,6 +68,9 @@
     NSString *urlStr=[NSURL URLWithString:url]?url:[self strUTF8Encoding:url];
     
     AFHTTPSessionManager *manager=[self getAFManager];
+    [header enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
     
     void (^progressBlock)(NSProgress * _Nonnull downloadProgress) = ^(NSProgress * _Nonnull downloadProgress) {
         
@@ -81,7 +93,7 @@
             if (showLoginIfNeed) {
                 [LoginViewController loginWithComplete:^(BOOL landSuccess) {
                     if (landSuccess) {
-                        [GTNetWorking baseRequestType:type url:url params:params showLoginIfNeed:NO success:success fail:fail];
+                        [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
                         if (fail) {
                             NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
@@ -100,7 +112,8 @@
             }
         }
     };
-    NSLog(@"url:%@",urlStr);
+    NSLog(@"\nurl:%@\n%@",urlStr,params);
+    
     if (type==1) {
         [manager GET:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
     }else{

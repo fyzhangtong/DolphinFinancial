@@ -205,6 +205,8 @@
 #pragma mark - setter
 - (void)setSetPasswordState:(SetPasswordState)findPasswordState
 {
+    _phoneNumberOrNewPasswordTextField.text = nil;
+    _VerificationCodeOrPasswordAgainTextField.text = nil;
     _setPasswordState = findPasswordState;
     if (_setPasswordState == SetPasswordStateVerify) {
         _phoneNumberOrNewPasswordLabel.text = @"账号";
@@ -383,8 +385,12 @@
         NSDictionary *param = @{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"code":self.VerificationCodeOrPasswordAgainTextField.text};
         [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param success:^(NSNumber *code, NSString *msg, id data) {
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            weakSelf.u_token = data;
-            weakSelf.setPasswordState = SetPasswordStateSetNewPassword;
+            if ([code integerValue] == 200) {
+                weakSelf.u_token = data;
+                weakSelf.setPasswordState = SetPasswordStateSetNewPassword;
+            }else{
+                [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            }
         } fail:^(NSError *error) {
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
@@ -392,8 +398,9 @@
     }else{
         if (self.passwordType == PasswordTypeLogin) {
             //设置登录密码
-            NSDictionary *params = @{@"U-Token":self.u_token,@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
-            [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_PWDLOSS params:params success:^(NSNumber *code, NSString *msg, id data) {
+            NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
+            NSDictionary *hedader = @{@"U-Token":self.u_token};
+            [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_PWDLOSS params:params header:hedader success:^(NSNumber *code, NSString *msg, id data) {
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                 if ([code integerValue] == 200) {
                     [weakSelf rightButtonClick:nil];
@@ -426,7 +433,5 @@
 {
     [self.view endEditing:YES];
 }
-
-
 
 @end

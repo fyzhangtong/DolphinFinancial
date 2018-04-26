@@ -56,6 +56,11 @@
     _loginDataSource = @[@[MyInfoCell],@[MyInfoDetailsCell],@[MyLoginPasswordCell,MyPayPasswordCell],@[MyMessageCenterCell,MyQuestionFeedbackCell],@[MyAboutUsCell],@[MyLogoutCell]];
     
     self.dataSource = _logoutDataSource;
+    
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self requestData];
 }
 - (void)makeView
@@ -180,9 +185,6 @@
     if ([string isEqualToString:MyInfoCell]) {
         if (![UserManager userToken]) {
             [LoginViewController loginWithComplete:^(BOOL success) {
-                if (success) {
-                    [self requestData];
-                }
             }];
         }
     }else if ([string isEqualToString:MyInfoDetailsCell]){
