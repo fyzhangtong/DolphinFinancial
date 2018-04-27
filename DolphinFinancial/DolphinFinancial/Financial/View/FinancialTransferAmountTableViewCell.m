@@ -162,5 +162,9 @@
         [self.delegate textDidBeginEdit:self.amountTextField];
     }
 }
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    return YES;
+}
 
 @end

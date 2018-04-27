@@ -174,11 +174,11 @@
  */
 - (void)transferButtonAction:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     if ([self.amount floatValue] <= 0) {
         [MBProgressHUD showTextAddToView:self.view Title:@"请先输入转入金额" andHideTime:2];
         return;
     }
-    [self.view endEditing:YES];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     SafeDictionarySetObject(params, self.product_id, @"product_id");
     SafeDictionarySetObject(params, self.amount, @"transfer_amount");
