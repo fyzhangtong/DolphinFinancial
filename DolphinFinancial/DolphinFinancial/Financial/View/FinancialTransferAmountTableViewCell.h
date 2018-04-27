@@ -12,6 +12,7 @@
 @required
 
 - (void)textDidEndEdit:(UITextField *)textField;
+- (void)textDidBeginEdit:(UITextField *)textField;
 
 @end;
 
@@ -19,6 +20,6 @@
 
 @property (nonatomic, weak) id<FinancialTransferAmountTableViewCellDelegate> delegate;
 
-- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee;
+- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee product_limit:(NSString *)product_limit;
 
 @end

@@ -102,8 +102,7 @@
 {
     if (!_amountTextField) {
         _amountTextField = [[UITextField alloc] init];
-        _amountTextField.placeholder = @"1000起投";
-        _amountTextField.font = [UIFont systemFontOfSize:14];
+        _amountTextField.font = [UIFont systemFontOfSize:24];
         _amountTextField.textColor = DFColorWithHexString(@"#101010");
         _amountTextField.keyboardType = UIKeyboardTypeNumberPad;
         _amountTextField.delegate = self;
@@ -140,9 +139,10 @@
     return _feeLabel;
 }
 
-- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee
+- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee product_limit:(NSString *)product_limit
 {
     self.balanceLabel.text = [NSString stringWithFormat:@"余额：%@",balance];
+    _amountTextField.placeholder = product_limit;
     NSString *string1 = @"手续费：";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",string1,fee]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:DFTINTCOLOR range:NSMakeRange(string1.length, fee.length)];
@@ -154,6 +154,12 @@
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(textDidEndEdit:)]) {
         [self.delegate textDidEndEdit:self.amountTextField];
+    }
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(textDidBeginEdit:)]) {
+        [self.delegate textDidBeginEdit:self.amountTextField];
     }
 }
 

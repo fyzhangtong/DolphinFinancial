@@ -150,13 +150,6 @@
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-        Borrower *borrower = [[Borrower alloc] init];
-        borrower.borrower = @"34520089";
-        borrower.status = @"还款中";
-        borrower.product_name = @"1月定存";
-        borrower.borrow_time = @"2018";
-        [weakSelf.dataSource addObject:borrower];
-        [weakSelf.tableView reloadData];
     }];
 }
 

@@ -10,11 +10,15 @@
 
 @implementation BaseTableView
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    [self endEditing:YES];
+//    return [super hitTest:point withEvent:event];
+//}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [super touchesBegan:touches withEvent:event];
     [self endEditing:YES];
-    
-    return [super hitTest:point withEvent:event];
 }
 
 @end

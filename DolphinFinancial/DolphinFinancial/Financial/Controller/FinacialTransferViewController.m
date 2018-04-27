@@ -112,7 +112,7 @@
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount fee:@"2.00%"];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount fee:@"" product_limit:self.transfer.product_limit];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferInfoTableViewCell reuseIdentifier]];
         [(FinancialTransferInfoTableViewCell *)cell reloadinterestRate:self.transfer.interest_rate targetIncome:self.transfer.target_income incomeDescription:self.transfer.income_description];
@@ -151,6 +151,11 @@
 - (void)textDidEndEdit:(UITextField *)textField
 {
     self.amount = textField.text;
+    [self requestData:self.product_id transferAmount:textField.text autoContinue:self.auto_continue isBack:@""];
+}
+- (void)textDidBeginEdit:(UITextField *)textField
+{
+    
 }
 #pragma mark - FinancialTransferButtonTableViewCellDelegate
 /**
@@ -170,8 +175,10 @@
 - (void)transferButtonAction:(UIButton *)sender
 {
     if ([self.amount floatValue] <= 0) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请先输入转入金额" andHideTime:2];
         return;
     }
+    [self.view endEditing:YES];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     SafeDictionarySetObject(params, self.product_id, @"product_id");
     SafeDictionarySetObject(params, self.amount, @"transfer_amount");
@@ -182,7 +189,7 @@
     [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_TRANSFER_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
-            BOOL need_init = data[@"need_init"];
+            BOOL need_init = [data[@"need_init"] boolValue];
             if (need_init) {
                 [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
                     if (success) {
@@ -203,28 +210,11 @@
 }
 - (void)payCheck
 {
-    DNPayAlertView *payAlert = [[DNPayAlertView alloc]init];
-    payAlert.titleStr = @"请输入交易密码";
-    payAlert.detail = @"转入金额";
-    payAlert.amount= [self.amount floatValue];
-    [payAlert show];
-    payAlert.completeHandle = ^(NSString *inputPwd) {
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        SafeDictionarySetObject(params, inputPwd, @"pay_password");
-        SafeDictionarySetObject(params, @"product", @"action");
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        __weak typeof(self) weakSelf = self;
-        [GTNetWorking postWithUrl:DOLPHIN_API_PAYCHECK params:params success:^(NSNumber *code, NSString *msg, id data) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            if ([code integerValue] == 200) {
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            }
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
-        } fail:^(NSError *error) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
-        }];
-    };
+    [DNPayAlertViewManager showPayAlertWithTitle:@"请输入交易密码" detail:@"转入金额" amount:[self.amount floatValue] action:@"product" complete:^(BOOL paysuccess) {
+        if (paysuccess) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 /**

@@ -42,5 +42,9 @@
  收益描述
  */
 @property (nonatomic, copy) NSString *income_description;
+/**
+ 起投金额
+ */
+@property (nonatomic, copy) NSString *product_limit;
 
 @end

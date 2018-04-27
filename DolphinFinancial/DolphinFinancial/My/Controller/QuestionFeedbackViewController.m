@@ -84,7 +84,24 @@
 }
 - (void)submitButtonClick:(UIButton *)sender
 {
-    
+    [self.view endEditing:YES];
+    if (self.textView.text.length == 0) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请先输入内容" andHideTime:2];
+        return;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:1];
+    SafeDictionarySetObject(params, self.textView.text, @"content");
+    [GTNetWorking postWithUrl:DOLPHIN_API_FEEDBACK params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:2];
+        if ([code integerValue] == 200) {
+            self.textView.text = nil;
+        }
+        [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:2];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
     
 }
 

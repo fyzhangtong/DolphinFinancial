@@ -102,7 +102,7 @@
     }else if (indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"1000" fee:@"2.00%"];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"1000" fee:@"2.00%" product_limit:@""];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
         [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:@"普通会员" earn:@"2.00%"];

@@ -106,7 +106,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisPaymentDateTableViewCell reuseIdentifier]];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"100" fee:@"1"];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"100" fee:@"1" product_limit:@""];
     }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
         [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:@"普通会员" earn:@"2.00%"];

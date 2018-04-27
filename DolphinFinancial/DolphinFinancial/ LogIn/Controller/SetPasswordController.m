@@ -26,6 +26,7 @@
 @property (nonatomic, strong) MASConstraint *getVerificationCodeButtonConstraintW;
 @property (nonatomic, assign) BOOL isCountDowning;  //正在倒计时
 @property (nonatomic, copy) NSString *u_token;      //未登录状态修改密码时请在header头信息中带上
+@property (nonatomic, assign) BOOL setSuccess;
 
 @end
 
@@ -53,6 +54,13 @@
         [self setRightButtonTitle:@"跳过"];
     }else{
         [self addLeftBackButton];
+    }
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (self.complete) {
+        self.complete(self.setSuccess);
     }
 }
 
@@ -421,10 +429,12 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
-    NSDictionary *hedader = @{@"U-Token":self.u_token};
-    [GTNetWorking postWithUrl:url params:params header:hedader success:^(NSNumber *code, NSString *msg, id data) {
+    NSMutableDictionary *header = [[NSMutableDictionary alloc] initWithCapacity:1];
+    SafeDictionarySetObject(header, self.u_token, @"U-Token");
+    [GTNetWorking postWithUrl:url params:params header:header success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
+            self.setSuccess = YES;
             [self rightButtonClick:nil];
         }
         [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];

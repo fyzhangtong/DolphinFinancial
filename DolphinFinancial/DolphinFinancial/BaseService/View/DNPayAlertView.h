@@ -22,4 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface DNPayAlertViewManager : NSObject
+
++ (void)showPayAlertWithTitle:(NSString *)title detail:(NSString *)detail amount:(float)amount action:(NSString *)action complete:(void(^)(BOOL success))complete;
+
+@end
+
 NS_ASSUME_NONNULL_END

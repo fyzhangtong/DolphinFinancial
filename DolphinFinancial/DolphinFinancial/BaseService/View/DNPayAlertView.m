@@ -7,6 +7,8 @@
 //
 
 #import "DNPayAlertView.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD+DFStyle.h"
 
 #define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -259,6 +261,40 @@ static CGFloat const kCommonMargin    = 40;
         _pwdIndicators = [[NSMutableArray alloc]init];
     }
     return _pwdIndicators;
+}
+
+@end
+
+@implementation DNPayAlertViewManager
+
++ (void)showPayAlertWithTitle:(NSString *)title detail:(NSString *)detail amount:(float)amount action:(NSString *)action complete:(void(^)(BOOL success))complete
+{
+    DNPayAlertView *payAlert = [[DNPayAlertView alloc]init];
+    payAlert.titleStr = title;
+    payAlert.detail = detail;
+    payAlert.amount= amount;
+    [payAlert show];
+    payAlert.completeHandle = ^(NSString *inputPwd) {
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        SafeDictionarySetObject(params, inputPwd, @"pay_password");
+        SafeDictionarySetObject(params, action, @"action");
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [MBProgressHUD showHUDAddedTo:window animated:YES];
+        [MBProgressHUD showHUDAddedTo:window animated:YES];
+        [GTNetWorking postWithUrl:DOLPHIN_API_PAYCHECK params:params success:^(NSNumber *code, NSString *msg, id data) {
+            [MBProgressHUD hideHUDForView:window animated:YES];
+            if (complete) {
+                complete([code integerValue] == 200);
+            }
+            [MBProgressHUD showTextAddToView:window Title:msg andHideTime:2];
+        } fail:^(NSError *error) {
+            [MBProgressHUD hideHUDForView:window animated:YES];
+            [MBProgressHUD showTextAddToView:window Title:error.localizedDescription andHideTime:2];
+            if (complete) {
+                complete(NO);
+            }
+        }];
+    };
 }
 
 @end
