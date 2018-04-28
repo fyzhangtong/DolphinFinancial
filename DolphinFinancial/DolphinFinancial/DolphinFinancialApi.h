@@ -10,7 +10,7 @@
 #define DolphinFinancialApi_h
 
 //#define DOLPHIN_HOST @"http://127.0.0.1:8801/api/v1"
-#define DOLPHIN_HOST @"https://4c0ff462.ngrok.io/api/v1"
+#define DOLPHIN_HOST @"https://bcbdafd6.ngrok.io/api/v1"
 
 //根据uri 生成url
 #define DOLPHIN_API(u) [NSString stringWithFormat:@"%@/%@",DOLPHIN_HOST,(u)]
