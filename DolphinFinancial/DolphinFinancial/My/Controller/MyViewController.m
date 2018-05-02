@@ -17,7 +17,6 @@
 #import "QuestionFeedbackViewController.h"
 #import "AboutUsViewController.h"
 #import "UserManager.h"
-#import "FinacialTransferViewController.h"
 
 #define MyInfoCell @"MyInfoCell"
 #define MyInfoDetailsCell @"MyInfoDetailsCell"
@@ -183,8 +182,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [FinacialTransferViewController pushToController:self productId:@(1)];
-    return;
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyInfoCell]) {
         if (![UserManager userToken]) {
