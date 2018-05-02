@@ -12,7 +12,6 @@
 @required
 
 - (void)textDidEndEdit:(UITextField *)textField;
-- (void)textDidBeginEdit:(UITextField *)textField;
 
 @end;
 

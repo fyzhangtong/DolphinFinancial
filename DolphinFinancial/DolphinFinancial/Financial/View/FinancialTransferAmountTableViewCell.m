@@ -156,12 +156,7 @@
         [self.delegate textDidEndEdit:self.amountTextField];
     }
 }
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(textDidBeginEdit:)]) {
-        [self.delegate textDidBeginEdit:self.amountTextField];
-    }
-}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     return YES;

@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WithdrawaisAccountNumberTableViewCellDelegat<NSObject>
+
+@required
+
+- (void)accountNumberTextDidEndEdit:(UITextField *)textField;
+
+@end
+
 /**
  收款账号
  */
 @interface WithdrawaisAccountNumberTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<WithdrawaisAccountNumberTableViewCellDelegat> delegate;
 
 + (NSString *)reuseIdentifier;
 + (void)registerCellTableView:(UITableView *)tableView;

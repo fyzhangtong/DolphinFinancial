@@ -8,6 +8,8 @@
 
 #import "MyFinancialDetailsViewController.h"
 #import "MyFinancialBorrowersViewController.h"
+#import "SetPasswordController.h"
+#import "DNPayAlertView.h"
 
 #import "MyFinancialDetailsTotalTableViewCell.h"
 #import "MyFinancialDetailsExplainTableViewCell.h"
@@ -223,7 +225,39 @@
 
 - (void)transferButtonClick:(UIButton *)sender
 {
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    SafeDictionarySetObject(params, self.productId, @"user_product_id");
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_USER_PRODUCT_ROLLOUT params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            BOOL need_init = [data[@"need_init"] boolValue];
+            if (need_init) {
+                [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
+                    if (success) {
+                        [self payCheck];
+                    }
+                }];
+            }else{
+                [self payCheck];
+            }
+        }else{
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
+
+- (void)payCheck
+{
+    [DNPayAlertViewManager showPayAlertWithTitle:@"请输入交易密码" detail:@"转出金额" amount:[self.financial.total_amount floatValue] action:@"rollout" complete:^(BOOL paysuccess) {
+        if (paysuccess) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 

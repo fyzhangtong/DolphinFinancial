@@ -33,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    [self requestData];
 }
 
 - (void)makeView
@@ -152,16 +153,20 @@
 
 - (void)requestData
 {
-    __weak typeof(self) weakSelf = self;
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [GTNetWorking getWithUrl:DOLPHIN_API_BALANCE params:nil success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
-            weakSelf.moneyLabel.text = data;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.moneyLabel.text = data[@"balance"];
+            });
+            
         }else{
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
     }];
 }
 

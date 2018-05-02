@@ -64,6 +64,7 @@
 		7B48A4E9205BA1A50020FFE6 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B48A4E8205BA1A50020FFE6 /* UIImage+ImageWithColor.m */; };
 		7B4EABA3206DCF7400693163 /* GTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EABA2206DCF7400693163 /* GTUtil.m */; };
 		7B4EABA6206DD22C00693163 /* GTNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EABA4206DD22C00693163 /* GTNetWorking.m */; };
+		7B5EF38020996A4B008EB1BB /* BalanceWithDrawResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5EF37F20996A4B008EB1BB /* BalanceWithDrawResult.m */; };
 		7B61A42520649C350001F77F /* WithdrawalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42420649C350001F77F /* WithdrawalsViewController.m */; };
 		7B61A42820649D170001F77F /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B61A42720649D170001F77F /* RechargeViewController.m */; };
 		7B71B2E02071D41E0013B787 /* DFNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B71B2DF2071D41E0013B787 /* DFNotice.m */; };
@@ -212,6 +213,8 @@
 		7B4EABA2206DCF7400693163 /* GTUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTUtil.m; sourceTree = "<group>"; };
 		7B4EABA4206DD22C00693163 /* GTNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTNetWorking.m; sourceTree = "<group>"; };
 		7B4EABA5206DD22C00693163 /* GTNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTNetWorking.h; sourceTree = "<group>"; };
+		7B5EF37E20996A4B008EB1BB /* BalanceWithDrawResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceWithDrawResult.h; sourceTree = "<group>"; };
+		7B5EF37F20996A4B008EB1BB /* BalanceWithDrawResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceWithDrawResult.m; sourceTree = "<group>"; };
 		7B61A42320649C350001F77F /* WithdrawalsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawalsViewController.h; sourceTree = "<group>"; };
 		7B61A42420649C350001F77F /* WithdrawalsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsViewController.m; sourceTree = "<group>"; };
 		7B61A42620649D170001F77F /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 				7B44259D2080B02800161123 /* AssetEarn.m */,
 				7BF38B1120872F3900B92419 /* FinacialRecord.h */,
 				7BF38B1220872F3900B92419 /* FinacialRecord.m */,
+				7B5EF37E20996A4B008EB1BB /* BalanceWithDrawResult.h */,
+				7B5EF37F20996A4B008EB1BB /* BalanceWithDrawResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				7B73E187206A590100A7C117 /* MyFinancialDetailsViewController.m in Sources */,
 				7B431956205F50F300040FBA /* FinancialViewCell.m in Sources */,
 				7B0A5F262064D19B0051249E /* BaseTableView.m in Sources */,
+				7B5EF38020996A4B008EB1BB /* BalanceWithDrawResult.m in Sources */,
 				7B48A4DA205B71DF0020FFE6 /* AssetsViewController.m in Sources */,
 				7B431CF32068D8B000D89476 /* DNPayAlertView.m in Sources */,
 				7B7AA94C2063579600415C36 /* TargetAnnualRateOfReturnCell.m in Sources */,

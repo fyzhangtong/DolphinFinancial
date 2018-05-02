@@ -11,6 +11,7 @@
 @interface WithdrawaisAccountNumberTableViewCell()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *accountNumberTextField;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
@@ -54,20 +55,25 @@
         _accountNumberTextField = [UITextField new];
         _accountNumberTextField.textColor = DFColorWithHexString(@"#101010");
         _accountNumberTextField.font = [UIFont systemFontOfSize:14.0];
-        _accountNumberTextField.placeholder = @"请输入收款账号";
         _accountNumberTextField.delegate = self;
         _accountNumberTextField.keyboardType = UIKeyboardTypeDefault;
         
-        UILabel *label = [UILabel new];
-        label.textColor = DFColorWithHexString(@"#101010");
-        label.font = [UIFont systemFontOfSize:14.0];
-        label.text = @"收款账号     ";
-        [label sizeToFit];
         
-        _accountNumberTextField.leftView = label;
+        
+        _accountNumberTextField.leftView = self.titleLabel;
         _accountNumberTextField.leftViewMode = UITextFieldViewModeAlways;
     }
     return _accountNumberTextField;
+}
+- (UILabel *)titleLabel
+{
+    if (!_titleLabel) {
+        _titleLabel = [UILabel new];
+        _titleLabel.textColor = DFColorWithHexString(@"#101010");
+        _titleLabel.font = [UIFont systemFontOfSize:14.0];
+        [_titleLabel sizeToFit];
+    }
+    return _titleLabel;
 }
 #pragma mark - textFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -80,8 +86,16 @@
     }
     return YES;
 }
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(accountNumberTextDidEndEdit:)]) {
+        [self.delegate accountNumberTextDidEndEdit:textField];
+    }
+}
 - (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder
 {
-    
+    self.titleLabel.text = title;
+    [_titleLabel sizeToFit];
+    self.accountNumberTextField.placeholder = placeholder;
 }
 @end

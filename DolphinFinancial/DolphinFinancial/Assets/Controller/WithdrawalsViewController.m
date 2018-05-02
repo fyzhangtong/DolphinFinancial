@@ -7,6 +7,7 @@
 //
 
 #import "WithdrawalsViewController.h"
+#import "SetPasswordController.h"
 
 #import "WithdrawaisAccountNumberTableViewCell.h"
 #import "WithdrawaisPaymentDateTableViewCell.h"
@@ -16,10 +17,14 @@
 #import "WithdrawaisMemberLevelTableViewCell.h"
 #import "DNPayAlertView.h"
 
-@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate,FinancialTransferAmountTableViewCellDelegate>
+#import "BalanceWithDrawResult.h"
+
+@interface WithdrawalsViewController ()<UITableViewDelegate, UITableViewDataSource,WithdrawalsConfirmTableViewCellDelegate,FinancialTransferAmountTableViewCellDelegate,WithdrawaisAccountNumberTableViewCellDelegat>
 
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, copy) NSString *amount;
+@property (nonatomic, copy) NSString *accountNumber;
+@property (nonatomic, strong) BalanceWithDrawResult *result;
 
 @end
 
@@ -35,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    [self requestData];
 }
 - (void)makeView
 {
@@ -102,14 +108,17 @@
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
+        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款账号" placeholder:@"请输入收款账号"];
+        ((WithdrawaisAccountNumberTableViewCell *)cell).delegate = self;
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisPaymentDateTableViewCell reuseIdentifier]];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:@"100" fee:@"1" product_limit:@""];
+        ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:self.result.fee product_limit:nil];
     }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
-        [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:@"普通会员" earn:@"2.00%"];
+        [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:self.result.member_level earn:self.result.interest_rate];
     }else if (indexPath.section == 4){
         
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
@@ -169,19 +178,75 @@
 - (void)textDidEndEdit:(UITextField *)textField
 {
     self.amount = textField.text;
+    [self requestData];
+}
+#pragma mark - WithdrawaisAccountNumberTableViewCellDelegat
+- (void)accountNumberTextDidEndEdit:(UITextField *)textField
+{
+    self.accountNumber = textField.text;
 }
 #pragma mark - WithdrawalsConfirmTableViewCellDelegate
 - (void)confirmWithdrawals
 {
     
-    DNPayAlertView *payAlert = [[DNPayAlertView alloc]init];
-    payAlert.titleStr = @"请输入交易密码";
-    payAlert.detail = @"提现";
-    payAlert.amount= 10;
-    [payAlert show];
-    payAlert.completeHandle = ^(NSString *inputPwd) {
-        NSLog(@"密码是%@",inputPwd);
-    };
+    [self.view endEditing:YES];
+    if ([self.amount floatValue] <= 0) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请先输入提现金额" andHideTime:2];
+        return;
+    }
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    SafeDictionarySetObject(params, self.amount, @"withdraw_amount");
+    SafeDictionarySetObject(params, self.accountNumber, @"remittance_account");
+    
+    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        if ([code integerValue] == 200) {
+            BOOL need_init = [data[@"need_init"] boolValue];
+            if (need_init) {
+                [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
+                    if (success) {
+                        [weakSelf payCheck];
+                    }
+                }];
+            }else{
+                [weakSelf payCheck];
+            }
+        }else{
+            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+    }];
 }
-
+- (void)payCheck
+{
+    [DNPayAlertViewManager showPayAlertWithTitle:@"请输入交易密码" detail:@"提现金额" amount:[self.amount floatValue] action:@"withdraw" complete:^(BOOL paysuccess) {
+        if (paysuccess) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+- (void)requestData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:3];
+    SafeDictionarySetObject(params, self.amount, @"withdraw_amount");
+    SafeDictionarySetObject(params, self.accountNumber, @"remittance_account");
+//    SafeDictionarySetObject(params, @"", @"is_back");
+    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([code integerValue] == 200) {
+            self.result = [BalanceWithDrawResult yy_modelWithJSON:data];
+            [self.tableView reloadData];
+        }else{
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+        }
+    } fail:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+    }];
+}
 @end
