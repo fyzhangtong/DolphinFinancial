@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B02E7CB209946D30060D64B /* RegistrationAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */; };
 		7B0429A0208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B04299F208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m */; };
 		7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */; };
 		7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */; };
@@ -99,6 +100,8 @@
 		1EA40CF10350D22C1821E2B2 /* Pods-DolphinFinancial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.debug.xcconfig"; sourceTree = "<group>"; };
 		4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DolphinFinancial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.release.xcconfig"; sourceTree = "<group>"; };
+		7B02E7C9209946D30060D64B /* RegistrationAgreementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistrationAgreementViewController.h; sourceTree = "<group>"; };
+		7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistrationAgreementViewController.m; sourceTree = "<group>"; };
 		7B04299E208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisMemberLevelTableViewCell.h; sourceTree = "<group>"; };
 		7B04299F208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisMemberLevelTableViewCell.m; sourceTree = "<group>"; };
 		7B0A5F1D2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisAccountNumberTableViewCell.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				7B40E86B2060F9EA005562D5 /* SetPasswordController.m */,
 				7B40E86D2060FA7C005562D5 /* SignUpViewController.h */,
 				7B40E86E2060FA7C005562D5 /* SignUpViewController.m */,
+				7B02E7C9209946D30060D64B /* RegistrationAgreementViewController.h */,
+				7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 				7B33A8F42091AB55004D37BE /* MessageDetailsViewController.m in Sources */,
 				7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
+				7B02E7CB209946D30060D64B /* RegistrationAgreementViewController.m in Sources */,
 				7B71B2EA2071E1150013B787 /* Borrower.m in Sources */,
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
 				7B442594208057D500161123 /* FinancialTransferButtonTableViewCell.m in Sources */,

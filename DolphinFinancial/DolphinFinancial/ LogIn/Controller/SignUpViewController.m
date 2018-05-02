@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "UIImage+ImageWithColor.h"
 #import "SetPasswordController.h"
+#import "RegistrationAgreementViewController.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 
@@ -449,11 +450,15 @@
 }
 - (void)aggrementButtonClick:(UIButton *)sender
 {
-    NSLog(@"海豚理财协议");
+    [RegistrationAgreementViewController pushToController:self.navigationController];
 }
 
 - (void)signUpButtonClick:(UIButton *)sender
 {
+    if (!_agreeButton.selected) {
+        [MBProgressHUD showTextAddToView:self.view Title:@"请先同意注册协议" andHideTime:2];
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     NSDictionary *params = @{@"phone":self.phoneNumberTextField.text,
                              @"code":self.verificationCodeTextField.text,
