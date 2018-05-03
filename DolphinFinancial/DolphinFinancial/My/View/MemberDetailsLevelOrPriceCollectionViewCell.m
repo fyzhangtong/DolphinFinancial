@@ -19,7 +19,7 @@
 
 + (CGSize)cellSize
 {
-    return CGSizeMake((DFSCREENW-2)/3, 35);
+    return CGSizeMake((DFSCREENW-2)/2, 35);
 }
 
 

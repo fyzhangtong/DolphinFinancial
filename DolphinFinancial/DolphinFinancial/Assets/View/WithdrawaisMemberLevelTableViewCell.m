@@ -19,7 +19,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 52;
+    return 27;
 }
 
 - (void)makeView
@@ -59,10 +59,11 @@
 }
 - (void)reloadMemberLevel:(NSString *)level earn:(NSString *)earn
 {
+    
+    self.levelLabel.text = [NSString stringWithFormat:@"会员等级：%@",level];
     if (earn.length == 0) {
         return;
     }
-    self.levelLabel.text = [NSString stringWithFormat:@"会员等级：%@",level];
     NSString *string1 = @"会员收益系数：";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",string1,earn]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:DFTINTCOLOR range:NSMakeRange(string1.length, earn.length)];

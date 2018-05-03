@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataSource1 = [[NSMutableArray alloc] initWithArray:@[@"会员等级",@"在线金额",@"余额收益奖励"]];
+    _dataSource1 = [[NSMutableArray alloc] initWithArray:@[@"会员等级",@"在线金额"]];
     [self makeView];
     [self requestData];
 }
@@ -146,7 +146,7 @@
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsLevelOrPriceCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
             NSString *text = _dataSource1[indexPath.row-1];
             UIColor *color = DFColorWithHexString(@"#101010") ;
-            if (indexPath.row%3 == 1) {
+            if (indexPath.row%2 == 1) {
                 color = DFTINTCOLOR;
             }
             [((MemberDetailsLevelOrPriceCollectionViewCell *)cell) reloadData:text color:color];
@@ -174,10 +174,10 @@
                 NSArray *members = data[@"members"];
                 [members enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([obj isKindOfClass:[NSDictionary class]]) {
-                        NSArray *values = [obj allValues];
-                        if (values.count) {
-                            [_dataSource1 addObjectsFromArray:values];
-                        }
+                        NSString *member_level = obj[@"member_level"];
+                        NSString *need_amount = obj[@"level_amount"];
+                        SafeArrayAddObject(_dataSource1, member_level);
+                        SafeArrayAddObject(_dataSource1, need_amount);
                     }
                 }];
             }
