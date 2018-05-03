@@ -19,6 +19,6 @@
 
 @property (nonatomic, weak) id<FinancialTransferAmountTableViewCellDelegate> delegate;
 
-- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee product_limit:(NSString *)product_limit;
+- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee placeholder:(NSString *)product_limit title:(NSString *)title;
 
 @end

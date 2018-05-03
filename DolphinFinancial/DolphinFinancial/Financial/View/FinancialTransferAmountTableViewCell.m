@@ -94,7 +94,6 @@
         _titleLabel.textColor = DFColorWithHexString(@"#101010");
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.text = @"转入金额";
     }
     return _titleLabel;
 }
@@ -109,7 +108,7 @@
         
         UILabel *leftLabel = [UILabel new];
         leftLabel.textColor = DFColorWithHexString(@"#101010");
-        leftLabel.font = [UIFont systemFontOfSize:24];
+        leftLabel.font = [UIFont systemFontOfSize:20];
         leftLabel.text = @"¥    ";
         [leftLabel sizeToFit];
         
@@ -139,8 +138,9 @@
     return _feeLabel;
 }
 
-- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee product_limit:(NSString *)product_limit
+- (void)reloadBlance:(NSString *)balance fee:(NSString *)fee placeholder:(NSString *)product_limit title:(NSString *)title
 {
+    self.titleLabel.text = title;
     self.balanceLabel.text = [NSString stringWithFormat:@"余额：%@",balance];
     _amountTextField.placeholder = product_limit;
     NSString *string1 = @"手续费：";

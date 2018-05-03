@@ -110,11 +110,13 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
-            for (NSDictionary *dic in (NSArray *)data) {
-                UserFinancial *product = [UserFinancial yy_modelWithDictionary:dic];
-                [weakSelf.dataSource addObject:product];
+            if ([data isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in (NSArray *)data) {
+                    UserFinancial *product = [UserFinancial yy_modelWithDictionary:dic];
+                    [weakSelf.dataSource addObject:product];
+                }
+                [weakSelf.tableView reloadData];
             }
-            [weakSelf.tableView reloadData];
         }else{
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }

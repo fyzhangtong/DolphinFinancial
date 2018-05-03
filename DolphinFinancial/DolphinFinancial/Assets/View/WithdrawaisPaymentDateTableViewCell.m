@@ -109,7 +109,7 @@
         _remainderLabel = [UILabel new];
         _remainderLabel.textColor = DFColorWithHexString(@"#969696");
         _remainderLabel.font = [UIFont systemFontOfSize:10.0];
-        _remainderLabel.text = @"本周还剩1次";
+        _remainderLabel.text = @"预计3个工作日";
     }
     return _remainderLabel;
 }

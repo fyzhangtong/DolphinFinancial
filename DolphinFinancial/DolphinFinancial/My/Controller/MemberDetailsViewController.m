@@ -11,7 +11,7 @@
 #import "MemberDetailsMyLevelCollectionViewCell.h"
 #import "MemberDetailsLevelRuleCollectionViewCell.h"
 #import "MemberDetailsLevelOrPriceCollectionViewCell.h"
-#import "MemberDetailsLevelExplainCollectionViewCell.h"
+//#import "MemberDetailsLevelExplainCollectionViewCell.h"
 
 @interface MemberDetailsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -64,7 +64,7 @@
         [MemberDetailsMyLevelCollectionViewCell registerCell:_collectionView];
         [MemberDetailsLevelRuleCollectionViewCell registerCell:_collectionView];
         [MemberDetailsLevelOrPriceCollectionViewCell registerCell:_collectionView];
-        [MemberDetailsLevelExplainCollectionViewCell registerCell:_collectionView];
+//        [MemberDetailsLevelExplainCollectionViewCell registerCell:_collectionView];
     }
     return _collectionView;
 }
@@ -82,9 +82,10 @@
         }else{
             size = [MemberDetailsLevelOrPriceCollectionViewCell cellSize];
         }
-    }else if (indexPath.section == 2){
-        size = [MemberDetailsLevelExplainCollectionViewCell cellSize];
     }
+//    else if (indexPath.section == 2){
+//        size = [MemberDetailsLevelExplainCollectionViewCell cellSize];
+//    }
     return size;
 }
 
@@ -122,7 +123,7 @@
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return 2;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -151,10 +152,11 @@
             }
             [((MemberDetailsLevelOrPriceCollectionViewCell *)cell) reloadData:text color:color];
         }
-    }else if (indexPath.section == 2){
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsLevelExplainCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
-    
     }
+//    else if (indexPath.section == 2){
+//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MemberDetailsLevelExplainCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//
+//    }
     
     return cell;
 }

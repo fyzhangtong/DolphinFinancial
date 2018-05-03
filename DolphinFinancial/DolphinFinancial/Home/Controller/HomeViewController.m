@@ -123,6 +123,11 @@
     
     [self setCenterImage:[UIImage imageNamed:@"dolphin"] title:@"海豚理财" titleColor:[UIColor whiteColor]];
     [self makeView];
+    
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self loadData];
 }
 

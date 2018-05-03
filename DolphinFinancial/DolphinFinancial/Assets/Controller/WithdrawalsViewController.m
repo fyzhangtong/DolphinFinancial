@@ -115,7 +115,7 @@
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:self.result.fee product_limit:nil];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:self.result.fee placeholder:@"请输入提现金额" title:@"提现金额"];
     }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
         [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:self.result.member_level earn:self.result.interest_rate];
@@ -123,7 +123,7 @@
         
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
         ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
-        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认提现"];
+        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认提现" desc:@"提现发起后将提交到后台审核"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

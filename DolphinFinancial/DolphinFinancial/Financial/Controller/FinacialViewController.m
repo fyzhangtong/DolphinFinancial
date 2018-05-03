@@ -37,7 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setCenterTitle:@"理财"];
-    [self setRightButtonImage:[UIImage imageNamed:@"message"]];
+    [self setRightButtonImage:[UIImage imageNamed:@"icon_record"]];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ownNavigationBar.mas_bottom);
@@ -45,6 +45,10 @@
         make.left.right.mas_equalTo(self.view);
     }];
     self.dataSource = [[NSMutableArray alloc] init];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self loadData];
 }
 - (UITableView *)tableView

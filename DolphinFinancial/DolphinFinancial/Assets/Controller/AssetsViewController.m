@@ -48,7 +48,7 @@
 - (void)makeView
 {
     [self setCenterTitle:@"资产"];
-    [self setRightButtonImage:[UIImage imageNamed:@"assetsRecords"]];
+    [self setRightButtonImage:[UIImage imageNamed:@"icon_record"]];
     [self.view addSubview:self.collectionView];
 }
 

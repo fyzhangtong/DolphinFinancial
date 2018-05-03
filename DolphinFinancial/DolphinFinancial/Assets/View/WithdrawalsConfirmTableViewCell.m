@@ -48,7 +48,6 @@
         _descLabel = [UILabel new];
         _descLabel.textColor = DFColorWithHexString(@"#969696");
         _descLabel.font = [UIFont systemFontOfSize:8.0];
-        _descLabel.text = @"提现发起后将提交到后台审核";
     }
     return _descLabel;
 }
@@ -75,8 +74,9 @@
     }
 }
 
-- (void)reloadButtonTitle:(NSString *)title
+- (void)reloadButtonTitle:(NSString *)title desc:(NSString *)desc
 {
+    _descLabel.text = desc;
     [_confirmButton setTitle:title forState:UIControlStateNormal];
 }
 

@@ -112,7 +112,7 @@
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount fee:@"" product_limit:self.transfer.product_limit];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.transfer.balance_amount fee:@"" placeholder:self.transfer.product_limit title:@"转入金额"];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferInfoTableViewCell reuseIdentifier]];
         [(FinancialTransferInfoTableViewCell *)cell reloadinterestRate:self.transfer.interest_rate targetIncome:self.transfer.target_income incomeDescription:self.transfer.income_description];

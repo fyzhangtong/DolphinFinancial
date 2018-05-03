@@ -111,14 +111,14 @@
     }else if (indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
-        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:@"" product_limit:@""];
+        [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:@"" placeholder:@"请输入充值金额" title:@"充值金额"];
     }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
         [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:self.result.member_level earn:self.result.interest_rate];
     }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
         ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
-        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认充值"];
+        [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认充值" desc:@"充值发起后将提交到后台审核"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -190,12 +190,12 @@
         return;
     }
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    SafeDictionarySetObject(params, self.amount, @"withdraw_amount");
+    SafeDictionarySetObject(params, self.amount, @"recharge_amount");
     SafeDictionarySetObject(params, self.accountNumber, @"remittance_account");
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_RECHARGE_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             BOOL need_init = [data[@"need_init"] boolValue];
