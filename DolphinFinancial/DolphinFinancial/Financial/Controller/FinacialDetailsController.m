@@ -235,18 +235,17 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    __weak typeof(self) weakSelf = self;
     [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
-            weakSelf.product = [DFProduct yy_modelWithJSON:data];
-            [weakSelf.collectionView reloadData];
+            self.product = [DFProduct yy_modelWithJSON:data];
+            [self.collectionView reloadData];
         }else{
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
     }]; 
 }
 

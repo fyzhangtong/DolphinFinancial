@@ -103,7 +103,6 @@
 {
     if (!_ownNavigationBarLine) {
         _ownNavigationBarLine = [[UIView alloc] init];
-        _ownNavigationBarLine.backgroundColor = DFColorWithAlpha(0xcc, 0xcc, 0xcc, 1);
     }
     return _ownNavigationBarLine;
 }
