@@ -203,15 +203,17 @@ typedef enum LoginModel
         _getVerificationCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_getVerificationCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         _getVerificationCodeButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [_getVerificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-        [_getVerificationCodeButton setTitleColor:DFTINTCOLOR forState:UIControlStateNormal];
-        [_getVerificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor grayColor]] forState:UIControlStateDisabled];
-        [_getVerificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//        [_getVerificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+//        [_getVerificationCodeButton setTitleColor:DFTINTCOLOR forState:UIControlStateNormal];
+        [_getVerificationCodeButton setBackgroundImage:[UIImage createImageWithColor:DFTINTCOLOR] forState:UIControlStateNormal];
+        [_getVerificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_getVerificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor grayColor]] forState:UIControlStateDisabled];
+//        [_getVerificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
         _getVerificationCodeButton.layer.borderWidth = 1;
         _getVerificationCodeButton.layer.cornerRadius = 4;
         _getVerificationCodeButton.layer.masksToBounds = YES;
-        _getVerificationCodeButton.enabled = NO;
-        _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//        _getVerificationCodeButton.enabled = NO;
+        _getVerificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
         [_getVerificationCodeButton addTarget:self action:@selector(getVerificationCodeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -333,12 +335,12 @@ typedef enum LoginModel
     if (_phoneNumberTextField.text.length == 11) {
         if (!self.isCountDowning) {
             _getVerificationCodeButton.enabled = YES;
-            _getVerificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
+//            _getVerificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
         }
         
     }else{
         _getVerificationCodeButton.enabled = NO;
-        _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//        _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
     }
     
 }
@@ -346,7 +348,7 @@ typedef enum LoginModel
 //开始倒计时
 -(void) startTimer:(int)time{
     self.isCountDowning = YES;
-    _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//    _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
     __block int timeout = time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -359,10 +361,10 @@ typedef enum LoginModel
                 [_getVerificationCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
                 if (_phoneNumberTextField.text.length == 11) {
                     _getVerificationCodeButton.enabled = YES;
-                    _getVerificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
+//                    _getVerificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
                 }else{
                     _getVerificationCodeButton.enabled = NO;
-                    _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//                    _getVerificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
                 }
             });
         }else{
@@ -398,21 +400,20 @@ typedef enum LoginModel
 {
     [self.view endEditing:YES];
     self.getVerificationCodeButton.enabled = NO;
-    __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"phone":self.phoneNumberTextField.text,@"from":@"login"};
     [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:param header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             int time = [data intValue];
-            [weakSelf startTimer:time];
+            [self startTimer:time];
         }else{
-            weakSelf.getVerificationCodeButton.enabled = YES;
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            self.getVerificationCodeButton.enabled = YES;
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        weakSelf.getVerificationCodeButton.enabled = YES;
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        self.getVerificationCodeButton.enabled = YES;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
 }

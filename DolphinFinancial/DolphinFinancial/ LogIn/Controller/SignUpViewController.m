@@ -224,15 +224,15 @@
         _verificationCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_verificationCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         _verificationCodeButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [_verificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-        [_verificationCodeButton setTitleColor:DFTINTCOLOR forState:UIControlStateNormal];
-        [_verificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor grayColor]] forState:UIControlStateDisabled];
-        [_verificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+        [_verificationCodeButton setBackgroundImage:[UIImage createImageWithColor:DFTINTCOLOR] forState:UIControlStateNormal];
+        [_verificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_verificationCodeButton setBackgroundImage:[UIImage createImageWithColor:[UIColor grayColor]] forState:UIControlStateDisabled];
+//        [_verificationCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
         _verificationCodeButton.layer.borderWidth = 1;
         _verificationCodeButton.layer.cornerRadius = 4;
         _verificationCodeButton.layer.masksToBounds = YES;
-        _verificationCodeButton.enabled = NO;
-        _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//        _verificationCodeButton.enabled = NO;
+        _verificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
         [_verificationCodeButton addTarget:self action:@selector(getVerificationCodeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -367,12 +367,12 @@
     if (_phoneNumberTextField.text.length == 11) {
         if (!self.isCountDowning) {
             _verificationCodeButton.enabled = YES;
-            _verificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
+//            _verificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
         }
         
     }else{
         _verificationCodeButton.enabled = NO;
-        _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//        _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
     }
     
 }
@@ -380,7 +380,7 @@
 //开始倒计时
 -(void) startTimer:(int)time{
     self.isCountDowning = YES;
-    _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//    _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
     __block int timeout = time; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -393,10 +393,10 @@
                 [_verificationCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
                 if (_phoneNumberTextField.text.length == 11) {
                     _verificationCodeButton.enabled = YES;
-                    _verificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
+//                    _verificationCodeButton.layer.borderColor = DFTINTCOLOR.CGColor;
                 }else{
                     _verificationCodeButton.enabled = NO;
-                    _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
+//                    _verificationCodeButton.layer.borderColor = [UIColor grayColor].CGColor;
                 }
             });
         }else{

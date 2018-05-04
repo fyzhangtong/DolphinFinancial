@@ -65,8 +65,9 @@
     void(^failureBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error);
     void (^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject);
     failureBlock = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"*****%@",error);
-        if (error.code == 401) {
+        NSLog(@"error*****\n%@",error);
+        NSLog(@"error.userInfo*****\n%@",error.userInfo);
+        if (error.code == 1001) {
             [UserManager removeUser];
             if (showLoginIfNeed) {
                 [LoginViewController loginWithComplete:^(BOOL landSuccess) {
@@ -74,7 +75,7 @@
                         [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
                         if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:1001 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
                             fail(error);
                         }
                     }
@@ -92,12 +93,12 @@
         
     };
     successBlock = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+        NSLog(@"responseObject********** \n%@",responseObject);
         NSDictionary *dic = responseObject;
         NSNumber *code = dic[@"code"];
         NSString *msg = dic[@"msg"];
         id data = dic[@"data"];
-        if ([code integerValue] == 401) {
+        if ([code integerValue] == 1001) {
             [UserManager removeUser];
             if (showLoginIfNeed) {
                 [LoginViewController loginWithComplete:^(BOOL landSuccess) {
@@ -105,7 +106,7 @@
                         [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
                         if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:1001 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
                             fail(error);
                         }
                     }
@@ -121,7 +122,7 @@
             }
         }
     };
-    NSLog(@"\nurl:%@\n%@",urlStr,params);
+    NSLog(@"\nurl:%@\nparams:%@",urlStr,params);
     
     if (type==1) {
         [manager GET:urlStr parameters:params progress:progressBlock success:successBlock failure:failureBlock];
@@ -174,9 +175,9 @@
     manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
     manager.requestSerializer.timeoutInterval=30;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/html",@"text/json",@"text/plain",@"text/javascript",@"text/xml",@"image/*"]];
-//    if ([UserManager userToken].length) {
-//        [manager.requestSerializer setValue:[UserManager userToken] forHTTPHeaderField:@"token"];
-//    }
+    if ([UserManager userToken].length) {
+        [manager.requestSerializer setValue:[UserManager userToken] forHTTPHeaderField:@"token"];
+    }
     /*
     NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
