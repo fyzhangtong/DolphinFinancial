@@ -25,13 +25,6 @@
 
 +(void)getWithUrl:(NSString *)url
            params:(NSDictionary *)params
-          success:(GTResponseSuccess)success
-             fail:(GTResponseFail)fail{
-    
-    return [self baseRequestType:1 url:url params:params header:nil showLoginIfNeed:YES success:success fail:fail];
-}
-+(void)getWithUrl:(NSString *)url
-           params:(NSDictionary *)params
   showLoginIfNeed:(BOOL)showLoginIfNeed
           success:(GTResponseSuccess)success
              fail:(GTResponseFail)fail{
@@ -40,18 +33,12 @@
 
 +(void)postWithUrl:(NSString *)url
             params:(NSDictionary *)params
-           success:(GTResponseSuccess)success
-              fail:(GTResponseFail)fail{
-    
-    [self baseRequestType:2 url:url params:params header:nil showLoginIfNeed:YES success:success fail:fail];
-}
-+(void)postWithUrl:(NSString *)url
-            params:(NSDictionary *)params
             header:(NSDictionary<NSString*,NSString*> *)header
+   showLoginIfNeed:(BOOL)showLoginIfNeed
            success:(GTResponseSuccess)success
               fail:(GTResponseFail)fail{
     
-    [self baseRequestType:2 url:url params:params header:header showLoginIfNeed:YES success:success fail:fail];
+    [self baseRequestType:2 url:url params:params header:header showLoginIfNeed:showLoginIfNeed success:success fail:fail];
 }
 
 +(void)baseRequestType:(NSUInteger)type
@@ -78,9 +65,31 @@
     void(^failureBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error);
     void (^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject);
     failureBlock = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (fail) {
-            fail(error);
+        NSLog(@"*****%@",error);
+        if (error.code == 401) {
+            [UserManager removeUser];
+            if (showLoginIfNeed) {
+                [LoginViewController loginWithComplete:^(BOOL landSuccess) {
+                    if (landSuccess) {
+                        [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
+                    }else{
+                        if (fail) {
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            fail(error);
+                        }
+                    }
+                }];
+            }else{
+                if (fail) {
+                    fail(error);
+                }
+            }
+        }else{
+            if (fail) {
+                fail(error);
+            }
         }
+        
     };
     successBlock = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
@@ -165,9 +174,9 @@
     manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
     manager.requestSerializer.timeoutInterval=30;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/html",@"text/json",@"text/plain",@"text/javascript",@"text/xml",@"image/*"]];
-    if ([UserManager userToken].length) {
-        [manager.requestSerializer setValue:[UserManager userToken] forHTTPHeaderField:@"token"];
-    }
+//    if ([UserManager userToken].length) {
+//        [manager.requestSerializer setValue:[UserManager userToken] forHTTPHeaderField:@"token"];
+//    }
     /*
     NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
     NSString *versionCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

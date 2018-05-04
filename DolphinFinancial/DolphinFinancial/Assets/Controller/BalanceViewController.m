@@ -154,7 +154,7 @@
 - (void)requestData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking getWithUrl:DOLPHIN_API_BALANCE params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_BALANCE params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -50,7 +50,6 @@
     [self makeView];
     self.dynamics = [[NSMutableArray alloc] init];
     [self requestProduct];
-    [self requestDynamics];
 }
 
 - (void)makeView
@@ -235,12 +234,13 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.productId) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
+        
         if ([code integerValue] == 200) {
             self.product = [DFProduct yy_modelWithJSON:data];
-            [self.collectionView reloadData];
+            [self requestDynamics];
         }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
@@ -251,30 +251,26 @@
 
 - (void)requestDynamics
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
     NSDictionary *param = @{@"page":@"0"};
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.productId) params:param success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.productId) params:param header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
-            weakSelf.total = data[@"total"];
-            [weakSelf.dynamics removeAllObjects];
+            self.total = data[@"total"];
+            [self.dynamics removeAllObjects];
             NSArray<NSDictionary *> *content = data[@"content"];
             if ([content isKindOfClass:[NSArray class]]) {
                 [content enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithJSON:obj];
-                    [weakSelf.dynamics addObject:dynamic];
+                    [self.dynamics addObject:dynamic];
                 }];
             }
-            
-            [weakSelf.collectionView reloadData];
+            [self.collectionView reloadData];
         }else{
-            [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
+            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
     }];
 }
 #pragma mark - action

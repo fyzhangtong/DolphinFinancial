@@ -202,7 +202,7 @@
 {
     
     [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:2];
-    [GTNetWorking getWithUrl:DOLPHIN_API_ASSET params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_ASSET params:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([code integerValue] == 200) {
             self.asset = [FinancailAsset yy_modelWithDictionary:data[@"asset"]];

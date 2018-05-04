@@ -200,7 +200,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW_CONFIRM params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             BOOL need_init = [data[@"need_init"] boolValue];
@@ -236,7 +236,7 @@
     SafeDictionarySetObject(params, self.amount, @"withdraw_amount");
     SafeDictionarySetObject(params, self.accountNumber, @"remittance_account");
 //    SafeDictionarySetObject(params, @"", @"is_back");
-    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_BALANCE_WITHDRAW params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             self.result = [BalanceWithDrawResult yy_modelWithJSON:data];

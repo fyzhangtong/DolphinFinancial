@@ -164,7 +164,7 @@
 - (void)requestData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER_MEMBERS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_MEMBERS params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             if ([data[@"user_info"] isKindOfClass:[NSDictionary class]]) {

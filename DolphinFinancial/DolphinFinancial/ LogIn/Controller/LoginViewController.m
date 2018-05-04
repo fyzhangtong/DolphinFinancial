@@ -401,7 +401,7 @@ typedef enum LoginModel
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"phone":self.phoneNumberTextField.text,@"from":@"login"};
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:param success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:param header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             int time = [data intValue];
@@ -456,7 +456,7 @@ typedef enum LoginModel
     __weak typeof(self) weakSelf = self;
     NSDictionary *param = @{@"phone":_phoneNumberTextField.text,@"type":type,pwdOrCodeKey:self.passwordOrVerificationCodeTextField.text};
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_LOGIN params:param success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_LOGIN params:param header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
 
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {

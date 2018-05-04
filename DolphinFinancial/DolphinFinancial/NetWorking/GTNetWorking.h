@@ -52,20 +52,6 @@ typedef void( ^ GTDownloadProgress)(int64_t bytesProgress,
  *
  *  @param url     请求连接，根路径
  *  @param params  参数
- *  @param success 请求成功返回数据
- *  @param fail    请求失败
- */
-//   @param showHUD 是否显示HUD
-
-+(void)getWithUrl:(NSString *)url
-           params:(NSDictionary *)params
-          success:(GTResponseSuccess)success
-             fail:(GTResponseFail)fail;
-/**
- *  get请求方法,block回调
- *
- *  @param url     请求连接，根路径
- *  @param params  参数
  *  @param showLoginIfNeed 如果未登录是否提示
  *  @param success 请求成功返回数据
  *  @param fail    请求失败
@@ -82,20 +68,6 @@ typedef void( ^ GTDownloadProgress)(int64_t bytesProgress,
  *
  *  @param url     请求连接，根路径
  *  @param params  参数
- *  @param success 请求成功返回数据
- *  @param fail    请求失败
- */
-//  showHUD 是否显示HUD
-
-+(void)postWithUrl:(NSString *)url
-            params:(NSDictionary *)params
-           success:(GTResponseSuccess)success
-              fail:(GTResponseFail)fail;
-/**
- *  post请求方法,block回调
- *
- *  @param url     请求连接，根路径
- *  @param params  参数
  *  @param header  请求头
  *  @param success 请求成功返回数据
  *  @param fail    请求失败
@@ -103,6 +75,7 @@ typedef void( ^ GTDownloadProgress)(int64_t bytesProgress,
 +(void)postWithUrl:(NSString *)url
             params:(NSDictionary *)params
             header:(NSDictionary<NSString*,NSString*> *)header
+   showLoginIfNeed:(BOOL)showLoginIfNeed
            success:(GTResponseSuccess)success
               fail:(GTResponseFail)fail;
 @end

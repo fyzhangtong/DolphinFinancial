@@ -281,7 +281,7 @@ static CGFloat const kCommonMargin    = 40;
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [MBProgressHUD showHUDAddedTo:window animated:YES];
         [MBProgressHUD showHUDAddedTo:window animated:YES];
-        [GTNetWorking postWithUrl:DOLPHIN_API_PAYCHECK params:params success:^(NSNumber *code, NSString *msg, id data) {
+        [GTNetWorking postWithUrl:DOLPHIN_API_PAYCHECK params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
             [MBProgressHUD hideHUDForView:window animated:YES];
             if (complete) {
                 complete([code integerValue] == 200);

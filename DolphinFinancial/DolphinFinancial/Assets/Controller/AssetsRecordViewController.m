@@ -135,7 +135,7 @@
         url = DOLPHIN_API_ASSET_RECORD;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking getWithUrl:url params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:url params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];

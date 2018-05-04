@@ -202,7 +202,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.productId) params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCT(self.productId) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];
@@ -229,7 +229,7 @@
     SafeDictionarySetObject(params, self.productId, @"user_product_id");
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_USER_PRODUCT_ROLLOUT params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_USER_PRODUCT_ROLLOUT params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             BOOL need_init = [data[@"need_init"] boolValue];

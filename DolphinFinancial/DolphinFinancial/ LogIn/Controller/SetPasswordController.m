@@ -370,7 +370,7 @@
     self.getVerificationCodeButton.enabled = NO;
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"from":@"change"} success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"from":@"change"} header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf startTimer:[data intValue]];
@@ -411,7 +411,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *param = @{@"phone":self.phoneNumberOrNewPasswordTextField.text,@"code":self.VerificationCodeOrPasswordAgainTextField.text};
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CAPTCHA_CHECK params:param header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             self.u_token = data;
@@ -431,7 +431,7 @@
     NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
     NSMutableDictionary *header = [[NSMutableDictionary alloc] initWithCapacity:1];
     SafeDictionarySetObject(header, self.u_token, @"U-Token");
-    [GTNetWorking postWithUrl:url params:params header:header success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:url params:params header:header showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             self.setSuccess = YES;

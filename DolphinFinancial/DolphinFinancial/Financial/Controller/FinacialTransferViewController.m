@@ -186,7 +186,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_TRANSFER_CONFIRM params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_TRANSFER_CONFIRM params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             BOOL need_init = [data[@"need_init"] boolValue];
@@ -234,7 +234,7 @@
     SafeDictionarySetObject(params, productId, @"product_id");
     SafeDictionarySetObject(params, autoContinue, @"auto_continue");
     
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_TRANSFER_INIT params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_TRANSFER_INIT params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             weakSelf.transfer = [FinancialTransferModel yy_modelWithDictionary:data];

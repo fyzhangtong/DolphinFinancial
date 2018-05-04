@@ -425,7 +425,7 @@
     __weak typeof(self) weakSelf = self;
     self.verificationCodeButton.enabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberTextField.text,@"from":@"register"} success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_CODE params:@{@"phone":self.phoneNumberTextField.text,@"from":@"register"} header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf startTimer:[data intValue]];
@@ -464,7 +464,7 @@
                              @"code":self.verificationCodeTextField.text,
                              @"password":self.loginPasswordLabelTextField.text,
                              @"referrer":self.refereeTextField.text};
-    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_REGISTER params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_REGISTER params:params header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf leftButtonClick:nil];

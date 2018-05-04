@@ -92,7 +92,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:1];
     SafeDictionarySetObject(params, self.textView.text, @"content");
-    [GTNetWorking postWithUrl:DOLPHIN_API_FEEDBACK params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:DOLPHIN_API_FEEDBACK params:params header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:2];
         if ([code integerValue] == 200) {
             self.textView.text = nil;

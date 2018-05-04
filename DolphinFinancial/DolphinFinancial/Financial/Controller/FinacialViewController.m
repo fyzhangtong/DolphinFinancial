@@ -45,11 +45,12 @@
         make.left.right.mas_equalTo(self.view);
     }];
     self.dataSource = [[NSMutableArray alloc] init];
+    [self loadDataWithHud:YES];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self loadData];
+    
 }
 - (UITableView *)tableView
 {
@@ -67,6 +68,13 @@
         if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
             [_tableView setLayoutMargins:UIEdgeInsetsZero];
         }
+        
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self loadDataWithHud:NO];
+        }];
+        header.lastUpdatedTimeLabel.hidden = YES;
+        
+        _tableView.mj_header = header;
     }
     return _tableView;
 }
@@ -105,11 +113,16 @@
 }
 
 #pragma mark - 网络请求
-- (void)loadData
+- (void)loadDataWithHud:(BOOL)showHud
 {
     __weak typeof(self) weakSelf = self;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCTS params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    if (showHud) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCTS params:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
+        if ([self.tableView.mj_header isRefreshing]) {
+            [self.tableView.mj_header endRefreshing];
+        }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
@@ -122,6 +135,9 @@
             [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
+        if ([self.tableView.mj_header isRefreshing]) {
+            [self.tableView.mj_header endRefreshing];
+        }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
     }];

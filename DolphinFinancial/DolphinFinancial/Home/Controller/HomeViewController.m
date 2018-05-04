@@ -32,7 +32,6 @@
 @property (nonatomic, strong) DFProduct *product;
 @property (nonatomic, strong) DFNotice *notice;
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) MJRefreshNormalHeader *mjHeader;
 
 @end
 
@@ -97,7 +96,6 @@
         header.lastUpdatedTimeLabel.hidden = YES;
 
         _tableView.mj_header = header;
-        self.mjHeader = header;
     }
     return _tableView;
 }
@@ -218,7 +216,7 @@
     if (showHud) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
-    [GTNetWorking getWithUrl:DOLPHIN_API_INDEX params:nil success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_INDEX params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         if ([self.tableView.mj_header isRefreshing]) {
             [self.tableView.mj_header endRefreshing];
         }

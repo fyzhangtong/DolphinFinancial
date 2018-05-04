@@ -178,7 +178,7 @@
     SafeDictionarySetObject(params, self.originalPassword, @"old_password");
     SafeDictionarySetObject(params, self.password, @"new_password");
     SafeDictionarySetObject(params, self.confirmPassword, @"confirm_password");
-    [GTNetWorking postWithUrl:url params:params success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:url params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             [self.tableView reloadData];
