@@ -91,7 +91,12 @@
 {
     if (section == 0) {
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, DFSCREENW, 24)];
-        lable.text = @"      提示：仅展示近30天内的收益记录";
+        if (self.recordType == RecordTypeProfit) {
+            lable.text = @"      提示：仅展示近30天内的收益记录";
+        }else{
+            lable.text = @"      提示：仅展示近30天内的资产记录";
+        }
+        
         lable.font = [UIFont systemFontOfSize:9];
         lable.textColor = DFColorWithHexString(@"#E51C23 100%");
         lable.backgroundColor = DFColorWithHexString(@"#F8F8F8");
@@ -103,10 +108,8 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGFloat height = 0;
-    if (self.recordType == RecordTypeProfit) {
-        height = 24;
-    }
+    CGFloat height = 24;
+    
     return height;
 }
 #pragma mark - tableViewDelegate
