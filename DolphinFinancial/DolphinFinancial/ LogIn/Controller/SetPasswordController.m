@@ -224,6 +224,9 @@
         _getVerificationCodeButtonConstraintW.mas_offset(124);
         [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
         _phoneNumberOrNewPasswordTextField.keyboardType = UIKeyboardTypeNumberPad;
+        
+        _phoneNumberOrNewPasswordTextField.secureTextEntry = NO;
+        _VerificationCodeOrPasswordAgainTextField.secureTextEntry = NO;
     }else{
         _getVerificationCodeButtonConstraintW.mas_offset(0);
         _VerificationCodeOrPasswordAgainLabel.text = @"确认密码";
@@ -241,7 +244,8 @@
             _VerificationCodeOrPasswordAgainTextField.placeholder = @"请输入6位数字";
 
         }
-        
+        _phoneNumberOrNewPasswordTextField.secureTextEntry = YES;
+        _VerificationCodeOrPasswordAgainTextField.secureTextEntry = YES;
     }
 }
 

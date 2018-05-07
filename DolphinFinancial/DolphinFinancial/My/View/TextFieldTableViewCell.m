@@ -46,7 +46,6 @@
         _titleLabel.textColor = DFColorWithHexString(@"#101010");
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = @"原登录密码";
     }
     return _titleLabel;
 }
@@ -56,8 +55,8 @@
         _textField = [UITextField new];
         _textField.textColor = DFColorWithHexString(@"#101010");
         _textField.font = [UIFont systemFontOfSize:14.0];
-        _textField.placeholder = @"请输入原登录密码";
         _textField.delegate = self;
+        _textField.secureTextEntry = YES;
         _textField.keyboardType = UIKeyboardTypeASCIICapable;
     
         

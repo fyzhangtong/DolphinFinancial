@@ -187,10 +187,13 @@
         self.borrower1PhoneNumberLabel.text = dynamic.borrowers[0].borrower;
     }
     if (dynamic.borrowers.count > 1) {
-        self.borrower1PhoneNumberLabel.text = dynamic.borrowers[1].borrower;
+        self.borrower2PhoneNumberLabel.text = dynamic.borrowers[1].borrower;
     }
-    self.explainLabel.text = dynamic.borrower_info;
-    
+    if (dynamic.borrowers.count>2) {
+        self.explainLabel.text = [NSString stringWithFormat:@"等%ld位借款人",dynamic.borrowers.count];
+    }else{
+        self.explainLabel.text = [NSString stringWithFormat:@"%ld位借款人",dynamic.borrowers.count];
+    }    
 }
 
 
