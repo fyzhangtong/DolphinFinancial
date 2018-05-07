@@ -15,6 +15,7 @@
     [hud setMode:MBProgressHUDModeText];
     hud.detailsLabel.text = title;
     hud.bezelView.backgroundColor = DFColorWithHexString(@"#333333");
+    hud.bezelView.alpha = 0.8;
     hud.detailsLabel.textColor = DFColorWithHexString(@"#FFFFFF");
     hud.removeFromSuperViewOnHide = YES;
     [hud hideAnimated:YES afterDelay:time];
