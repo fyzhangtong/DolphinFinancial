@@ -65,9 +65,9 @@
     void(^failureBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error);
     void (^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject);
     failureBlock = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error*****\n%@",error);
+        NSLog(@"error*****\n%ld",error.code);
         NSLog(@"error.userInfo*****\n%@",error.userInfo);
-        if (error.code == 1001) {
+        if (error.code == 401) {
             [UserManager removeUser];
             if (showLoginIfNeed) {
                 [LoginViewController loginWithComplete:^(BOOL landSuccess) {
@@ -75,7 +75,7 @@
                         [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
                         if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:1001 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
                             fail(error);
                         }
                     }
@@ -98,7 +98,7 @@
         NSNumber *code = dic[@"code"];
         NSString *msg = dic[@"msg"];
         id data = dic[@"data"];
-        if ([code integerValue] == 1001) {
+        if ([code integerValue] == 401) {
             [UserManager removeUser];
             if (showLoginIfNeed) {
                 [LoginViewController loginWithComplete:^(BOOL landSuccess) {
@@ -106,7 +106,7 @@
                         [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
                         if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:1001 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
+                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
                             fail(error);
                         }
                     }
