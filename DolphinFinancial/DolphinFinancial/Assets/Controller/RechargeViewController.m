@@ -107,7 +107,7 @@
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
         ((WithdrawaisAccountNumberTableViewCell*)cell).delegate = self;
-        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"汇款账号" placeholder:@"请输入汇款账号"];
+        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"汇款账号  " placeholder:@"请输入汇款账号"];
     }else if (indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
@@ -213,7 +213,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 - (void)payCheck
@@ -242,7 +242,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

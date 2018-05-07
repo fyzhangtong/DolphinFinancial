@@ -9,11 +9,12 @@
 #import "DNPayAlertView.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "MBProgressHUD+DFStyle.h"
+#import "GTUtil.h"
 
 #define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define kPAYMENT_WIDTH kSCREEN_WIDTH-80
-#define kKeyboardHeight (kSCREEN_HEIGHT == 812.0 ? 333 : 216)
+#define kKeyboardHeight (kSCREEN_HEIGHT == 812.0 ? 333 : 246)
 
 static NSInteger const kPasswordCount = 6;
 
@@ -112,6 +113,7 @@ static CGFloat const kCommonMargin    = 40;
         [self.showWindow resignKeyWindow];
         self.showWindow = nil;
     }];
+    
 }
 
 #pragma mark - delegate
@@ -138,10 +140,10 @@ static CGFloat const kCommonMargin    = 40;
 - (void)textDidChange:(UITextField *)textField {
     [self setDotWithCount:textField.text.length];
     if (textField.text.length == 6) {
+        [self.pwdTextField endEditing:YES];
         if (self.completeHandle) {
-            self.completeHandle(textField.text);
+            self.completeHandle(self.pwdTextField.text);
         }
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:.3f];
     }
 }
 
@@ -250,6 +252,7 @@ static CGFloat const kCommonMargin    = 40;
         _pwdTextField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         _pwdTextField.hidden = YES;
         _pwdTextField.delegate = self;
+        _pwdTextField.secureTextEntry = YES;
         _pwdTextField.keyboardType = UIKeyboardTypeNumberPad;
         [_pwdTextField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     }
@@ -273,28 +276,42 @@ static CGFloat const kCommonMargin    = 40;
     payAlert.titleStr = title;
     payAlert.detail = detail;
     payAlert.amount= amount;
-    [payAlert show];
+    
     payAlert.completeHandle = ^(NSString *inputPwd) {
+        [DNPayAlertViewManager verifyPayPassword:inputPwd action:action complete:complete];
+    };
+    [payAlert show];
+}
+
++ (void)verifyPayPassword:(NSString *)payPassword action:(NSString *)action complete:(void(^)(BOOL success))complete
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        SafeDictionarySetObject(params, inputPwd, @"pay_password");
+        SafeDictionarySetObject(params, payPassword, @"pay_password");
         SafeDictionarySetObject(params, action, @"action");
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        [MBProgressHUD showHUDAddedTo:window animated:YES];
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
         [MBProgressHUD showHUDAddedTo:window animated:YES];
         [GTNetWorking postWithUrl:DOLPHIN_API_PAYCHECK params:params header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
-            [MBProgressHUD hideHUDForView:window animated:YES];
-            if (complete) {
-                complete([code integerValue] == 200);
-            }
-            [MBProgressHUD showTextAddToView:window Title:msg andHideTime:2];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:window animated:YES];
+                if (complete) {
+                    complete([code integerValue] == 200);
+                }
+                [MBProgressHUD showTextAddToView:window Title:msg andHideTime:2];
+            });
+            
         } fail:^(NSError *error) {
-            [MBProgressHUD hideHUDForView:window animated:YES];
-            [MBProgressHUD showTextAddToView:window Title:error.localizedDescription andHideTime:2];
-            if (complete) {
-                complete(NO);
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:window animated:YES];
+                [MBProgressHUD showTextAddToView:window Title:@"网络出错，请稍后再试！" andHideTime:2];
+                if (complete) {
+                    complete(NO);
+                }
+            });
+            
         }];
-    };
+    });
 }
 
 @end

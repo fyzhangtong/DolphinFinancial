@@ -381,7 +381,7 @@
     } fail:^(NSError *error) {
         weakSelf.getVerificationCodeButton.enabled = YES;
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 - (void)nextStepButtonClick:(UIButton *)sender
@@ -421,16 +421,23 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 //设置密码
 - (void)setPassword:(NSString *)url
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSDictionary *params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
     NSMutableDictionary *header = [[NSMutableDictionary alloc] initWithCapacity:1];
-    SafeDictionarySetObject(header, self.u_token, @"U-Token");
+    NSDictionary *params;
+    if ([url isEqualToString:DOLPHIN_API_AUTH_PWDLOSS]) {
+        SafeDictionarySetObject(header, self.u_token, @"U-Token");
+        params = @{@"password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_password":self.VerificationCodeOrPasswordAgainTextField.text};
+    }else{
+        params = @{@"pay_password":self.phoneNumberOrNewPasswordTextField.text,@"confirm_pay_password":self.VerificationCodeOrPasswordAgainTextField.text};
+    }
+    
+    
     [GTNetWorking postWithUrl:url params:params header:header showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
@@ -440,7 +447,7 @@
         [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

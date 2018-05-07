@@ -142,8 +142,8 @@
 - (void)reloadData:(UserFinancial *)product
 {
     self.nameLabel.text = product.product_name;
-    self.yesterdayIncomeLabel.text = [NSString stringWithFormat:@"(%@)",product.yesterday_income];
-    self.totalIncomeLabel.text = product.total_income;
+    self.yesterdayIncomeLabel.text = [NSString stringWithFormat:@"昨日收益：%@",product.yesterday_income];
+    self.totalIncomeLabel.text = [NSString stringWithFormat:@"(%@)",product.total_income];
     self.expiryTimeLabel.text = [NSString stringWithFormat:@"到期时间：%@",product.expiration_time];
     self.buyAmountLabel.text = product.buy_amount;
 }

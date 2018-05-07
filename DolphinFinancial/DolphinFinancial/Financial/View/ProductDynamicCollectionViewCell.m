@@ -122,7 +122,6 @@
         _owePeoplePhoneNumberLabel.textAlignment = NSTextAlignmentCenter;
         _owePeoplePhoneNumberLabel.font = [UIFont systemFontOfSize:14];
         _owePeoplePhoneNumberLabel.textColor = DFColorWithHexString(@"#101010");
-        _owePeoplePhoneNumberLabel.text = @"151****2121";
     }
     return _owePeoplePhoneNumberLabel;
 }
@@ -133,7 +132,6 @@
         _owePeopleAmountLabel.textAlignment = NSTextAlignmentCenter;
         _owePeopleAmountLabel.font = [UIFont systemFontOfSize:12];
         _owePeopleAmountLabel.textColor = DFColorWithHexString(@"#101010");
-        _owePeopleAmountLabel.text = @"￥38293.92";
     }
     return _owePeopleAmountLabel;
 }
@@ -144,7 +142,6 @@
         _owePeopleDateLabel.textAlignment = NSTextAlignmentCenter;
         _owePeopleDateLabel.font = [UIFont systemFontOfSize:12];
         _owePeopleDateLabel.textColor = DFColorWithHexString(@"#BBBBBB");
-        _owePeopleDateLabel.text = @"02-25 11:00";
     }
     return _owePeopleDateLabel;
 }
@@ -157,7 +154,6 @@
         _borrower1PhoneNumberLabel.textAlignment = NSTextAlignmentCenter;
         _borrower1PhoneNumberLabel.font = [UIFont systemFontOfSize:14];
         _borrower1PhoneNumberLabel.textColor = DFColorWithHexString(@"#101010");
-        _borrower1PhoneNumberLabel.text = @"182****2163";
     }
     return _borrower1PhoneNumberLabel;
 }
@@ -168,7 +164,6 @@
         _borrower2PhoneNumberLabel.textAlignment = NSTextAlignmentCenter;
         _borrower2PhoneNumberLabel.font = [UIFont systemFontOfSize:14];
         _borrower2PhoneNumberLabel.textColor = DFColorWithHexString(@"#101010");
-        _borrower2PhoneNumberLabel.text = @"127****2131";
     }
     return _borrower2PhoneNumberLabel;
 }
@@ -179,7 +174,6 @@
         _explainLabel.textAlignment = NSTextAlignmentCenter;
         _explainLabel.font = [UIFont systemFontOfSize:12];
         _explainLabel.textColor = DFColorWithHexString(@"#BBBBBB");
-        _explainLabel.text = @"等5位借款人";
     }
     return _explainLabel;
 }

@@ -54,7 +54,7 @@
     [self.contentView addSubview:self.titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(8);
-        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(10);
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(13);
     }];
     
     [self.contentView addSubview:self.amountTextField];

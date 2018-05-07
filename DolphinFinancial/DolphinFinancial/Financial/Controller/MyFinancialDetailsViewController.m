@@ -194,7 +194,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *string = self.dataSource[indexPath.section][indexPath.row];
     if ([string isEqualToString:MyFinancialDetailsBorrowers]) {
-        [MyFinancialBorrowersViewController pushToController:self];
+        [MyFinancialBorrowersViewController pushToController:self productId:self.productId];
     }
 }
 
@@ -218,7 +218,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
     
 }
@@ -247,7 +247,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

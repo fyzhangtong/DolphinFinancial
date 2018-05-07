@@ -17,14 +17,16 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Borrower *> *dataSource;
+@property (nonatomic, copy) NSNumber *productId;
 
 @end
 
 @implementation MyFinancialBorrowersViewController
 
-+ (void)pushToController:(UIViewController *)controller
++ (void)pushToController:(UIViewController *)controller productId:(NSNumber *)productId
 {
     MyFinancialBorrowersViewController *vc = [[MyFinancialBorrowersViewController alloc] init];
+    vc.productId = productId;
     [controller.navigationController pushViewController:vc animated:YES];
 }
 
@@ -132,7 +134,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak typeof(self) weakSelf = self;
-    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCTS_BORROWERS(@(1)) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking getWithUrl:DOLPHIN_API_USER_PRODUCTS_BORROWERS(self.productId) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
             [weakSelf.dataSource removeAllObjects];
@@ -149,7 +151,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

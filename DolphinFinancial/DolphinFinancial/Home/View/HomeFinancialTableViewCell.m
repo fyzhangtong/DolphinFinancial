@@ -113,9 +113,32 @@
 - (void)reloadProduct:(DFProduct *)product
 {
     self.recommendingLabel1.text = product.name;
-    self.recommendingLabel2.text = product.descriptions.firstObject;
-    self.recommendingLabel3.text = product.interest_rate;
-    self.recommendingLabel4.text = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+    self.recommendingLabel2.text = product.interest_rate;
+    
+    
+    NSString *explain = @"到期自动转出";
+    NSString *surplus = @"";
+    if (product.is_vip_product) {
+        explain = product.vip_level_limit;
+        if (product.is_time_limit) {
+            surplus = [NSString stringWithFormat:@"今日%@开售",product.purchase_time];
+        }else if (product.is_quantity_limit){
+            surplus = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+        }
+    }else if (product.is_time_limit){
+        
+        if (product.is_quantity_limit) {
+            explain = [NSString stringWithFormat:@"今日%@开售",product.purchase_time];
+            surplus = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+        }else{
+            surplus = [NSString stringWithFormat:@"今日%@开售",product.purchase_time];
+        }
+    }else if (product.is_quantity_limit){
+        surplus = [NSString stringWithFormat:@"今日还剩%@份",product.residue_number];
+    }
+    
+    self.recommendingLabel3.text = explain;
+    self.recommendingLabel4.text = surplus;
 
 }
 

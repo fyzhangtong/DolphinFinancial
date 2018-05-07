@@ -436,7 +436,7 @@
     } fail:^(NSError *error) {
         self.verificationCodeButton.enabled = YES;
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 
@@ -478,7 +478,7 @@
         [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

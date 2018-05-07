@@ -293,12 +293,14 @@ typedef enum LoginModel
         [self setCenterTitle:@"密码登录"];
         _passwordOrVerificationCodeLabel.text = @"密码";
         _passwordOrVerificationCodeTextField.placeholder = @"请输入密码";
+        _passwordOrVerificationCodeTextField.secureTextEntry = YES;
         _changeModelButton.selected = NO;
     }else{
         _getVerificationCodeButtonConstraintW.mas_offset(124);
         [self setCenterTitle:@"手机快捷登录"];
         _passwordOrVerificationCodeLabel.text = @"验证码";
         _passwordOrVerificationCodeTextField.placeholder = @"请输入验证码";
+        _passwordOrVerificationCodeTextField.secureTextEntry = NO;
         _changeModelButton.selected = YES;
     }
 }
@@ -475,7 +477,7 @@ typedef enum LoginModel
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [MBProgressHUD showTextAddToView:weakSelf.view Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:weakSelf.view Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
     
 }

@@ -218,7 +218,7 @@
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:error.localizedDescription andHideTime:2];
+        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

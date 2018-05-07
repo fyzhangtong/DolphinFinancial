@@ -13,6 +13,6 @@
  */
 @interface MyFinancialBorrowersViewController : BaseViewController
 
-+ (void)pushToController:(UIViewController *)controller;
++ (void)pushToController:(UIViewController *)controller productId:(NSNumber *)productId;
 
 @end
