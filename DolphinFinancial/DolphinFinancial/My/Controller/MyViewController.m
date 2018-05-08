@@ -236,11 +236,11 @@
             self.dataSource = _loginDataSource;
             [self.tableView reloadData];
         }else{
-            [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
+//            [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:msg andHideTime:2];
         }
     } fail:^(NSError *error) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:@"网络出错，请稍后再试！" andHideTime:2];
+//        [MBProgressHUD showTextAddToView:[UIApplication sharedApplication].keyWindow Title:@"网络出错，请稍后再试！" andHideTime:2];
     }];
 }
 

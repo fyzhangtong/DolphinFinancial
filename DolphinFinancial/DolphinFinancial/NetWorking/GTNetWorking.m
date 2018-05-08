@@ -65,32 +65,9 @@
     void(^failureBlock)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error);
     void (^successBlock)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject);
     failureBlock = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error*****\n%ld",error.code);
-        NSLog(@"error.userInfo*****\n%@",error.userInfo);
-        if (error.code == 401) {
-            [UserManager removeUser];
-            if (showLoginIfNeed) {
-                [LoginViewController loginWithComplete:^(BOOL landSuccess) {
-                    if (landSuccess) {
-                        [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
-                    }else{
-                        if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
-                            fail(error);
-                        }
-                    }
-                }];
-            }else{
-                if (fail) {
-                    fail(error);
-                }
-            }
-        }else{
-            if (fail) {
-                fail(error);
-            }
+        if (fail) {
+            fail(error);
         }
-        
     };
     successBlock = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject********** \n%@",responseObject);
@@ -105,9 +82,8 @@
                     if (landSuccess) {
                         [GTNetWorking baseRequestType:type url:url params:params header:header showLoginIfNeed:NO success:success fail:fail];
                     }else{
-                        if (fail) {
-                            NSError *error = [NSError errorWithDomain:@"登录失败" code:401 userInfo:@{ NSLocalizedDescriptionKey : @"登录失败" }];
-                            fail(error);
+                        if (success) {
+                            success(code,msg,data);
                         }
                     }
                 }];
