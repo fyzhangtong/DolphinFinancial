@@ -92,9 +92,13 @@
         [self.delegate accountNumberTextDidEndEdit:textField];
     }
 }
-- (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder
+- (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder text:(NSString *)text editAble:(BOOL)editAble
 {
     self.titleLabel.text = title;
+    if (text.length) {
+        self.accountNumberTextField.text = text;
+    }
+    self.accountNumberTextField.enabled = editAble;
     [_titleLabel sizeToFit];
     self.accountNumberTextField.placeholder = placeholder;
 }

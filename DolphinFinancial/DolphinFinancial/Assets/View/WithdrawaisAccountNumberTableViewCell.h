@@ -27,6 +27,6 @@
 + (void)registerCellTableView:(UITableView *)tableView;
 + (CGFloat)cellHeight;
 
-- (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder;
+- (void)reloadTitle:(NSString *)title placeholder:(NSString *)placeholder text:(NSString *)text editAble:(BOOL)editAble;
 
 @end

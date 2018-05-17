@@ -201,12 +201,8 @@
         [MessageDetailsViewController pushToController:self.navigationController notice:self.notice];
     }
     else if ([string isEqualToString:HomeFinancialCellString]){
-        FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
-        fdc.productId = self.product.id;
-        [self.navigationController pushViewController:fdc animated:YES];
+        [FinacialDetailsController pushTo:self.navigationController productId:self.product.id];
     }
-    
-
 }
 
 

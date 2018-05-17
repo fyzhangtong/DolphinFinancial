@@ -13,6 +13,6 @@
  */
 @interface FinacialDetailsController : BaseViewController
 
-@property (nonatomic, copy) NSNumber *productId;
++ (void)pushTo:(UINavigationController *)nc productId:(NSNumber *)productId;
 
 @end

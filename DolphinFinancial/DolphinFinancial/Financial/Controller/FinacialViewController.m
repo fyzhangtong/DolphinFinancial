@@ -107,9 +107,7 @@
 {
     DFProduct *product = self.dataSource[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
-    fdc.productId = product.id;
-    [self.navigationController pushViewController:fdc animated:YES];
+    [FinacialDetailsController pushTo:self.navigationController productId:product.id];
 }
 
 #pragma mark - 网络请求

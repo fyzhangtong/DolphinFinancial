@@ -11,7 +11,7 @@
 @interface BalanceWithDrawResult : NSObject
 
 /**
- 收款账号
+ 账号
  */
 @property (nonatomic, copy) NSString *remittance_account;
 /**
@@ -34,5 +34,15 @@
  会员收益利率
  */
 @property (nonatomic, copy) NSString *interest_rate;
+
+/**
+ 收款账户
+ */
+@property (nonatomic, copy) NSString *receive_account;
+
+/**
+ 收款人
+ */
+@property (nonatomic, copy) NSString *receive_name;
 
 @end

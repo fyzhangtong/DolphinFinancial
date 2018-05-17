@@ -108,7 +108,7 @@
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
-        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款账号  " placeholder:@"请输入收款账号"];
+        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款账号  " placeholder:@"请输入收款账号" text:nil editAble:YES];
         ((WithdrawaisAccountNumberTableViewCell *)cell).delegate = self;
     }else if(indexPath.section == 1){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisPaymentDateTableViewCell reuseIdentifier]];

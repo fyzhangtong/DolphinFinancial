@@ -84,22 +84,29 @@
     CGFloat height = 0;
     if (indexPath.section == 0) {
         height = [WithdrawaisAccountNumberTableViewCell cellHeight];
-    }else if (indexPath.section == 1){
-        height = 100;
+    }else if (indexPath.section == 1) {
+        height = [WithdrawaisAccountNumberTableViewCell cellHeight];
     }else if (indexPath.section == 2){
-        height = [WithdrawaisMemberLevelTableViewCell cellHeight];
+        height = 100;
     }else if (indexPath.section == 3){
+        height = [WithdrawaisMemberLevelTableViewCell cellHeight];
+    }else if (indexPath.section == 4){
         height = [WithdrawalsConfirmTableViewCell cellHeight];
     }
     return height;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == 0) {
+        return 2;
+    }else{
+        return 1;
+    }
+    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -107,15 +114,24 @@
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
         ((WithdrawaisAccountNumberTableViewCell*)cell).delegate = self;
-        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"汇款账号  " placeholder:@"请输入汇款账号"];
-    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款账号  " placeholder:nil text:self.result.receive_account editAble:NO];
+        }else{
+            [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款人  " placeholder:nil text:self.result.receive_name editAble:NO];
+        }
+        
+    }else if (indexPath.section == 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisAccountNumberTableViewCell reuseIdentifier]];
+        ((WithdrawaisAccountNumberTableViewCell*)cell).delegate = self;
+        [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"汇款账号  " placeholder:@"请输入汇款账号" text:nil editAble:YES];
+    }else if (indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:[FinancialTransferAmountTableViewCell reuseIdentifier]];
         ((FinancialTransferAmountTableViewCell *)cell).delegate = self;
         [(FinancialTransferAmountTableViewCell *)cell reloadBlance:self.result.balance fee:@"" placeholder:@"请输入充值金额" title:@"充值金额"];
-    }else if (indexPath.section == 2){
+    }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawaisMemberLevelTableViewCell reuseIdentifier]];
         [(WithdrawaisMemberLevelTableViewCell *)cell reloadMemberLevel:self.result.member_level earn:self.result.interest_rate];
-    }else if (indexPath.section == 3){
+    }else if (indexPath.section == 4){
         cell = [tableView dequeueReusableCellWithIdentifier:[WithdrawalsConfirmTableViewCell reuseIdentifier]];
         ((WithdrawalsConfirmTableViewCell *)cell).delegate = self;
         [(WithdrawalsConfirmTableViewCell *)cell reloadButtonTitle:@"确认充值" desc:@"充值发起后将提交到后台审核"];

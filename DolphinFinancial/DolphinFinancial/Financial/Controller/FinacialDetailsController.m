@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
+@property (nonatomic, copy) NSNumber *productId;
+
 @property (nonatomic, strong) UIView *bottomBGView;
 /**
  转入按钮
@@ -44,12 +46,41 @@
 
 @implementation FinacialDetailsController
 
++ (void)pushTo:(UINavigationController *)nc productId:(NSNumber *)productId
+{
+    [MBProgressHUD showHUDAddedTo:nc.view animated:YES];
+    [FinacialDetailsController requestProduct:productId view:nc.view complete:^(DFProduct *product,NSNumber *code, BOOL success) {
+        if (!success) {
+            [MBProgressHUD hideHUDForView:nc.view animated:YES];
+            if ([code integerValue] != 401) {
+                [MBProgressHUD showTextAddToView:nc.view Title:@"网络出错，请稍后再试！" andHideTime:2];
+            }
+        }else{
+            [FinacialDetailsController requestDynamics:productId view:nc.view complete:^(NSNumber *total, NSMutableArray<DFProductDynamics *> *content, BOOL success) {
+                [MBProgressHUD hideHUDForView:nc.view animated:YES];
+                if (!success) {
+                    [MBProgressHUD showTextAddToView:nc.view Title:@"网络出错，请稍后再试！" andHideTime:2];
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        FinacialDetailsController *fdc = [[FinacialDetailsController alloc] init];
+                        fdc.productId = productId;
+                        fdc.product = product;
+                        fdc.total = total;
+                        fdc.dynamics = content;
+                        [nc pushViewController:fdc animated:YES];
+                    });
+                }
+            }];
+        }
+    }];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
-    self.dynamics = [[NSMutableArray alloc] init];
-    [self requestProduct];
+    [self.collectionView reloadData];
 }
 
 - (void)makeView
@@ -230,47 +261,52 @@
 }
 
 #pragma mark - 网络请求
-- (void)requestProduct
++ (void)requestProduct:(NSNumber *)productId view:(UIView *)view complete:(void(^)(DFProduct *product,NSNumber *code,BOOL success))complete
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(self.productId) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
-        
+    [GTNetWorking getWithUrl:DOLPHIN_API_PRODUCT(productId) params:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
         if ([code integerValue] == 200) {
-            self.product = [DFProduct yy_modelWithJSON:data];
-            [self requestDynamics];
+            DFProduct *product = [DFProduct yy_modelWithJSON:data];
+            if (complete) {
+                complete(product,code,YES);
+            }
         }else{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+            if (complete) {
+                complete(nil,code,NO);
+            }  
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
+        if (complete) {
+            complete(nil,@(error.code),NO);
+        }
     }]; 
 }
 
-- (void)requestDynamics
++ (void)requestDynamics:(NSNumber *)productId view:(UIView *)view complete:(void(^)(NSNumber *total,NSMutableArray<DFProductDynamics *> *content,BOOL success))complete
 {
     NSDictionary *param = @{@"page":@"0"};
-    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(self.productId) params:param header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [GTNetWorking postWithUrl:DOLPHIN_API_PRODUCT_DYNAMICS(productId) params:param header:nil showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
+        
         if ([code integerValue] == 200) {
-            self.total = data[@"total"];
-            [self.dynamics removeAllObjects];
             NSArray<NSDictionary *> *content = data[@"content"];
+            NSMutableArray<DFProductDynamics *> *dynamics = [[NSMutableArray alloc] init];
             if ([content isKindOfClass:[NSArray class]]) {
                 [content enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     DFProductDynamics *dynamic = [DFProductDynamics yy_modelWithJSON:obj];
-                    [self.dynamics addObject:dynamic];
+                    [dynamics addObject:dynamic];
                 }];
             }
-            [self.collectionView reloadData];
+            if (complete) {
+                complete(data[@"total"],dynamics,YES);
+            }
         }else{
-            [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
+            if (complete) {
+                complete(nil,nil,NO);
+            }
         }
     } fail:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD showTextAddToView:self.view Title:@"网络出错，请稍后再试！" andHideTime:2];
+        if (complete) {
+            complete(nil,nil,NO);
+        }
     }];
 }
 #pragma mark - action
