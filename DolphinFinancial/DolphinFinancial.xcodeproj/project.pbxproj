@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B02E7CB209946D30060D64B /* RegistrationAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */; };
 		7B0429A0208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B04299F208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m */; };
 		7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F1E2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m */; };
 		7B0A5F222064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5F212064B8C80051249E /* WithdrawaisPaymentDateTableViewCell.m */; };
@@ -87,6 +86,7 @@
 		7B8485E92068F232000459C2 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485E82068F232000459C2 /* AboutUsViewController.m */; };
 		7B8485EC2068F87F000459C2 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485EB2068F87F000459C2 /* TextFieldTableViewCell.m */; };
 		7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */; };
+		7BC3321520ADA206003B422C /* RegistrationAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC3321420ADA206003B422C /* RegistrationAgreementController.m */; };
 		7BCB08EE20638DEA00017FDD /* ProductDynamicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */; };
 		7BCB08F12063AE1B00017FDD /* FinacialExplainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F02063AE1B00017FDD /* FinacialExplainCollectionViewCell.m */; };
 		7BCB08F42063C28400017FDD /* AssetsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB08F32063C28400017FDD /* AssetsRecordViewController.m */; };
@@ -104,8 +104,6 @@
 		1EA40CF10350D22C1821E2B2 /* Pods-DolphinFinancial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.debug.xcconfig"; sourceTree = "<group>"; };
 		4EC9B9849F258E12D06E8DE5 /* Pods_DolphinFinancial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DolphinFinancial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECADA240C054CA46010A78D /* Pods-DolphinFinancial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DolphinFinancial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DolphinFinancial/Pods-DolphinFinancial.release.xcconfig"; sourceTree = "<group>"; };
-		7B02E7C9209946D30060D64B /* RegistrationAgreementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistrationAgreementViewController.h; sourceTree = "<group>"; };
-		7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistrationAgreementViewController.m; sourceTree = "<group>"; };
 		7B04299E208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisMemberLevelTableViewCell.h; sourceTree = "<group>"; };
 		7B04299F208F37580062F185 /* WithdrawaisMemberLevelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawaisMemberLevelTableViewCell.m; sourceTree = "<group>"; };
 		7B0A5F1D2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawaisAccountNumberTableViewCell.h; sourceTree = "<group>"; };
@@ -262,6 +260,8 @@
 		7B8485EB2068F87F000459C2 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
 		7B8485ED20690886000459C2 /* ChangePasswordButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordButtonTableViewCell.h; sourceTree = "<group>"; };
 		7B8485EE20690886000459C2 /* ChangePasswordButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordButtonTableViewCell.m; sourceTree = "<group>"; };
+		7BC3321320ADA206003B422C /* RegistrationAgreementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistrationAgreementController.h; sourceTree = "<group>"; };
+		7BC3321420ADA206003B422C /* RegistrationAgreementController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistrationAgreementController.m; sourceTree = "<group>"; };
 		7BCB08EC20638DEA00017FDD /* ProductDynamicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDynamicCollectionViewCell.h; sourceTree = "<group>"; };
 		7BCB08ED20638DEA00017FDD /* ProductDynamicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDynamicCollectionViewCell.m; sourceTree = "<group>"; };
 		7BCB08EF2063AE1B00017FDD /* FinacialExplainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinacialExplainCollectionViewCell.h; sourceTree = "<group>"; };
@@ -428,8 +428,8 @@
 				7B40E86B2060F9EA005562D5 /* SetPasswordController.m */,
 				7B40E86D2060FA7C005562D5 /* SignUpViewController.h */,
 				7B40E86E2060FA7C005562D5 /* SignUpViewController.m */,
-				7B02E7C9209946D30060D64B /* RegistrationAgreementViewController.h */,
-				7B02E7CA209946D30060D64B /* RegistrationAgreementViewController.m */,
+				7BC3321320ADA206003B422C /* RegistrationAgreementController.h */,
+				7BC3321420ADA206003B422C /* RegistrationAgreementController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -889,6 +889,7 @@
 				7B8485EF20690886000459C2 /* ChangePasswordButtonTableViewCell.m in Sources */,
 				7B8485E62068F223000459C2 /* QuestionFeedbackViewController.m in Sources */,
 				7B73E18A206A59BE00A7C117 /* MyFinancialDetailsTotalTableViewCell.m in Sources */,
+				7BC3321520ADA206003B422C /* RegistrationAgreementController.m in Sources */,
 				7B0A5F1F2064B2370051249E /* WithdrawaisAccountNumberTableViewCell.m in Sources */,
 				7B329DF7207CB85F001A8F2D /* FinancialTransferAmountTableViewCell.m in Sources */,
 				7B329DF1207C9D94001A8F2D /* FinacialTransferViewController.m in Sources */,
@@ -918,7 +919,6 @@
 				7B33A8F42091AB55004D37BE /* MessageDetailsViewController.m in Sources */,
 				7B103D2E206A23060012494C /* MemberDetailsMyLevelCollectionViewCell.m in Sources */,
 				7BFB419A20620CB000FEED9E /* MBProgressHUD+DFStyle.m in Sources */,
-				7B02E7CB209946D30060D64B /* RegistrationAgreementViewController.m in Sources */,
 				7B71B2EA2071E1150013B787 /* Borrower.m in Sources */,
 				7B40E86F2060FA7C005562D5 /* SignUpViewController.m in Sources */,
 				7B442594208057D500161123 /* FinancialTransferButtonTableViewCell.m in Sources */,

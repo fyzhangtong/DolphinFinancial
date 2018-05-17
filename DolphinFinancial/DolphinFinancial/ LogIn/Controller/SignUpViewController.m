@@ -9,7 +9,7 @@
 #import "SignUpViewController.h"
 #import "UIImage+ImageWithColor.h"
 #import "SetPasswordController.h"
-#import "RegistrationAgreementViewController.h"
+#import "RegistrationAgreementController.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 
@@ -450,7 +450,7 @@
 }
 - (void)aggrementButtonClick:(UIButton *)sender
 {
-    [RegistrationAgreementViewController pushToController:self.navigationController];
+    [RegistrationAgreementController pushToController:self.navigationController];
 }
 
 - (void)signUpButtonClick:(UIButton *)sender
