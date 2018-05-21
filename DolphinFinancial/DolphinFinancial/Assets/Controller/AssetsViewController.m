@@ -210,6 +210,7 @@
             NSArray<NSDictionary *> *trend = data[@"trend"];
             [trend enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 AssetEarn *earn = [AssetEarn yy_modelWithDictionary:obj];
+                earn.earn = @(19.72);
                 [self.earns addObject:earn];
             }];
             [self.collectionView reloadData];
