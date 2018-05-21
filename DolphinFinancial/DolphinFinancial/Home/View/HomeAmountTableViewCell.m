@@ -115,7 +115,7 @@
         _borrowersDescLabel.textAlignment = NSTextAlignmentCenter;
         _borrowersDescLabel.font = [UIFont systemFontOfSize:12];
         _borrowersDescLabel.textColor = [UIColor whiteColor];
-        _borrowersDescLabel.text = @"人均累计理财金额";
+        _borrowersDescLabel.text = @"累计借款人数量";
         
     }
     return _borrowersDescLabel;

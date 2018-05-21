@@ -61,7 +61,7 @@
 - (UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dolphin"]];
+        _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppIcon"]];
     }
     return _imageView;
 }

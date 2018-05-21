@@ -117,7 +117,7 @@
         if (indexPath.row == 0) {
             [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款账号  " placeholder:nil text:self.result.receive_account editAble:NO];
         }else{
-            [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款人  " placeholder:nil text:self.result.receive_name editAble:NO];
+            [(WithdrawaisAccountNumberTableViewCell*)cell reloadTitle:@"收款人     " placeholder:nil text:self.result.receive_name editAble:NO];
         }
         
     }else if (indexPath.section == 1) {
