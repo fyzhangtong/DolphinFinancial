@@ -207,10 +207,12 @@
         if ([code integerValue] == 200) {
             UserFinancial *financail = [UserFinancial yy_modelWithJSON:data];
             weakSelf.financial = financail;
-            if ([financail.status isEqualToString:@"首投"] ) {
-                weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
-            }else{
+            if ([financail.status isEqualToString:@"续投"] ) {
                 weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus,MYFinancialDetailsContinueTime],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+                weakSelf.transferButton.hidden = NO;
+            }else{
+                weakSelf.dataSource = @[@[MyFinancialDetailsFirstTotal,MyFinancialDetailsSecondTotal],@[MyFinancialDetailsTotalProfit,MyFinancialDetailsYestdayProfit],@[MYFinancialDetailsAutoContinue,MYFinancialDetailsStatus],@[MyFinancialDetailsBorrowers],@[MyFinancialDetailsBuyDate,MyFinancialDetailsExpirationDate]];
+                weakSelf.transferButton.hidden = YES;
             }
             [weakSelf.tableView reloadData];
         }else{
