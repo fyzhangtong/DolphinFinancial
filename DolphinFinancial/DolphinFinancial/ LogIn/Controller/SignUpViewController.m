@@ -10,6 +10,7 @@
 #import "UIImage+ImageWithColor.h"
 #import "SetPasswordController.h"
 #import "RegistrationAgreementController.h"
+#import "UserManager.h"
 
 @interface SignUpViewController ()<UITextFieldDelegate>
 
@@ -50,6 +51,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 - (void)makeView
 {
@@ -467,12 +472,20 @@
     [GTNetWorking postWithUrl:DOLPHIN_API_AUTH_REGISTER params:params header:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if ([code integerValue] == 200) {
-            [weakSelf leftButtonClick:nil];
             BOOL need_pay_password = [data[@"need_pay_password"] boolValue];
+            NSString *token = data[@"token"];
+            [UserManager setUseraToken:token];
+            [weakSelf leftButtonClick:nil];
             if (need_pay_password) {
                 [SetPasswordController setWithPasswrodState:SetPasswordStateSetNewPassword passwordType:PasswordTypePay Complete:^(BOOL success) {
-                    
+                    if (self.complete) {
+                        self.complete(YES);
+                    }
                 }];
+            }else{
+                if (self.complete) {
+                    self.complete(YES);
+                }
             }
         }
         [MBProgressHUD showTextAddToView:weakSelf.view Title:msg andHideTime:2];

@@ -87,6 +87,7 @@
 {
     self.ownNavigationBarLine.hidden = YES;
     [self addLeftBackButton];
+    [self setCenterTitle:self.product.name];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.bottomBGView];
     

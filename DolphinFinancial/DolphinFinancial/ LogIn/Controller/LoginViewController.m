@@ -391,7 +391,12 @@ typedef enum LoginModel
 
 - (void)signUpButtonClick:(UIButton *)sender
 {
-    [SignUpViewController pushToController:self Complete:nil];
+    [SignUpViewController pushToController:self Complete:^(BOOL success) {
+        if (success) {
+            self.loginSuccess = YES;
+            [self leftButtonClick:nil];
+        }
+    }];
 }
 
 - (void)changeModelButtonClick:(UIButton *)sender

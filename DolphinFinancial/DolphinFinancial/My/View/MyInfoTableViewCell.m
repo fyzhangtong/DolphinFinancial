@@ -57,7 +57,9 @@
     [self.headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(20);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.height.with.mas_equalTo(40);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(40);
+        
     }];
     
     [self.contentView addSubview:self.tagLabel];
@@ -86,7 +88,9 @@
 - (UIImageView *)headImageView
 {
     if (!_headImageView) {
-        _headImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"my_head"]];
+        _headImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppIcon"]];
+        _headImageView.layer.masksToBounds = YES;
+        _headImageView.layer.cornerRadius = 20;
     }
     return _headImageView;
 }

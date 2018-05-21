@@ -180,7 +180,7 @@
 
 - (void)reloadProduct:(DFProductDynamics *)dynamic
 {
-    self.owePeoplePhoneNumberLabel.text = dynamic.product_name;
+    self.owePeoplePhoneNumberLabel.text = dynamic.buyer;
     self.owePeopleAmountLabel.text = dynamic.buy_amount;
     self.owePeopleDateLabel.text = dynamic.buy_time;
     if (dynamic.borrowers.count > 0) {

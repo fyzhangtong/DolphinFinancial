@@ -19,6 +19,9 @@
  */
 @property (nonatomic, copy) NSNumber *id;
 
+
+@property (nonatomic, copy) NSString *buyer;
+
 /**
  产品名称
  */
