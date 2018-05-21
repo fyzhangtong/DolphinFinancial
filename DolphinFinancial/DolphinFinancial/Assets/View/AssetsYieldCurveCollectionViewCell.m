@@ -108,7 +108,6 @@
         xAxis.axisMinimum = 0.0;
         xAxis.granularity = 1.0;
         xAxis.valueFormatter = self;
-
         
         _chartView.legend.form = ChartLegendFormLine;
         
@@ -143,12 +142,18 @@
     {
         set1 = (LineChartDataSet *)_chartView.data.dataSets[0];
         set1.values = values;
+        NSNumberFormatter *rightAxisFormatter = [[NSNumberFormatter alloc] init];
+        rightAxisFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        set1.valueFormatter = [[ChartDefaultValueFormatter alloc] initWithFormatter:rightAxisFormatter];
         [_chartView.data notifyDataChanged];
         [_chartView notifyDataSetChanged];
     }
     else
     {
         set1 = [[LineChartDataSet alloc] initWithValues:values label:@"收益"];
+        NSNumberFormatter *rightAxisFormatter = [[NSNumberFormatter alloc] init];
+        rightAxisFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        set1.valueFormatter = [[ChartDefaultValueFormatter alloc] initWithFormatter:rightAxisFormatter];
         
         set1.drawIconsEnabled = NO;
         set1.mode = LineChartModeCubicBezier;
