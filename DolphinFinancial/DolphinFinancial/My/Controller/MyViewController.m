@@ -208,13 +208,21 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *confim = [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [UserManager removeUser];
-        self.dataSource = _logoutDataSource;
-        [self.tableView reloadData];
-        [LoginViewController loginWithComplete:^(BOOL success) {
-            if (success) {
-                [self requestData];
+        [GTNetWorking getWithUrl:DOLPHIN_API_EXIT params:nil showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
+            if ([code integerValue] == 200) {
+                [UserManager removeUser];
+                self.dataSource = _logoutDataSource;
+                [self.tableView reloadData];
+                [LoginViewController loginWithComplete:^(BOOL success) {
+                    if (success) {
+                        [self requestData];
+                    }
+                }];
+            }else{
+                [MBProgressHUD showTextAddToView:self.view Title:msg andHideTime:2];
             }
+        } fail:^(NSError *error) {
+            [MBProgressHUD showTextAddToView:self.view Title:@"网络错我，请稍后再试！" andHideTime:2];
         }];
         
     }];
