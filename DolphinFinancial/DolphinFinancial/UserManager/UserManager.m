@@ -17,6 +17,7 @@
     NSUserDefaults * defaults =[NSUserDefaults standardUserDefaults];
     NSData *userInfoData = [NSKeyedArchiver archivedDataWithRootObject:Token];
     [defaults setObject:userInfoData forKey:USERTOKEN];
+    [defaults synchronize];
 }
 
 + (NSString *)userToken {

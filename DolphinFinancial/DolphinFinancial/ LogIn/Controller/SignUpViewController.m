@@ -262,6 +262,7 @@
         _loginPasswordLabelTextField.font = [UIFont systemFontOfSize:14];
         _loginPasswordLabelTextField.textAlignment = NSTextAlignmentLeft;
         _loginPasswordLabelTextField.placeholder = @"6-16位，含数字、字母";
+        _loginPasswordLabelTextField.secureTextEntry = YES;
         _loginPasswordLabelTextField.keyboardType = UIKeyboardTypeASCIICapable;
         _loginPasswordLabelTextField.delegate = self;
         [_loginPasswordLabelTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];

@@ -442,7 +442,7 @@
     }
     
     
-    [GTNetWorking postWithUrl:url params:params header:header showLoginIfNeed:YES success:^(NSNumber *code, NSString *msg, id data) {
+    [GTNetWorking postWithUrl:url params:params header:header showLoginIfNeed:NO success:^(NSNumber *code, NSString *msg, id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([code integerValue] == 200) {
             self.setSuccess = YES;
